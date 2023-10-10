@@ -1,11 +1,17 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.sql.Date;
 
 @Entity
 @Table(name = "premiumuser", schema = "pracalicencjacka_training_db", catalog = "")
+@Getter
+@Setter
+@ToString
 public class PremiumuserEntity {
     @Basic
     @Column(name = "hipsCircumference", nullable = false, precision = 2)
@@ -24,45 +30,7 @@ public class PremiumuserEntity {
     @Column(name = "NormalUser_id", nullable = false)
     private int normalUserId;
 
-    public double getHipsCircumference() {
-        return hipsCircumference;
-    }
 
-    public void setHipsCircumference(double hipsCircumference) {
-        this.hipsCircumference = hipsCircumference;
-    }
-
-    public double getWaistCircumference() {
-        return waistCircumference;
-    }
-
-    public void setWaistCircumference(double waistCircumference) {
-        this.waistCircumference = waistCircumference;
-    }
-
-    public Date getStartSubscription() {
-        return startSubscription;
-    }
-
-    public void setStartSubscription(Date startSubscription) {
-        this.startSubscription = startSubscription;
-    }
-
-    public Date getEndSubscription() {
-        return endSubscription;
-    }
-
-    public void setEndSubscription(Date endSubscription) {
-        this.endSubscription = endSubscription;
-    }
-
-    public int getNormalUserId() {
-        return normalUserId;
-    }
-
-    public void setNormalUserId(int normalUserId) {
-        this.normalUserId = normalUserId;
-    }
 
     @Override
     public boolean equals(Object o) {

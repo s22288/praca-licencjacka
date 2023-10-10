@@ -3,6 +3,8 @@ package com.example.trainingapp.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.apache.commons.math3.util.Precision;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -13,7 +15,9 @@ import java.time.temporal.Temporal;
 @Table(name = "normaluser", schema = "pracalicencjacka_training_db", catalog = "")
 @Getter
 @Setter
+@ToString
 public class NormaluserEntity {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -21,12 +25,17 @@ public class NormaluserEntity {
     @Basic
     @Column(name = "firstName", nullable = false, length = 200)
     private String firstName;
+
+
+    @Basic
+    @Column(name = "login", nullable = false, length = 200)
+    private String login;
     @Basic
     @Column(name = "lastName", nullable = false, length = 200)
     private String lastName;
     @Basic
     @Column(name = "birthDate", nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
     @Basic
     @Column(name = "height", nullable = false, precision = 1)
     private double height;
@@ -58,11 +67,28 @@ public class NormaluserEntity {
     @Column(name = "Authority_id", nullable = false)
     private int authorityId;
 
+public  long calculateAgeFromBirthDate(){
+    return  ChronoUnit.YEARS.between( birthDate,LocalDate.now());
+}
+   public double calculatePPM(){
+       if(sex){
+           return     66.47 + ( 13.75 * this.weight) + (5 * this.height ) - (6.75 * calculateAgeFromBirthDate());
 
-    public long calculateAge(){
-       return   ChronoUnit.YEARS.between((Temporal) birthDate,LocalDate.now());
+       }
+       return 665.09 + ( 9.56 * this.weight) + (1.85 * this.height ) - (4.67 * calculateAgeFromBirthDate());
 
-    }
+   }
+   public  double calculateCPM(){
+    return Precision.round(getPalfactor() * calculatePPM(),2);
+   }
+
+
+   public  double roundValues(double value){
+    value = value*100;
+    value = Math.round(value);
+    value = value/100;
+    return value;
+   }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,4 +133,5 @@ public class NormaluserEntity {
         result = 31 * result + authorityId;
         return result;
     }
+
 }
