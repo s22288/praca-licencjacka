@@ -1,11 +1,12 @@
-function calculateCaloriesDemandBaseOnUser() {
-    return fetch("http://localhost:9800/normal-user/account-data")
+
+ function  getUserData() {
+    return  fetch("http://localhost:9800/normal-user/account-data")
 }
 
 
 
-function updateUsersData(data) {
-    return fetch("http://localhost:9800/normal-user/update-data", {
+async function updateUsersData(data) {
+    return await fetch("http://localhost:9800/normal-user/update-data", {
         method: 'Post',
         headers: {
             'Accept': 'application/json',
@@ -16,4 +17,4 @@ function updateUsersData(data) {
 }
 
 
-export { calculateCaloriesDemandBaseOnUser, updateUsersData }
+export { getUserData, updateUsersData }

@@ -23,7 +23,7 @@ public class DietServiceImplementation implements DietService {
                     int mealCalories = mealEntity.getCalories();
                     if ((lowwer > suma.get()) && (suma.get()< upper)) {
                         suma.addAndGet(mealCalories);
-                        
+
 
                     }
                 }

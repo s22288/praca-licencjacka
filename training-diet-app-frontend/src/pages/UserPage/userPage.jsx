@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom"
+
+
+
+import backgroundSVG from "../../assets/userpage.svg";
+import { useNavigate } from "react-router-dom";
+
+import UserNavbar from "../../components/Medium/navbar/userNavbar";
 
 const UserPage = () => {
-    return (
-        <div>
-            <h2>user-page</h2>
-            <Link to={'/user-page/customize-diet'}>CustomiseDiet</Link>
-            <br>
-            </br>
-            <Link to={'/user-page/user-data'}>userData</Link>
+  const navigate = useNavigate();
 
-        </div>
-    )
-}
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${backgroundSVG})`,
+        height: "100vh",
+        backgroundSize: "cover",
+      }}
+    >
+      <UserNavbar />
+     
+    </div>
+  );
+};
 
-export default UserPage
+export default UserPage;

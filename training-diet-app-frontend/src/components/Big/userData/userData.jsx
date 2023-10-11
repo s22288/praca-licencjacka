@@ -1,20 +1,46 @@
 import { useEffect, useState } from "react";
 import "./useracc.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Await, Link, useNavigate } from "react-router-dom";
 import MenPhoto from '../../../assets/blackMen.png'
 
 import UserMenuNavbar from "../../Medium/navbar/userMenuNavbar";
-import { calculateCaloriesDemandBaseOnUser, updateUsersData } from "../../../services/usersServices/UserService";
+import { calculateCaloriesDemandBaseOnUser, getUserData, updateUsersData } from "../../../services/usersServices/UserService";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import FunctionalityNavbar from "../../Medium/navbar/functionalitynavbar";
 
 const UserAccount = () => {
+    const [birthDate, setBirthDate] = useState('');
+    const [height, setHeight] = useState('');
+    const [weight, setWeight] = useState('');
+    const [pal, setPal] = useState(0);
+
     const [userData, setUserData] = useState(null);
-    const navigate = useNavigate();
-    const [error, setError] = useState("error");
-    const [birthDate, setBirthDate] = useState();
-    const [height, setHeight] = useState(0);
-    const [weight, setWeight] = useState(0);
-    const [pal, setPal] = useState('pal');
+    useEffect(() => {
+        getUserData()
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Failed to fetch user data");
+                }
+            })
+            .then((data) => {
+                setUserData(data);
+                setBirthDate(data.birthDate)
+                setWeight(data.weight)
+
+                setHeight(data.height)
+                setPal(data.palfactor)
+
+            })
+            .catch((error) => {
+                console.error("Failed to fetch user data", error);
+            });
+
+
+
+    }, []);
+
 
     const palArray = [
         {
@@ -39,8 +65,9 @@ const UserAccount = () => {
         }
 
     ]
-
-    const handleSubmit = () => {
+  
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
 
         const data = {
@@ -49,7 +76,22 @@ const UserAccount = () => {
             weight: weight,
             palfactor: pal
         };
-        updateUsersData(data);
+
+        updateUsersData(data) .then(() => {
+            setUserData({
+                ...userData,
+                birthDate: data.birthDate,
+                height: data.height,
+                weight: data.weight,
+                palfactor: data.palfactor
+            });
+        })
+        .catch((error) => {
+            console.error("Failed to update user data", error);
+            // Handle error and provide feedback to the user
+        });
+       
+
 
 
     };
@@ -57,32 +99,8 @@ const UserAccount = () => {
     const handleChange = (event) => {
         setPal(event.target.value)
     }
-    useEffect(() => {
 
 
-
-        calculateCaloriesDemandBaseOnUser()
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Failed to fetch user data");
-                }
-            })
-            .then((data) => {
-                setUserData(data);
-                setBirthDate(data.birthDate)
-                setWeight(data.weight)
-
-                setHeight(data.height)
-                setPal(data.palfactor)
-
-            })
-            .catch((error) => {
-                console.error("Failed to fetch user data", error);
-            });
-
-    }, []);
 
     return (
         <div
@@ -92,7 +110,7 @@ const UserAccount = () => {
                 backgroundSize: "cover",
             }}
         >
-            <UserMenuNavbar />
+            <FunctionalityNavbar />
 
 
 
@@ -186,7 +204,7 @@ const UserAccount = () => {
                                 label="Age"
                                 onChange={handleChange}
                             >
-                                <MenuItem  value={palArray[0].val} className="menu-item-text">{palArray[0].mess} : {palArray[0].val} </MenuItem>
+                                <MenuItem value={palArray[0].val} className="menu-item-text">{palArray[0].mess} : {palArray[0].val} </MenuItem>
                                 <MenuItem className="menu-item-text" value={palArray[1].val}>{palArray[1].mess} : {palArray[1].val}</MenuItem>
                                 <MenuItem className="menu-item-text" value={palArray[2].val}>{palArray[2].mess} : {palArray[2].val}</MenuItem>
                                 <MenuItem className="menu-item-text" value={palArray[3].val}>{palArray[3].mess} : {palArray[3].val}</MenuItem>
