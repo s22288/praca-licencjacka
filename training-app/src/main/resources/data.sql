@@ -29,3 +29,23 @@ values (1,'2001-02-23',157.0,1.6,false,55,'Maja','Niedzielska','maja','niedziels
 insert into normaluser (authority_id, birth_date, height, palfactor,sex, weight, first_name, last_name,login, mail, password,
                         photo)
 values (1,'1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewa','lewandowska@gmail.com','password14','photo2.jpg');
+
+
+-- insert meals
+# DELIMITER //
+#
+# CREATE PROCEDURE InsertData()
+# BEGIN
+#     DECLARE i INT DEFAULT 1;
+#     DECLARE max_count INT DEFAULT 10;
+#
+#     WHILE i <= max_count DO
+#             INSERT INTO meal (calories, meal_type_id, meal_name, photo)
+#             VALUES (FLOOR(RAND() * (1000 - 300 + 1) + 300), 1, CONCAT('Name', i), CONCAT('Photo', i));
+#             SET i = i + 1;
+#         END WHILE;
+# END //
+#
+# DELIMITER ;
+
+# call InsertData()
