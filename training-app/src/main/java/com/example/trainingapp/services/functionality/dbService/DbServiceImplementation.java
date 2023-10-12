@@ -13,6 +13,8 @@ public class DbServiceImplementation implements DbService {
     private MealRepostiory mealRepostiory;
 
 
+
+
     @Autowired
     private ExerciseRepository exerciseRepository;
 @PostConstruct

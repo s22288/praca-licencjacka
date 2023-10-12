@@ -40,6 +40,11 @@ const UserNavbar = () => {
                     </Link>
                 </li>
                 <li>
+                    <Link to="/user-page/records" className="nav-link">
+                        Records
+                    </Link>
+                </li>
+                <li>
                     <Link className="nav-link" to={"/"} onClick={handleLogout}>
                         Logout
                     </Link>

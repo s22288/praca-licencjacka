@@ -4,6 +4,11 @@
 }
 
 
+function  getUserMaxes() {
+    return  fetch("http://localhost:9800/normal-user/user-maxes")
+}
+
+
 
 async function updateUsersData(data) {
     return await fetch("http://localhost:9800/normal-user/update-data", {
@@ -17,4 +22,17 @@ async function updateUsersData(data) {
 }
 
 
-export { getUserData, updateUsersData }
+async function addUserMaxes(data) {
+    return await fetch("http://localhost:9800/normal-user/add-maxes", {
+        method: 'Post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify(data)
+    }
+    )
+}
+
+
+
+export { addUserMaxes,getUserData, updateUsersData,getUserMaxes }

@@ -1,4 +1,4 @@
-import UserAccount from "../../components/Big/userData/userData"
+import UserAccount from "../../../components/Big/userData/userData"
 
 const UserData = () => {
     return (
