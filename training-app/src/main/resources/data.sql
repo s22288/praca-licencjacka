@@ -30,25 +30,25 @@ insert into normaluser (authority_id, birth_date, height, palfactor,sex, weight,
                         photo)
 values (1,'1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewa','lewandowska@gmail.com','password14','photo2.jpg');
 -- add some maxes
-
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (100,'2000-01-11',156,1,12,200);
-
-
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (120,'2001-01-12',160,1,10,220);
-
-
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (120,'2001-01-12',160,1,10,220);
-
-
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (160,'2002-01-12',179,1,40,300);
-
-
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (100,'2002-01-12',90,1,70,150);
+--
+-- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+-- values (100,'2000-01-11',156,1,12,200);
+--
+--
+-- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+-- values (120,'2001-01-12',160,1,10,220);
+--
+--
+-- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+-- values (120,'2001-01-12',160,1,10,220);
+--
+--
+-- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+-- values (160,'2002-01-12',179,1,40,300);
+--
+--
+-- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+-- values (100,'2002-01-12',90,1,70,150);
 -- insert meals
 -- create
 -- definer = root@localhost procedure InsertData(IN countMeals int)

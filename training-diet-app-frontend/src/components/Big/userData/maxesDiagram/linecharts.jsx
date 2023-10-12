@@ -5,11 +5,9 @@ import { Line } from "react-chartjs-2";
 
 
 
-
 const LineChart = (props) => {
    const userMaxArray  = props.data;
    
-//    const labels = ["January", "February", "March", "April", "May", "June"];
 const labels  = []
 let  benchMax  =userMaxArray.map(b=> b.bench);
 let  pullupMax  =userMaxArray.map(b=> b.pullups);
@@ -18,7 +16,6 @@ let  squadMax  =userMaxArray.map(b=> b.squad);
 let  deadliftMax  =userMaxArray.map(b=> b.deadlift);
 
 userMaxArray.forEach(element => {
-    console.log('element' +element.dayOfRecords)
     labels.push(element.dayOfRecords)
 });
    const data = {
@@ -50,10 +47,57 @@ userMaxArray.forEach(element => {
         },
     ],
   };
+  // white
+  const options = {
+    scales: {
+      x: {
+        grid: {
+          color: "black", 
+        },
+        ticks: {
+          color: "#black", 
+          font: {
+            size: 30,
+            family: "Bangers",
+
+          },
+
+        },
+      },
+      y: {
+        grid: {
+          color: "black", 
+        },
+        ticks: {
+          color: "#black", 
+          font: {
+            size: 34,
+            family: "Bangers",
+
+          },
+          
+                },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "#black", 
+          font: {
+            size: 30,
+            family: "Bangers" ,
+            border: "2px solid black" 
+
+          },
+        },
+       
+      },
+    },
+  };
 
   return (
-    <div>
-      <Line data={data} />
+    <div className="diagram-div">
+      <Line data={data} options={options}  />
     </div>
   );
 };

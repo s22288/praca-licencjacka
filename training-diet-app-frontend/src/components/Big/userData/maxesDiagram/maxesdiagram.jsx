@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getUserMaxes } from "../../../../services/usersServices/UserService"
 import LineChart from "./linecharts";
-
+import './maxes.css'
 const MaxesDiagram =()=>{
 const [userMaxes,setUserMaxes] = useState([]);
     useEffect(()=>{

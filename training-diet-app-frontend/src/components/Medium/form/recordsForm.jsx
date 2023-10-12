@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import MaxesDiagram from "../../Big/userData/maxesDiagram/maxesdiagram";
 import { addUserMaxes } from "../../../services/usersServices/UserService";
-
-
+import './records.css'
 const RecordForm = ()=>{
+   
     const [bench,setBench] = useState(0);
     const [pullups,setPullups] = useState(0);
 
@@ -12,6 +12,18 @@ const RecordForm = ()=>{
     const [deadlift,setDeadlift] = useState(0);
     const [dayOfRecord,setDayOfRecords] = useState(null);
 
+    useEffect(()=>{
+        const date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        
+        let currentDate = `${year}-${month}-${day}`;
+    
+        setDayOfRecords(currentDate)
+    },[])
+
+  
     const handleSubmit =()=>{
         const record  = {
             bench: bench,
@@ -22,11 +34,11 @@ const RecordForm = ()=>{
             
         }
         addUserMaxes(record)
-
+    
     }
 
     return(
-        <div>
+        <div className="container">
 
         <MaxesDiagram/>
         <form onSubmit={handleSubmit} className="login-form">
@@ -69,14 +81,15 @@ const RecordForm = ()=>{
         
 
         <label className="customlb">Date:</label>
-        <input
+        <input required
 
             type="date"
             value={dayOfRecord}
             onChange={(e) => setDayOfRecords(e.target.value)}
             className="user-input" />
+            
         <br />
-       
+        
 
         <button type="submit" className="login-button">
             Add
