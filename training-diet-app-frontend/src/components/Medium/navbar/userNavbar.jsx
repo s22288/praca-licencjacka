@@ -44,6 +44,12 @@ const UserNavbar = () => {
                         Records
                     </Link>
                 </li>
+
+                <li>
+                    <Link to="/user-page/premium-indicators" className="nav-link">
+                        Body Indicators
+                    </Link>
+                </li>
                 <li>
                     <Link className="nav-link" to={"/"} onClick={handleLogout}>
                         Logout
