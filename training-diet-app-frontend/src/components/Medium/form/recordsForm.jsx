@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import MaxesDiagram from "../../Big/userData/maxesDiagram/maxesdiagram";
 import { addUserMaxes } from "../../../services/usersServices/UserService";
 import './form-records.css'
+import Chart from 'chart.js/auto'; // to musi tu być
+
 const RecordForm = () => {
 
     const [bench, setBench] = useState(0);

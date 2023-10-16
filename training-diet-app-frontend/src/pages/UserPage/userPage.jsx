@@ -5,6 +5,7 @@ import backgroundSVG from "../../assets/userpage.svg";
 import { useNavigate } from "react-router-dom";
 
 import UserNavbar from "../../components/Medium/navbar/userNavbar";
+import UserPageMain from "../../components/Big/userPageMain/userPageMain";
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const UserPage = () => {
       }}
     >
       <UserNavbar />
-     
+      <UserPageMain />
     </div>
   );
 };
