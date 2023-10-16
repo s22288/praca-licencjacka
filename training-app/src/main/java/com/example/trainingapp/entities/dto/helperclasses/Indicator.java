@@ -1,4 +1,4 @@
-package com.example.trainingapp.entities.dto;
+package com.example.trainingapp.entities.dto.helperclasses;
 
 import lombok.*;
 

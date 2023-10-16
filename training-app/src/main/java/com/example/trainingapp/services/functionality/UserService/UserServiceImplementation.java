@@ -2,9 +2,8 @@ package com.example.trainingapp.services.functionality.UserService;
 
 import com.example.trainingapp.controllers.NormalUserController;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
-import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.PremiumuserEntity;
-import com.example.trainingapp.entities.dto.Indicator;
+import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import com.example.trainingapp.services.repositories.UserRepository;
@@ -13,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service

@@ -7,9 +7,14 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MealRepostiory extends JpaRepository<MealEntity,Long> {
     @Procedure(procedureName = "InsertData")
     void InsertMeals(@Param("countMeals") int countMeals);
 
+
+    @Query (value = "select * from meal where meal_type_id=?1 limit 4",nativeQuery = true)
+    List<MealEntity> findFourMealsBaseOnType(int typeId);
 }

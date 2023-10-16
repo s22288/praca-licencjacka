@@ -1,0 +1,21 @@
+.select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Adjust to set the container to full viewport height */
+}
+
+.custom-select {
+    width: 50%;
+    /* Adjust the width as needed */
+    max-width: 200px;
+    /* Set a maximum width */
+}
+
+/* Style for the Select label */
+.custom-select-label {
+    font-size: 16px;
+    /* Adjust the font size as needed */
+}

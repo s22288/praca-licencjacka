@@ -1,8 +1,7 @@
 package com.example.trainingapp.controllers;
 
-import com.example.trainingapp.entities.dto.Indicator;
+import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import com.example.trainingapp.services.functionality.UserService.UserService;
-import com.example.trainingapp.services.functionality.UserService.UserServiceImplementation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

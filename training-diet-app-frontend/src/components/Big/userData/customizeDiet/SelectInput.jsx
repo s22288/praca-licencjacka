@@ -1,7 +1,7 @@
-import { FormControl, MenuItem, Select } from "@mui/material"
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import { useEffect, useState } from "react";
 import calculateCPM from "../../../../services/usersServices/IndicatorService";
-
+import './select.css'
 const SelectDietGoal = () => {
     const [cpm, setCpm] = useState()
     const [cpmCopy, setCpmCopy] = useState();
@@ -48,20 +48,27 @@ const SelectDietGoal = () => {
     let age
     return (
         <div>
-            <FormControl fullWidth>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                >
-                    <MenuItem value={'lose'}>Lose Weight</MenuItem>
-                    <MenuItem value={'maintain'}>Maintain Weight</MenuItem>
-                    <MenuItem value={'gain'}>Gain Weight</MenuItem>
-                </Select>
-            </FormControl>
-            <h2>you need {cpmCopy} kcal</h2>
+            <div className="container">
+                <FormControl className="custom-select">
+                    <InputLabel className="custom-select-label" id="demo-simple-select-label">Set Goal</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={'lose'}>Lose Weight</MenuItem>
+                        <MenuItem value={'maintain'}>Maintain Weight</MenuItem>
+                        <MenuItem value={'gain'}>Gain Weight</MenuItem>
+                    </Select>
+                </FormControl>
+                <h2>{cpmCopy} kcal </h2>
+
+            </div>
+
+
+
+
         </div>
     )
 }

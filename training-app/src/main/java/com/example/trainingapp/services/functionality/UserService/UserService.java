@@ -1,7 +1,7 @@
 package com.example.trainingapp.services.functionality.UserService;
 
 import com.example.trainingapp.entities.MaxinexerciseEntity;
-import com.example.trainingapp.entities.dto.Indicator;
+import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
