@@ -1,9 +1,8 @@
 
-import './home.css'
-import { Link } from "react-router-dom"
+import './homepage-home.css'
 import dietBecground from "../../assets/dieteBacground.avif";
 import trainigBacground from "../../assets/trainingbackground.avif";
-import UserMenuNavbar from '../../components/Medium/navbar/userMenuNavbar';
+import UserMenuNavbar from '../../components/Medium/navbar/menuNavbar';
 import MainPageCard from '../../components/Big/bigCard/MainPageCard';
 import backgroundSVG from "../../assets/background.svg";
 

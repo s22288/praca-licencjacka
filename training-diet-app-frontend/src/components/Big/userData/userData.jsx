@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import "./useracc.css";
-import { Await, Link, useNavigate } from "react-router-dom";
+import "./userData-useracc.css";
 import MenPhoto from '../../../assets/blackMen.png'
 
-import UserMenuNavbar from "../../Medium/navbar/userMenuNavbar";
-import { calculateCaloriesDemandBaseOnUser, getUserData, updateUsersData } from "../../../services/usersServices/UserService";
+import { getUserData, updateUsersData } from "../../../services/usersServices/UserService";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import FunctionalityNavbar from "../../Medium/navbar/functionalitynavbar";
 
@@ -65,7 +63,7 @@ const UserAccount = () => {
         }
 
     ]
-  
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -77,7 +75,7 @@ const UserAccount = () => {
             palfactor: pal
         };
 
-        updateUsersData(data) .then(() => {
+        updateUsersData(data).then(() => {
             setUserData({
                 ...userData,
                 birthDate: data.birthDate,
@@ -86,11 +84,10 @@ const UserAccount = () => {
                 palfactor: data.palfactor
             });
         })
-        .catch((error) => {
-            console.error("Failed to update user data", error);
-            // Handle error and provide feedback to the user
-        });
-       
+            .catch((error) => {
+                console.error("Failed to update user data", error);
+            });
+
 
 
 
@@ -115,51 +112,51 @@ const UserAccount = () => {
 
 
 
-            <div className="container-account">
-                <div className="content">
-                    <div className="image-container">
+            <div className="userData-content-image-container-data-container">
+                <div className="userData-content">
+                    <div className="userData-content-image-containerr">
                         {userData ? (
                             userData.photo ? (
-                                <img src={MenPhoto} alt="User Photo" className="image" />
+                                <img src={MenPhoto} className="userData-image" />
 
                             ) :
-                                <img src={userData.photo} alt="User Photo" className="image" />
+                                <img src={userData.photo} className="userData-image" />
 
 
                         ) : (
-                            <div className="placeholder-image" />
+                            <div className="userData-placeholder-image" />
                         )}
                     </div>
                     <div className="data-container">
-                        <h1 className="title">User Data</h1>
+                        <h1 className="userData-title">User Data</h1>
                         {userData ? (
                             <div>
                                 {userData.mail ? (
-                                    <p className="text">Email: {userData.mail}</p>
+                                    <p className="userData-title-text">Email: {userData.mail}</p>
                                 ) : (
-                                    <p className="text">Email: ?</p>
+                                    <p className="userData-title-text">Email: ?</p>
                                 )}
 
                                 {userData.login ? (
-                                    <p className="text">Login: {userData.login}</p>
+                                    <p className="userData-title-text">Login: {userData.login}</p>
                                 ) : (
-                                    <p className="text">Login: ?</p>
+                                    <p className="userData-title-text">Login: ?</p>
                                 )}
 
                                 {userData.birthDate ? (
-                                    <p className="text">BirthDate: {userData.birthDate}</p>
+                                    <p className="userData-title-text">BirthDate: {userData.birthDate}</p>
                                 ) : (
-                                    <p className="text">BirthDate: ?</p>
+                                    <p className="userData-title-text">BirthDate: ?</p>
                                 )}
                                 {userData.height ? (
-                                    <p className="text">Height: {userData.height}</p>
+                                    <p className="userData-title-text">Height: {userData.height}</p>
                                 ) : (
-                                    <p className="text">Height: ?</p>
+                                    <p className="userData-title-text">Height: ?</p>
                                 )}
                                 {userData.weight ? (
-                                    <p className="text">Weight: {userData.weight}</p>
+                                    <p className="userData-title-text">Weight: {userData.weight}</p>
                                 ) : (
-                                    <p className="text">Weight: ?</p>
+                                    <p className="userData-title-text">Weight: ?</p>
                                 )}
                             </div>
                         ) : (
@@ -167,14 +164,14 @@ const UserAccount = () => {
                         )}
                     </div>
 
-                    <form onSubmit={handleSubmit} className="login-form">
+                    <form onSubmit={handleSubmit} className="userData-login-form">
                         <label className="customlb">BrithDate:</label>
                         <input
 
                             type="date"
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
-                            className="user-input" />
+                            className="userData-user-input" />
                         <br />
 
                         <label className="customlb">Height:</label>
@@ -183,7 +180,7 @@ const UserAccount = () => {
                             type="number"
                             value={height}
                             onChange={(e) => setHeight(e.target.value)}
-                            className="user-input" />
+                            className="userData-user-input" />
                         <br />
 
                         <label className="customlb">Weight:</label>
@@ -192,7 +189,7 @@ const UserAccount = () => {
                             type="number"
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
-                            className="user-input" />
+                            className="userData-user-input" />
                         <br />
                         <FormControl fullWidth >
 
@@ -204,11 +201,11 @@ const UserAccount = () => {
                                 label="Age"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={palArray[0].val} className="menu-item-text">{palArray[0].mess} : {palArray[0].val} </MenuItem>
-                                <MenuItem className="menu-item-text" value={palArray[1].val}>{palArray[1].mess} : {palArray[1].val}</MenuItem>
-                                <MenuItem className="menu-item-text" value={palArray[2].val}>{palArray[2].mess} : {palArray[2].val}</MenuItem>
-                                <MenuItem className="menu-item-text" value={palArray[3].val}>{palArray[3].mess} : {palArray[3].val}</MenuItem>
-                                <MenuItem className="menu-item-text" value={palArray[4].val}>{palArray[4].mess} : {palArray[4].val}</MenuItem>
+                                <MenuItem value={palArray[0].val} className="userData-title-text-menu-item-text">{palArray[0].mess} : {palArray[0].val} </MenuItem>
+                                <MenuItem className="userData-title-text-menu-item-text" value={palArray[1].val}>{palArray[1].mess} : {palArray[1].val}</MenuItem>
+                                <MenuItem className="userData-title-text-menu-item-text" value={palArray[2].val}>{palArray[2].mess} : {palArray[2].val}</MenuItem>
+                                <MenuItem className="userData-title-text-menu-item-text" value={palArray[3].val}>{palArray[3].mess} : {palArray[3].val}</MenuItem>
+                                <MenuItem className="userData-title-text-menu-item-text" value={palArray[4].val}>{palArray[4].mess} : {palArray[4].val}</MenuItem>
 
                             </Select>
                         </FormControl>

@@ -11,6 +11,7 @@ insert into normaluser (authority_id, birth_date, height, palfactor,sex, weight,
 values (1,'1979-06-16',193.0,1.6,true,99,'Michal','Kowalski','ps5','kowalski@gmail.com','password1','photo.jpg');
 
 
+
 insert into normaluser (authority_id, birth_date, height, palfactor,sex, weight, first_name, last_name,login, mail, password,
                         photo)
 values (1,'1989-02-15',166.0,1.8,true,82,'Karol','Nowacki','2115','nowacki@gmail.com','password2','photo2.jpg');
@@ -29,26 +30,31 @@ values (1,'2001-02-23',157.0,1.6,false,55,'Maja','Niedzielska','maja','niedziels
 insert into normaluser (authority_id, birth_date, height, palfactor,sex, weight, first_name, last_name,login, mail, password,
                         photo)
 values (1,'1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewa','lewandowska@gmail.com','password14','photo2.jpg');
+
+-- premium users
+
+insert into premiumuser (end_subscription, hips_circumference, id, start_subscription, waist_circumference)
+values ('2000-01-11',200.0,1,'2000-01-09',150.0);
 -- add some maxes
 --
 insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
 values (100,'2000-01-11',156,1,12,200);
 
 --
--- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
--- values (120,'2001-01-12',160,1,10,220);
+insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+values (120,'2001-01-12',160,1,10,220);
 --
 --
--- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
--- values (120,'2001-01-12',160,1,10,220);
+insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+values (120,'2001-01-12',160,1,10,220);
 --
 --
--- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
--- values (160,'2002-01-12',179,1,40,300);
+insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+values (160,'2002-01-12',179,1,40,300);
 --
 --
--- insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
--- values (100,'2002-01-12',90,1,70,150);
+insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+values (100,'2002-01-12',90,1,70,150);
 -- insert meals
 -- create
 -- definer = root@localhost procedure InsertData(IN countMeals int)

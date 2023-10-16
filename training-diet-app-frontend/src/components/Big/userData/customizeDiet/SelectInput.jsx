@@ -1,8 +1,8 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
+import { FormControl, MenuItem, Select } from "@mui/material"
 import { useEffect, useState } from "react";
-import calculateCPM from "../../../services/usersServices/IndicatorService";
+import calculateCPM from "../../../../services/usersServices/IndicatorService";
 
-const SelectInput = () => {
+const SelectDietGoal = () => {
     const [cpm, setCpm] = useState()
     const [cpmCopy, setCpmCopy] = useState();
 
@@ -31,17 +31,15 @@ const SelectInput = () => {
             });
 
     }, []);
-    const [goal, setGoal] = useState('lose')
     const handleChange = (event) => {
         setCpmCopy(cpm)
         let goalSett = event.target.value
-        setGoal(event.target.value)
 
-        if (goalSett == 'lose') {
+        if (goalSett === 'lose') {
             setCpmCopy((cpm - 300).toFixed(2))
         }
 
-        if (goalSett == 'gain') {
+        if (goalSett === 'gain') {
             setCpmCopy((cpm + 300).toFixed(2))
 
         }
@@ -68,4 +66,4 @@ const SelectInput = () => {
     )
 }
 
-export default SelectInput
+export default SelectDietGoal

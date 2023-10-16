@@ -30,12 +30,6 @@ public class NormalUserController {
         this.maxInExerciseRepository = maxInExerciseRepository;
     }
 
-    @GetMapping
-    public ResponseEntity<String> Hello() {
-
-        return ResponseEntity.ok("hello");
-
-    }
 
     @GetMapping
     @RequestMapping("/age")

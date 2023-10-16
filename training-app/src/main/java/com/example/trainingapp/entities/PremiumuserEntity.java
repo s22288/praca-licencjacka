@@ -12,7 +12,11 @@ import java.sql.Date;
 @Getter
 @Setter
 @ToString
-public class PremiumuserEntity {
+
+
+public class PremiumuserEntity extends NormaluserEntity {
+
+
     @Basic
     @Column(name = "hipsCircumference", nullable = false, precision = 2)
     private double hipsCircumference;
@@ -25,11 +29,47 @@ public class PremiumuserEntity {
     @Basic
     @Column(name = "endSubscription", nullable = false)
     private Date endSubscription;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "NormalUser_id", nullable = false)
-    private int normalUserId;
 
+    public PremiumuserEntity() {
+
+    }
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @Column(name = "NormalUser_id", nullable = false)
+//    private int normalUserId;
+
+
+
+    public  double calculateBMI(){
+        return  getWeight() / Math.pow(getHeight(),2);
+
+    }
+    public double  calculateIBW(){
+        if(isSex()){
+       double value =     (getHeight() - 100);
+        return  value- (0.10 * value);
+        }
+        double value =     (getHeight() - 100);
+
+        return  value- (0.05 * value);
+    }
+
+    public String calculateWHR(){
+        double WHR = waistCircumference/ hipsCircumference;
+        if(isSex()){
+          if(WHR>1){
+              return "Otyłość aneroidalna(jabłko)";
+          }
+          return "Otyłość ginoidalna gruszka";
+        }
+
+        if(WHR>0.8){
+            return "Otyłość aneroidalna(jabłko)";
+
+        }
+        return "Otyłość aneroidalna(jabłko)";
+
+    }
 
 
     @Override
@@ -41,7 +81,7 @@ public class PremiumuserEntity {
 
         if (Double.compare(that.hipsCircumference, hipsCircumference) != 0) return false;
         if (Double.compare(that.waistCircumference, waistCircumference) != 0) return false;
-        if (normalUserId != that.normalUserId) return false;
+//        if (normalUserId != that.normalUserId) return false;
         if (startSubscription != null ? !startSubscription.equals(that.startSubscription) : that.startSubscription != null)
             return false;
         if (endSubscription != null ? !endSubscription.equals(that.endSubscription) : that.endSubscription != null)
@@ -60,7 +100,7 @@ public class PremiumuserEntity {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (startSubscription != null ? startSubscription.hashCode() : 0);
         result = 31 * result + (endSubscription != null ? endSubscription.hashCode() : 0);
-        result = 31 * result + normalUserId;
+//        result = 31 * result + normalUserId;
         return result;
     }
 }

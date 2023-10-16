@@ -16,10 +16,12 @@ import java.time.temporal.Temporal;
 @Getter
 @Setter
 @ToString
+@Inheritance(strategy = InheritanceType.JOINED)
+
 public class NormaluserEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
