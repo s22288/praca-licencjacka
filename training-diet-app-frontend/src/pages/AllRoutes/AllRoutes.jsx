@@ -7,11 +7,15 @@ import Records from "../UserPage/UserRecords/record"
 import Indicators from "../UserPage/UserIndicators/Indicators"
 import AddTranining from "../UserPage/AddTraining/addTraning"
 import DietCustomization from "../../components/Big/userData/customizeDiet/CustomizeDiet"
+import CreateAccountPage from "../LoginPage/createAcount/createAccount"
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      
+      <Route path="/create-acc" element={<CreateAccountPage />} />
+
       <Route path="/user-page" element={<UserPage />} />
       <Route path="/user-page/customize-diet" element={<CustomizeDiet />} />
       <Route path="/user-page/user-data" element={<UserData />} />

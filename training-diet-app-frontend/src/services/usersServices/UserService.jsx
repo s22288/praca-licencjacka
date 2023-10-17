@@ -33,6 +33,10 @@ async function addUserMaxes(data) {
     )
 }
 
+function CreateAccount(){
+
+}
 
 
-export { addUserMaxes,getUserData, updateUsersData,getUserMaxes }
+
+export { addUserMaxes,getUserData, updateUsersData,getUserMaxes,CreateAccount }

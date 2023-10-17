@@ -10,19 +10,19 @@ const GetAllMealTypes = () => {
     return fetch("http://localhost:9800/create-diet/all-mealTypes")
 
 }
-const SaveDiet = (username, password, dietToSave) => {
-    fetch("http://localhost:8080/api/public/user-page/save-diet", {
+const SaveDiet = (diet) => {
+    fetch("http://localhost:9800/create-diet/save-diet", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
 
-            Authorization: "Basic " + btoa(`${username}:${password}`),
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(dietToSave),
+        body: JSON.stringify(diet),
     });
 };
 
 const CountCalories = (data) => {
-    return data.reduce((start, next) => start + next.dish.calories, 0);
+    console.log(data)
+    return data.reduce((start, next) => start + next.mealEntity.calories, 0);
 };
 export { GetAllDiets, SaveDiet, CountCalories, GetAllMealTypes };

@@ -1,7 +1,9 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
+@ToString
 @Entity
 @Table(name = "meal", schema = "pracalicencjacka_training_db", catalog = "")
 public class MealEntity {

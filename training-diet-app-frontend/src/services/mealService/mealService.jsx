@@ -1,11 +1,7 @@
-const GetMealByMealType = (username, password, type) => {
+const GetMealByMealType = (type) => {
     return fetch(
-        `http://localhost:8080/api/public/user-page/meals?type=${type}`,
-        {
-            headers: {
-                Authorization: "Basic " + btoa(`${username}:${password}`),
-            },
-        }
+        `http://localhost:9800/create-diet/getMeals-byType?typeid=${type}`
+
     );
 };
 const DelteteMealbyId = (username, password, id) => {

@@ -48,8 +48,8 @@ const SelectDietGoal = () => {
     let age
     return (
         <div>
-            <div className="container">
-                <FormControl className="custom-select">
+            <div className="select-container">
+                <FormControl className="custom-select" >
                     <InputLabel className="custom-select-label" id="demo-simple-select-label">Set Goal</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"

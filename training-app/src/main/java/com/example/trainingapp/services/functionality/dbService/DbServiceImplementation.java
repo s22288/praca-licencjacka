@@ -19,8 +19,8 @@ public class DbServiceImplementation implements DbService {
     private ExerciseRepository exerciseRepository;
 @PostConstruct
     public  void initDB (){
-    mealRepostiory.InsertMeals(200);
-    exerciseRepository.insertExercises(200);
+    mealRepostiory.InsertMeals(1500);
+    exerciseRepository.insertExercises(1500);
     }
 
 

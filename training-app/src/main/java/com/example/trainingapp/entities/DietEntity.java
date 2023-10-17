@@ -1,8 +1,14 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Entity
+@Getter
+@Setter
 @Table(name = "diet", schema = "pracalicencjacka_training_db", catalog = "")
 public class DietEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,45 +28,7 @@ public class DietEntity {
     @Column(name = "dietGoal", nullable = false, length = 200)
     private String dietGoal;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCaloriesCount() {
-        return caloriesCount;
-    }
-
-    public void setCaloriesCount(int caloriesCount) {
-        this.caloriesCount = caloriesCount;
-    }
-
-    public String getDietName() {
-        return dietName;
-    }
-
-    public void setDietName(String dietName) {
-        this.dietName = dietName;
-    }
-
-    public int getNormalUserId() {
-        return normalUserId;
-    }
-
-    public void setNormalUserId(int normalUserId) {
-        this.normalUserId = normalUserId;
-    }
-
-    public String getDietGoal() {
-        return dietGoal;
-    }
-
-    public void setDietGoal(String dietGoal) {
-        this.dietGoal = dietGoal;
-    }
 
     @Override
     public boolean equals(Object o) {
