@@ -3,6 +3,8 @@ package com.example.trainingapp.controllers;
 import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.NormaluserEntity;
+import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
+import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
@@ -110,8 +112,8 @@ public class NormalUserController {
     @CrossOrigin
 
     @RequestMapping("/diets")
-    public ResponseEntity<List<DietEntity>> getUserDiets() {
-        List<DietEntity> userDiets = dietService.findDietsByUserId(1);
+    public ResponseEntity<List<DietWithMeals>> getUserDiets() {
+        List<DietWithMeals> userDiets = dietService.findDietsByUserIdWithMeals(1);
 
 
         return ResponseEntity.ok().body(userDiets);

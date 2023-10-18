@@ -10,8 +10,9 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class DietWithMeals {
-   private  DietEntity dietEntity;
-   private List<MealEntity> dietMeals;
+   private DietEntity dietEntity;
+   private List<MealEntity> mealEntityList;
 }

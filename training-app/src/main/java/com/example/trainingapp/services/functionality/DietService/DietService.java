@@ -1,8 +1,7 @@
 package com.example.trainingapp.services.functionality.DietService;
 
-import com.example.trainingapp.entities.DietEntity;
-import com.example.trainingapp.entities.MealEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
+import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +14,5 @@ public interface DietService {
 
      List<MealtypeEntity> findAllTypeOfMeal();
 
-     List<DietEntity> findDietsByUserIdWithMeals (int userId);
+     List<DietWithMeals> findDietsByUserIdWithMeals (int userId);
 }

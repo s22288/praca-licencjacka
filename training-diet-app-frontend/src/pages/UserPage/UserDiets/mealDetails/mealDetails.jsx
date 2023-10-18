@@ -1,11 +1,15 @@
 import { useLocation } from "react-router-dom";
 import trainImage from "../../../../assets/food.jpeg"
 import FunctionalityNavbar from "../../../../components/Medium/navbar/functionalitynavbar";
+import { useEffect } from "react";
 
 const MealDetails = () => {
     const location = useLocation();
     console.log('Location:', location);
     const data = location.state?.data;
+    useEffect(()=>{
+
+    },[])
     console.log('Data:', data);
     if (!data) {
         return <div>

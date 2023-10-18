@@ -91,7 +91,7 @@ const DietCustomization = () => {
         event.preventDefault();
         // let list = userData.map((data) => data.mealEntity);
         const diet = {
-            id: 1,
+         
             caloriesCount: 1500,
             dietName: 'mojaDieta',
             normalUserId: 1,

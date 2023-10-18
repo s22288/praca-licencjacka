@@ -23,6 +23,10 @@ const SaveDiet = (diet) => {
     });
 };
 
+
+const GetMealByDietId= ()=>{
+    
+}
 const CountCalories = (data) => {
     console.log(data)
     return data.reduce((start, next) => start + next.mealEntity.calories, 0);
