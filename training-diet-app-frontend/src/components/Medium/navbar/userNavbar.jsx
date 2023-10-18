@@ -30,7 +30,7 @@ const UserNavbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/user-page/customize-diet" className="nav-link">
+                    <Link to="/user-page/diets" className="nav-link">
                         Diets
                     </Link>
                 </li>

@@ -1,12 +1,15 @@
 package com.example.trainingapp.controllers;
 
+import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.NormaluserEntity;
+import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
 import com.example.trainingapp.services.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +27,13 @@ public class NormalUserController {
 
     private MaxInExerciseRepository maxInExerciseRepository;
 
-    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository) {
+    private DietService dietService;
+
+    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.maxInExerciseRepository = maxInExerciseRepository;
+        this.dietService = dietService;
     }
 
 
@@ -100,6 +106,15 @@ public class NormalUserController {
 
         return ResponseEntity.ok("Updated ok 200");
 
+    }
+    @CrossOrigin
+
+    @RequestMapping("/diets")
+    public ResponseEntity<List<DietEntity>> getUserDiets() {
+        List<DietEntity> userDiets = dietService.findDietsByUserId(1);
+
+
+        return ResponseEntity.ok().body(userDiets);
     }
 
 }

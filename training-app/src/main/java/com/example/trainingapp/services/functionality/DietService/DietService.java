@@ -14,4 +14,6 @@ public interface DietService {
      List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeid);
 
      List<MealtypeEntity> findAllTypeOfMeal();
+
+     List<DietEntity> findDietsByUserIdWithMeals (int userId);
 }

@@ -88,5 +88,20 @@ values (100,'2002-01-12',90,1,70,150);
 
 insert  into mealtype( name, description, photo) values ('Vegetarian','Dieta wegetariańska polega na wyłączeniu z diety mięsa i jego przetworów. Opiera się ona głównie na pokarmach pochodzenia roślinnego, których źródłem są rośliny zbożowe, strączkowe, okopowe i oleiste, oraz warzywa, owoce, grzyby i orzechy','https://p1.hiclipart.com/preview/872/430/563/natural-foods-vegetable-vegan-nutrition-superfood-food-group-cartoon-fruit-plant-vegetarian-food-legume-leaf-vegetable-local-food-png-clipart-thumbnail.jpg' );
 insert  into mealtype( name, description, photo) values ('Vegan','Wyklucza wszelkie produkty pochodzenia zwierzęcego, w tym mięso, ryby, nabiał, jaja, mleko, masło i produkty pochodzenia zwierzęcego, takie jak miód.','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3NegbAIkYXqkGl9yYWrga5ZElu7c_SgvHhWZBw5Hk&s' );
-insert  into mealtype( name, description, photo) values ('LactozeeFree','Wyklucza mięso, ryby i jaja, ale pozwala na spożywanie nabiału, takiego jak mleko, jogurt, ser i masło.','https://thumb.ac-illust.com/b8/b8fefd6c36f2c0bc51ccd6d2fc83891c_t.jpeg' )
+insert  into mealtype( name, description, photo) values ('LactozeeFree','Wyklucza mięso, ryby i jaja, ale pozwala na spożywanie nabiału, takiego jak mleko, jogurt, ser i masło.','https://thumb.ac-illust.com/b8/b8fefd6c36f2c0bc51ccd6d2fc83891c_t.jpeg' );
+
+-- dodanie przykładowych diet do użytkownika o id 1L
+-- najpierw diety
+insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
+values (500,1,'schudnac','nisko kaloryczna');
+
+insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
+values (1500,1,'Zwiekszyc wage','wysoko Kaloryczna');
+insert into dietmeals(diet_id, meal_id)  values (1,1);
+insert into dietmeals(diet_id, meal_id)  values (1,2);
+insert into dietmeals(diet_id, meal_id)  values (1,3);
+
+insert into dietmeals(diet_id, meal_id)  values (2,4);
+insert into dietmeals(diet_id, meal_id)  values (2,5);
+insert into dietmeals(diet_id, meal_id)  values (2,6);
 

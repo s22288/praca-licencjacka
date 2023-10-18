@@ -1,8 +1,11 @@
 package com.example.trainingapp.services.functionality.DietService;
 
+import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MealEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
+import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
+import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MealRepostiory;
 import com.example.trainingapp.services.repositories.MealTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +28,12 @@ public class DietServiceImplementation implements DietService {
     private  List<MealEntity> used = new ArrayList<>();
 
 
-    public DietServiceImplementation(MealRepostiory mealRepostiory, MealTypeRepository mealTypeRepository) {
+    private DietRepository dietRepository;
+
+    public DietServiceImplementation(MealRepostiory mealRepostiory, MealTypeRepository mealTypeRepository,DietRepository dietRepository) {
         this.mealRepostiory = mealRepostiory;
         this.mealTypeRepository = mealTypeRepository;
+        this.dietRepository = dietRepository;
     }
 
     @Override
@@ -81,5 +87,14 @@ public class DietServiceImplementation implements DietService {
     @Override
     public List<MealtypeEntity> findAllTypeOfMeal() {
         return mealTypeRepository.findAll();
+    }
+
+    @Override
+    public List<DietEntity> findDietsByUserIdWithMeals(int userId) {
+        List<DietWithMeals> dietWithMeals = new ArrayList<>();
+        List<DietEntity> dietsByUserId = dietRepository.findDietsByUserId(userId);
+
+
+        return null;
     }
 }

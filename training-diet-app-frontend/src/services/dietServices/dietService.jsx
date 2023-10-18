@@ -1,14 +1,16 @@
-const GetAllDiets = (username, password) => {
-    return fetch("http://localhost:8080/api/public/user-page/diets", {
-        headers: {
-            Authorization: "Basic " + btoa(`${username}:${password}`),
-        },
-    });
+const GetAllDiets = () => {
+    return fetch("http://localhost:9800/normal-user/diets" );
 };
 
 const GetAllMealTypes = () => {
     return fetch("http://localhost:9800/create-diet/all-mealTypes")
 
+
+}
+
+
+const DelteteMealbyId = () => {
+    return 'delete'
 }
 const SaveDiet = (diet) => {
     fetch("http://localhost:9800/create-diet/save-diet", {
