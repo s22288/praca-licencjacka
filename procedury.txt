@@ -1,0 +1,28 @@
+create
+    definer = root@localhost procedure InsertData(IN countMeals int)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE max_count INT DEFAULT countMeals;
+
+    WHILE i <= max_count DO
+            INSERT INTO meal (calories, meal_type_id, meal_name, photo)
+            VALUES (FLOOR(RAND() * (1000 - 300 + 1) + 300), FLOOR(RAND() * (2 + 1)+1), concat('name',i), concat('photo',i));
+            SET i = i + 1;
+    END WHILE;
+END;
+
+
+
+create
+    definer = root@localhost procedure insertExercises(IN countExercises int)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE max_count INT DEFAULT countExercises;  -- Change to insert 20 records
+
+    WHILE i <= max_count DO
+            INSERT INTO exercise( level_of_advance, series, training_machine_id, type_of_exercise_id, name, photo)
+            VALUES (FLOOR(RAND() * (5 - 1 + 1) + 1),(FLOOR(RAND() * (15 - 1 + 1) + 1)),1,3,concat('exercise',i),concat('photo',i));
+            SET i = i + 1;
+        END WHILE;
+END;
+
