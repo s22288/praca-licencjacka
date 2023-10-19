@@ -55,11 +55,16 @@ public class DietController {
 
     public ResponseEntity<String> saveDiet(@RequestBody DietEntity dietEntity) {
        dietEntity.setNormalUserId(1);
-       
+
 
 
        dietService.saveDiet(dietEntity);
 
         return ResponseEntity.ok("Ok");
     }
+
+
+
+
+
 }

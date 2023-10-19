@@ -19,7 +19,7 @@ const DietCustomization = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState();
 const [description,setDescription] = useState('describe diet');
-    // const [alergic, setAlergic] = useState([]);
+    const [alergic, setAlergic] = useState([]);
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState();
     const [goal,setGoal]=useState('lose')
@@ -57,17 +57,17 @@ const [description,setDescription] = useState('describe diet');
     };
 
 
-    // const setAlergics = (all) => {
-    //     let ing = [];
-    //     all.forEach((a) => {
-    //         let element = a.mealEntity.ingridient;
-    //         ing.push(element);
-    //     });
-    //     let names = ing.map((i) => i.name);
-    //     let uniqueNames = Array.from(new Set(names));
+    const setAlergics = (all) => {
+        let ing = [];
+        all.forEach((a) => {
+            let element = a.mealEntity.ingridient;
+            ing.push(element);
+        });
+        let names = ing.map((i) => i.name);
+        let uniqueNames = Array.from(new Set(names));
 
-    //     setAlergic(uniqueNames);
-    // };
+        setAlergic(uniqueNames);
+    };
     const replaceData = (index, mainIndex) => {
         console.log('index ' + index)
         console.log('main ' + mainIndex)
@@ -85,9 +85,7 @@ const [description,setDescription] = useState('describe diet');
             updatedUserData[userDataIndex].alternatives[index] = copy;
         }
         setUserData(updatedUserData);
-        // let count = CountCalories(userData);
-        // setSumcal(count);
-        console.log(userData);
+       
      calculateCalories();
 
         // setAlergics(userData);
@@ -199,14 +197,14 @@ const [description,setDescription] = useState('describe diet');
             <div className="save-button">
                 {userData ? (
                     <div>
-                        {/* <p className="calories">
+                        <p className="calories">
                                 Alergeny:
                                 {alergic.map((a, index) => (
                                     <div key={index} className="comic-div">
                                         <p className="alergic"> {a}</p>
                                     </div>
                                 ))}
-                            </p> */}
+                            </p>
 
                     </div>
                 ) : (

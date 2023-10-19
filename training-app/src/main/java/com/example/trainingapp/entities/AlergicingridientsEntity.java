@@ -14,10 +14,10 @@ public class AlergicingridientsEntity {
     private String name;
     @Basic
     @Column(name = "description", nullable = false)
-    private int description;
+    private String description;
     @Basic
-    @Column(name = "photo", nullable = false)
-    private int photo;
+    @Column(name = "photo", nullable = false,length = 2000)
+    private String photo;
 
     public int getId() {
         return id;
@@ -35,19 +35,19 @@ public class AlergicingridientsEntity {
         this.name = name;
     }
 
-    public int getDescription() {
-        return description;
-    }
-
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getPhoto() {
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -68,10 +68,6 @@ public class AlergicingridientsEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + description;
-        result = 31 * result + photo;
-        return result;
+        return super.hashCode();
     }
 }

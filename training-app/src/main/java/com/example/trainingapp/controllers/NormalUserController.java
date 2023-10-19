@@ -7,6 +7,7 @@ import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
+import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
 import com.example.trainingapp.services.repositories.UserRepository;
 import org.slf4j.Logger;
@@ -31,11 +32,14 @@ public class NormalUserController {
 
     private DietService dietService;
 
-    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService) {
+    private DietRepository dietRepository;
+
+    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService,DietRepository dietRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.maxInExerciseRepository = maxInExerciseRepository;
         this.dietService = dietService;
+        this.dietRepository = dietRepository;
     }
 
 
@@ -118,5 +122,13 @@ public class NormalUserController {
 
         return ResponseEntity.ok().body(userDiets);
     }
+    @CrossOrigin
 
+    @GetMapping
+    @RequestMapping("/delete-diet/{id}")
+    public  ResponseEntity<String> deleteDiet(@PathVariable long id){
+        dietRepository.deleteById( id);
+        return  ResponseEntity.ok("deleted");
+
+    }
 }
