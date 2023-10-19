@@ -3,7 +3,7 @@ import getPremiumUserIndicators from "../../../../services/premiumService/premiu
 import BMIDiagram from "../Diagrams/BMIDiagram/bmi"
 import IBWDiagram from "../Diagrams/IBWDiagram/ibw"
 import WHRDiagram from "../Diagrams/WHRDiagram/whr"
-
+import './indicators.css'
 const PremiumUserIndicators = () => {
     const [indicators, setIndicators] = useState('')
 
@@ -25,6 +25,7 @@ const PremiumUserIndicators = () => {
                 SetBmi(data.bmi)
                 SetIbw(data.ibw)
                 setWhr(data.whr)
+                console.log('indicators' + indicators)
 
 
             })
@@ -36,7 +37,7 @@ const PremiumUserIndicators = () => {
 
 
     return (
-        <div>
+        <div className="indicators">
             <BMIDiagram data={indicators} />
             <IBWDiagram data={ibw} />
             <WHRDiagram data={whr} />

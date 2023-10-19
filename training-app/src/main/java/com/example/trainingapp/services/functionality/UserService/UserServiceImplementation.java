@@ -42,7 +42,7 @@ public class UserServiceImplementation implements UserService {
     @Override
     public Indicator calculateIndicators(int userId) {
         PremiumuserEntity userFromDB = premiumUserRepository.findById((long) userId).get();
-        double BMI = calculateBMI(userFromDB.getHeight(),userFromDB.getWeight());
+        double BMI = calculateBMI(userFromDB.getWeight(),userFromDB.getHeight());
         logger.info("BMI" + BMI);
         double IBW = calculateIBW(userFromDB.isSex(),userFromDB.getHeight());
         double Weight = userFromDB.getWeight();
@@ -54,14 +54,12 @@ public class UserServiceImplementation implements UserService {
 
 
 
-    public  double calculateBMI(double weight, double height){
-        logger.info("weight " + weight);
-        logger.info("height " + height);
-        logger.info("pow 2 " + Math.pow(height,2));
+    public double calculateBMI(double weight, double height) {
 
-        return Precision.round(weight/ Math.pow(height,2)*1000,2);
 
+        return Precision.round(weight/ (Math.pow(height/100.0,2)),2);
     }
+
     public double  calculateIBW(boolean sex, double height){
         if(sex){
             double value =     (height - 100);

@@ -3,8 +3,8 @@ const WHRDiagram = (props) => {
 
     return (
         <div>
-            <h2>WHR</h2>
-            <h3>{whr}</h3>
+            <h2>WHR wynik: {whr}</h2>
+          
 
         </div>
     )
