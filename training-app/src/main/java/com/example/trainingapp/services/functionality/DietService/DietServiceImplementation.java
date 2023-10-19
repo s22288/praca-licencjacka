@@ -100,4 +100,9 @@ public class DietServiceImplementation implements DietService {
         }
         return mealWithAlternatives;
     }
+
+    @Override
+    public void saveDiet(DietEntity dietEntity) {
+dietRepository.save(dietEntity);
+    }
 }

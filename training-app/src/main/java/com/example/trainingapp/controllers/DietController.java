@@ -26,15 +26,12 @@ import java.util.Set;
 public class DietController {
     private static final Logger logger = LoggerFactory.getLogger(DietController.class);
 //    private DietMealRepository dietMealRepository;
-private UserRepository userRepository;
     private DietService dietService;
-private MealRepostiory mealRepostiory;
     private DietRepository dietRepository;
 
-    public DietController(UserRepository userRepository, DietService dietService, MealRepostiory mealRepostiory, DietRepository dietRepository) {
-        this.userRepository = userRepository;
+    public DietController( DietService dietService, DietRepository dietRepository) {
         this.dietService = dietService;
-        this.mealRepostiory = mealRepostiory;
+
         this.dietRepository = dietRepository;
     }
 
@@ -58,10 +55,11 @@ private MealRepostiory mealRepostiory;
 
     public ResponseEntity<String> saveDiet(@RequestBody DietEntity dietEntity) {
        dietEntity.setNormalUserId(1);
-logger.info("diet" + dietEntity);
+       
 
-       dietRepository.save(dietEntity);
 
-        return ResponseEntity.ok("siema");
+       dietService.saveDiet(dietEntity);
+
+        return ResponseEntity.ok("Ok");
     }
 }

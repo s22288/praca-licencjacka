@@ -1,5 +1,6 @@
 package com.example.trainingapp.services.functionality.DietService;
 
+import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
@@ -15,4 +16,6 @@ public interface DietService {
      List<MealtypeEntity> findAllTypeOfMeal();
 
      List<DietWithMeals> findDietsByUserIdWithMeals (int userId);
+
+     void saveDiet(DietEntity dietEntity);
 }
