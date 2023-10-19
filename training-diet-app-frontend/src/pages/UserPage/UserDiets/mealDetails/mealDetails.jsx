@@ -7,9 +7,7 @@ const MealDetails = () => {
     const location = useLocation();
     console.log('Location:', location);
     const data = location.state?.data;
-    useEffect(()=>{
-
-    },[])
+    
     console.log('Data:', data);
     if (!data) {
         return <div>
@@ -26,11 +24,11 @@ const MealDetails = () => {
                 <div className="exercise-details-container">
                     {data.map((dish) => (
                         <div className="exercise-card" key={dish.id}>
-                            <img src={trainImage} alt={dish.name} />
+                            <img src={trainImage} alt={dish.mealName} />
                             <div className="exercise-details">
-                                <h3>{dish.name}</h3>
+                                <h3>{dish.mealName}</h3>
                                 <p className="customText">Calories {dish.calories}</p>
-                                <p className="customText"> {dish.mealType}</p>
+                                <p className="customText"> {dish.mealTypeId}</p>
                             </div>
                         </div>
                     ))}

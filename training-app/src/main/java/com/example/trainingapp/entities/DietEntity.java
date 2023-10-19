@@ -1,13 +1,16 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @ToString
 @Entity
-@Getter
 @Setter
 @Table(name = "diet", schema = "pracalicencjacka_training_db", catalog = "")
 public class DietEntity {
@@ -25,9 +28,59 @@ public class DietEntity {
     @Column(name = "NormalUser_id", nullable = false)
     private int normalUserId;
     @Basic
-    @Column(name = "dietGoal", nullable = false, length = 200)
+    @Column(name = "dietGoal",  nullable = false,length = 200)
     private String dietGoal;
 
+    @ManyToMany
+    @JoinTable(name = "dietmeals",joinColumns = @JoinColumn( name ="dietId" ),inverseJoinColumns = @JoinColumn(name = "mealId"))
+    private Set<MealEntity> mealEntitySet = new HashSet<>();
+
+
+
+    public void setNormalUserId(int normalUserId) {
+        this.normalUserId = normalUserId;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCaloriesCount(int caloriesCount) {
+        this.caloriesCount = caloriesCount;
+    }
+
+    public void setDietName(String dietName) {
+        this.dietName = dietName;
+    }
+
+    public void setDietGoal(String dietGoal) {
+        this.dietGoal = dietGoal;
+    }
+
+    public int getCaloriesCount() {
+        return caloriesCount;
+    }
+
+    public String getDietName() {
+        return dietName;
+    }
+
+    public int getNormalUserId() {
+        return normalUserId;
+    }
+
+    public String getDietGoal() {
+        return dietGoal;
+    }
+
+    public Set<MealEntity> getMealEntitySet() {
+        return mealEntitySet;
+    }
+
+    public int getId() {
+        return id;
+    }
 
 
     @Override

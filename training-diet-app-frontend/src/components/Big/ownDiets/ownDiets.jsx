@@ -24,6 +24,7 @@ const OwnDiets = () => {
             .then((data) => {
                 setUserData(data);
                 setLoading(false);
+                console.log(data)
             })
             .catch((error) => {
                 console.error("Failed to fetch user data", error);

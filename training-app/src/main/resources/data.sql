@@ -92,16 +92,16 @@ insert  into mealtype( name, description, photo) values ('LactozeeFree','Wyklucz
 
 -- dodanie przykładowych diet do użytkownika o id 1L
 -- najpierw diety
-insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
-values (500,1,'schudnac','nisko kaloryczna');
-
-insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
-values (1500,1,'Zwiekszyc wage','wysoko Kaloryczna');
-insert into dietmeals(diet_id, meal_id)  values (1,1);
-insert into dietmeals(diet_id, meal_id)  values (1,2);
-insert into dietmeals(diet_id, meal_id)  values (1,3);
-
-insert into dietmeals(diet_id, meal_id)  values (2,4);
-insert into dietmeals(diet_id, meal_id)  values (2,5);
-insert into dietmeals(diet_id, meal_id)  values (2,6);
+-- insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
+-- values (500,1,'schudnac','nisko kaloryczna');
+--
+-- insert into diet (calories_count, normal_user_id, diet_goal, diet_name)
+-- values (1500,1,'Zwiekszyc wage','wysoko Kaloryczna');
+-- insert into dietmeals(diet_id, meal_id)  values (1,1);
+-- insert into dietmeals(diet_id, meal_id)  values (1,2);
+-- insert into dietmeals(diet_id, meal_id)  values (1,3);
+--
+-- insert into dietmeals(diet_id, meal_id)  values (2,4);
+-- insert into dietmeals(diet_id, meal_id)  values (2,5);
+-- insert into dietmeals(diet_id, meal_id)  values (2,6);
 

@@ -1,10 +1,16 @@
 package com.example.trainingapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.ToString;
+import lombok.Getter;
 
-@ToString
+
+import java.util.HashSet;
+import java.util.Set;
+
+
 @Entity
+//@Getter
 @Table(name = "meal", schema = "pracalicencjacka_training_db", catalog = "")
 public class MealEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,46 +30,66 @@ public class MealEntity {
     @Column(name = "MealType_id", nullable = false)
     private int mealTypeId;
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getMealName() {
-        return mealName;
     }
 
     public void setMealName(String mealName) {
         this.mealName = mealName;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public int getCalories() {
-        return calories;
     }
 
     public void setCalories(int calories) {
         this.calories = calories;
     }
 
+    public void setMealTypeId(int mealTypeId) {
+        this.mealTypeId = mealTypeId;
+    }
+    public void addDiet(DietEntity dietEntity){
+        this.dietEntitySet.add(dietEntity);
+dietEntity.getMealEntitySet().add(this);
+    }
+
+//    public void remove(MealEntity mealEntity){
+//        this.mealEntitySet.remove(mealEntity);
+//        mealEntity.getDietEntitySet().remove(this);
+//
+//    }
+    
+
+@JsonIgnore
+
+    public Set<DietEntity> getDietEntitySet() {
+        return dietEntitySet;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getMealName() {
+        return mealName;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
     public int getMealTypeId() {
         return mealTypeId;
     }
 
-    public void setMealTypeId(int mealTypeId) {
-        this.mealTypeId = mealTypeId;
-    }
-
+    @ManyToMany
+    @JoinTable (name = "dietmeals",joinColumns =@JoinColumn(name ="mealId" ),inverseJoinColumns = @JoinColumn(name = "dietId"))
+   private Set<DietEntity> dietEntitySet = new HashSet<>();
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,5 +114,16 @@ public class MealEntity {
         result = 31 * result + calories;
         result = 31 * result + mealTypeId;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MealEntity{" +
+                "id=" + id +
+                ", mealName='" + mealName + '\'' +
+                ", photo='" + photo + '\'' +
+                ", calories=" + calories +
+                ", mealTypeId=" + mealTypeId +
+                '}';
     }
 }

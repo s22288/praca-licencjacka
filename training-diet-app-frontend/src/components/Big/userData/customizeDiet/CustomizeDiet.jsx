@@ -17,12 +17,14 @@ import SelectDietGoal from "./SelectInput";
 const DietCustomization = () => {
 
     const navigate = useNavigate();
-    const [sumcal, setSumcal] = useState();
     const [userData, setUserData] = useState();
-
+const [description,setDescription] = useState('describe diet');
     // const [alergic, setAlergic] = useState([]);
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState();
+    const [goal,setGoal]=useState('lose')
+
+    const [calories,setCalories] =useState ()
 
     useEffect(() => {
         GetAllMealTypes().then((response) => {
@@ -35,6 +37,7 @@ const DietCustomization = () => {
             .then((data) => {
                 setOptions(data)
                 console.log(data)
+                calculateCalories()
             })
             .catch((error) => {
                 console.error("Failed to fetch user data", error);
@@ -42,6 +45,7 @@ const DietCustomization = () => {
     }, [])
     const HandleSubmit = (event) => {
         event.preventDefault();
+
         fetchUserData(selectedOption);
 
 
@@ -84,25 +88,35 @@ const DietCustomization = () => {
         // let count = CountCalories(userData);
         // setSumcal(count);
         console.log(userData);
+     calculateCalories();
+
         // setAlergics(userData);
     };
 
+
+    const calculateCalories = () => {
+      let count =   userData.map((data) => data.mealEntity.calories).reduce((start, next) => start + next, 0);
+      console.log(count)
+         setCalories(count)
+    }
+    
+    const ToMainMeals =()=>{
+        return userData.map((data)=> data.mealEntity)
+    }
     const saveDiet = (event) => {
         event.preventDefault();
-        // let list = userData.map((data) => data.mealEntity);
-        const diet = {
-         
-            caloriesCount: 1500,
-            dietName: 'mojaDieta',
-            normalUserId: 1,
-
-            dietGoal: 'schudnac',
-            // dishesList: list,
+        console.log(userData);
+    
+        const dietData = {
+            caloriesCount: calories,
+            dietName: description,
+            dietGoal: goal,
+            mealEntitySet: ToMainMeals(),
         };
-
-        SaveDiet(diet);
+        SaveDiet(dietData);
         navigate("/user-page");
     };
+    
 
     const fetchUserData = (typeId) => {
 
@@ -122,12 +136,19 @@ const DietCustomization = () => {
                 console.error("Failed to fetch user data", error);
             });
     };
+    const handleInput = (event) => {
+        setDescription(event.target.value);
+      };
+    
+      const passGoalToParent=(record)=>{
+        setGoal(record)
+    }
     return (
         <div>
             <FunctionalityNavbar />
 
             <div className="container">
-                <SelectDietGoal />
+                <SelectDietGoal passGoalToParent={passGoalToParent}  />
 
 
                 <form onSubmit={HandleSubmit} className="comic-form">
@@ -144,6 +165,14 @@ const DietCustomization = () => {
                             {option.name}
                         </label>
                     ))}
+                    <label>Diet description</label>
+                    <input
+        type="text"
+        value={description}
+        onChange={handleInput}
+      />
+      <br />
+                    <br></br>
 
                     <input type="submit" value="Submit" className="submit-button" />
                 </form>

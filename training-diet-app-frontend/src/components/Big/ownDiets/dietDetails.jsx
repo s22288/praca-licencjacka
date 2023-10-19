@@ -12,8 +12,9 @@ import { DelteteMealbyId } from "../../../services/mealService/mealService";
 const DietDetails = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
    
-    const {  mealEntityList } = props.val;
+    const {  mealEntityList } = props.val
 const {id, dietName, caloriesCount, dietGoal,} = props.val.dietEntity;
+
     const handleDelelte = () => {
 
         DelteteMealbyId(id)

@@ -2,10 +2,9 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import { useEffect, useState } from "react";
 import calculateCPM from "../../../../services/usersServices/IndicatorService";
 import './select.css'
-const SelectDietGoal = () => {
+const SelectDietGoal = ({ passGoalToParent }) => {
     const [cpm, setCpm] = useState()
     const [cpmCopy, setCpmCopy] = useState();
-
     useEffect(() => {
 
 
@@ -31,10 +30,12 @@ const SelectDietGoal = () => {
             });
 
     }, []);
+
+    
     const handleChange = (event) => {
         setCpmCopy(cpm)
         let goalSett = event.target.value
-
+        passGoalToParent(goalSett)
         if (goalSett === 'lose') {
             setCpmCopy((cpm - 300).toFixed(2))
         }
