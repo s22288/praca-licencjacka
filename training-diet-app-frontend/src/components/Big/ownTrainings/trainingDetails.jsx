@@ -8,17 +8,15 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 import { DelteteTrainigById } from "../../../services/trainingServices/trainingService";
-
+import photo from '../../../assets/traininguser.jpg'
 const TrainingDetails = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
 
-    const { id, name, description, maxAge, photo, excercieses } = props.val;
+    const { id, treiningType, description, maxAge, exerciseEntitySet } = props.val;
 
     const handleDelelte = () => {
-        const username = localStorage.getItem("email");
-        const password = localStorage.getItem("password");
-        if (username && password) {
-            DelteteTrainigById(username, password, id)
+       
+            DelteteTrainigById( id)
                 .then((response) => {
                     if (response.ok) {
                         props.ondelete(id);
@@ -30,7 +28,7 @@ const TrainingDetails = (props) => {
                 .catch((error) => {
                     console.error("Error deleting note:", error);
                 });
-        }
+        
     };
     if (isDeleted) {
         return null;
@@ -41,11 +39,15 @@ const TrainingDetails = (props) => {
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia sx={{ height: 140 }} image={photo} title="green iguana" />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {name}
+                   
+                    <Typography variant="h6" color="text.secondary">
+                      Opis:  {description}
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        {description}
+                       Type: {treiningType}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                      Max age:   {maxAge}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -54,8 +56,8 @@ const TrainingDetails = (props) => {
                     </button>
                     <Link
                         className="link-perfect"
-                        to={`/user-page/trainings/details/${id}`}
-                        state={{ data: excercieses }}
+                        to={`/user-page/training/details/${id}`}
+                        state={{ data: exerciseEntitySet }}
                     >
                         Details
                     </Link>

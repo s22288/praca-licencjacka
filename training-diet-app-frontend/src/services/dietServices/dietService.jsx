@@ -9,9 +9,7 @@ const GetAllMealTypes = () => {
 }
 
 
-const DelteteMealbyId = () => {
-    return 'delete'
-}
+
 const SaveDiet = (diet) => {
     fetch("http://localhost:9800/create-diet/save-diet", {
         method: "POST",
@@ -23,12 +21,14 @@ const SaveDiet = (diet) => {
     });
 };
 
+const DelteteDietbyId = ( id) => {
+    return fetch(`http://localhost:9800/normal-user/delete-diet/${id}`, {
+       
+    });
+};
 
-const GetMealByDietId= ()=>{
-    
-}
 const CountCalories = (data) => {
     console.log(data)
     return data.reduce((start, next) => start + next.mealEntity.calories, 0);
 };
-export { GetAllDiets, SaveDiet, CountCalories, GetAllMealTypes };
+export { GetAllDiets, SaveDiet, CountCalories, GetAllMealTypes,DelteteDietbyId };

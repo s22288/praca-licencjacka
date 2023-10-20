@@ -114,3 +114,21 @@ values ('nuts','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJWJmpQqhI
 insert into alergicingridients (description, photo, name)
 values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ETl1LTQbSQeaz89-hDvEyl5CulomHXSdwB2KCqXtr-4U-PBFc7ZTyUWrrDFIl9ClLG4&usqp=CAU','sea fruit');
 
+
+
+-- wprowadzenie rodzajów cwiczeń ćwiczeń do bazy danych
+insert into training ( max_age, normal_user_id, treining_type, description)
+values (80,1,'FBW','treining dla początkujacych');
+
+-- dodanie cwiczeń
+insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
+values (3,4,15,1,'podciaganie','podciaganie.jpg');
+
+insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
+values (4,3,10,2,'uginanie sztangi','uginanie.jpg');
+
+-- connections between training and exercises;
+insert into trainingexercise (exercise_id, training_id)
+values (1,1);
+insert into trainingexercise (exercise_id, training_id)
+values (2,1);

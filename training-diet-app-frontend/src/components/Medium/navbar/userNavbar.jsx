@@ -50,6 +50,12 @@ const UserNavbar = () => {
                         Body Indicators
                     </Link>
                 </li>
+
+                <li>
+                    <Link to="/user-page/calendar" className="nav-link">
+                        Calendar
+                    </Link>
+                </li>
                 <li>
                     <Link className="nav-link" to={"/"} onClick={handleLogout}>
                         Logout

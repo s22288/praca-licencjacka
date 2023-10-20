@@ -4,11 +4,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActions } from "@mui/material";
+import {  CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import "../ownTrainings/details.css"
-import { DelteteMealbyId } from "../../../services/mealService/mealService";
+import { DelteteDietbyId } from "../../../services/dietServices/dietService";
 const DietDetails = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
    
@@ -17,7 +17,7 @@ const {id, dietName, caloriesCount, dietGoal,} = props.val.dietEntity;
 
     const handleDelelte = () => {
 
-        DelteteMealbyId(id)
+        DelteteDietbyId(id)
             .then((response) => {
                 if (response.ok) {
                     props.ondelete(id);

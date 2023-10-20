@@ -2,6 +2,9 @@ package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "exercise", schema = "pracalicencjacka_training_db", catalog = "")
 public class ExerciseEntity {
@@ -18,16 +21,21 @@ public class ExerciseEntity {
     @Basic
     @Column(name = "series", nullable = false)
     private int series;
+
+    @Basic
+    @Column(name = "reps", nullable = false)
+    private int reps;
     @Basic
     @Column(name = "LevelOfAdvance", nullable = false)
     private int levelOfAdvance;
     @Basic
     @Column(name = "TrainingMachine_id", nullable = false)
     private int trainingMachineId;
-    @Basic
-    @Column(name = "TypeOfExercise_id", nullable = false)
-    private int typeOfExerciseId;
 
+
+    @ManyToMany
+    @JoinTable(name = "trainingexercise",joinColumns = @JoinColumn( name ="exercise_id" ),inverseJoinColumns = @JoinColumn(name = "training_id"))
+    private Set<TrainingEntity> trainingEntitySet = new HashSet<>();
     public int getId() {
         return id;
     }
@@ -46,6 +54,14 @@ public class ExerciseEntity {
 
     public String getPhoto() {
         return photo;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
     }
 
     public void setPhoto(String photo) {
@@ -76,13 +92,6 @@ public class ExerciseEntity {
         this.trainingMachineId = trainingMachineId;
     }
 
-    public int getTypeOfExerciseId() {
-        return typeOfExerciseId;
-    }
-
-    public void setTypeOfExerciseId(int typeOfExerciseId) {
-        this.typeOfExerciseId = typeOfExerciseId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -95,7 +104,6 @@ public class ExerciseEntity {
         if (series != that.series) return false;
         if (levelOfAdvance != that.levelOfAdvance) return false;
         if (trainingMachineId != that.trainingMachineId) return false;
-        if (typeOfExerciseId != that.typeOfExerciseId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (photo != null ? !photo.equals(that.photo) : that.photo != null) return false;
 
@@ -110,7 +118,6 @@ public class ExerciseEntity {
         result = 31 * result + series;
         result = 31 * result + levelOfAdvance;
         result = 31 * result + trainingMachineId;
-        result = 31 * result + typeOfExerciseId;
         return result;
     }
 }

@@ -1,9 +1,11 @@
 const GetAllTrainings = () => {
-    return fetch("http://localhost:8080/api/public/user-page/diets");
+    return fetch("http://localhost:9800/normal-user/trainings");
 
 };
 
-const DelteteTrainigById = () => {
-    return 'delete'
+const DelteteTrainigById = (id) => {
+    return fetch(`http://localhost:9800/normal-user/delete-training/${id}`, {
+       
+});
 }
 export { GetAllTrainings, DelteteTrainigById }

@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import OptionsNavbar from "../../../components/organisms/navbar/optionsNavbar/optionsnavbar";
 import "./exercise.css";
-import CustomizedRating from "./customRatin";
-import trainImage from "../../../assets/traininguser.jpg";
+import CustomizedRating from "../ExerciseDetails/customRaiting";
+import trainImage from "../../../../assets/traininguser.jpg";
+import FunctionalityNavbar from "../../../../components/Medium/navbar/functionalitynavbar";
 
 const ExcerciseDetails = () => {
     const location = useLocation();
@@ -14,7 +14,7 @@ const ExcerciseDetails = () => {
 
     return (
         <div>
-            <OptionsNavbar />
+            <FunctionalityNavbar />
             <div className="alignCenter">
                 <div className="exercise-details-container">
                     {data.map((exercise) => (

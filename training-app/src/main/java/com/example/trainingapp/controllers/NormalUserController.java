@@ -3,9 +3,11 @@ package com.example.trainingapp.controllers;
 import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.NormaluserEntity;
+import com.example.trainingapp.entities.TrainingEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.DietService.DietService;
+import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
@@ -34,12 +36,15 @@ public class NormalUserController {
 
     private DietRepository dietRepository;
 
-    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService,DietRepository dietRepository) {
+    private TrainingService trainingService;
+
+    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService,DietRepository dietRepository,TrainingService trainingService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.maxInExerciseRepository = maxInExerciseRepository;
         this.dietService = dietService;
         this.dietRepository = dietRepository;
+        this.trainingService = trainingService;
     }
 
 
@@ -130,5 +135,23 @@ public class NormalUserController {
         dietRepository.deleteById( id);
         return  ResponseEntity.ok("deleted");
 
+    }
+
+    @GetMapping
+    @RequestMapping("/delete-training/{id}")
+    public  ResponseEntity<String> deleteTraining(@PathVariable long id){
+        trainingService.deleteTrainingById( id);
+        return  ResponseEntity.ok("deleted");
+
+    }
+
+    @CrossOrigin
+
+    @RequestMapping("/trainings")
+    public ResponseEntity<List<TrainingEntity>> getUserTrainings() {
+        List<TrainingEntity> allUserTraining = trainingService.getAllUserTraining(1);
+
+
+        return ResponseEntity.ok().body(allUserTraining);
     }
 }
