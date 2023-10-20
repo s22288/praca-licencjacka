@@ -10,4 +10,6 @@ public interface TrainingService {
 
      List<TrainingEntity> getAllUserTraining(int userId);
      void deleteTrainingById(long trainingId);
+
+   //  List<String> getAllTrainingtypes();
 }

@@ -23,4 +23,9 @@ public class TrainingServiceImplementation implements  TrainingService{
     public void deleteTrainingById(long trainingId) {
 trainingRepository.deleteById(trainingId);
     }
+
+//    @Override
+//    public List<String> getAllTrainingtypes() {
+//        return trainingRepository.getTrainingTypes();
+//    }
 }

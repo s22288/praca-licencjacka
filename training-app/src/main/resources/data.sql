@@ -119,7 +119,6 @@ values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ET
 -- wprowadzenie rodzajów cwiczeń ćwiczeń do bazy danych
 insert into training ( max_age, normal_user_id, treining_type, description)
 values (80,1,'FBW','treining dla początkujacych');
-
 -- dodanie cwiczeń
 insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
 values (3,4,15,1,'podciaganie','podciaganie.jpg');
