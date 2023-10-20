@@ -131,3 +131,32 @@ insert into trainingexercise (exercise_id, training_id)
 values (1,1);
 insert into trainingexercise (exercise_id, training_id)
 values (2,1);
+
+-- wstawienie partii mieści które można ćwiczyć
+
+insert into bodypart ( description, url)
+values ('Klatka piersiowa','chest.jpg');
+
+
+insert into bodypart ( description, url)
+values ('Plecy','back.jpg');
+
+
+insert into bodypart ( description, url)
+values ('Barki','shoulders.jpg');
+
+
+insert into bodypart ( description, url)
+values ('Ramiona','arms.jpg');
+
+
+insert into bodypart ( description, url)
+values ('Brzuch','abs.jpg');
+
+
+
+
+insert into bodypart ( description, url)
+values ('Nogi','legs.jpg');
+
+

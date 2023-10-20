@@ -1,12 +1,10 @@
 package com.example.trainingapp.controllers;
 
 import com.example.trainingapp.entities.MealtypeEntity;
+import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,12 @@ public class TrainingController {
         this.trainingService = trainingService;
     }
 
-   
+
+    @GetMapping
+    @RequestMapping("/getTrainings-byType")
+    public ResponseEntity<String> getExercisesForTrainingType(@RequestParam("typeid") int typeid) {
+
+        return ResponseEntity.ok("ok");
+    }
+
 }

@@ -26,14 +26,13 @@ const TrainingCustomization = () => {
   };
   const HandleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
-    // fetchUserData(excercise);
+    console.log(excercise)
+    fetchUserData(excercise);
   };
 
   const handleChange = (event) => {
-    event.preventDefault();
-
-    setExcercise(event.target.value);
+    const selectedExercise = event.target.value;
+    setExcercise(selectedExercise);
   };
   const replaceData = (index, mainIndex) => {
     let userDataIndex = userData.findIndex((d) => {
@@ -60,9 +59,7 @@ const TrainingCustomization = () => {
       })
       .then((data) => {
         setUserData(data);
-        let type = data[0].excercise.trainingType;
 
-        setTrainingType(type);
 
        
       })

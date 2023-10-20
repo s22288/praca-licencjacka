@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "exercise", schema = "pracalicencjacka_training_db", catalog = "")
 public class ExerciseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,13 @@ public class ExerciseEntity {
     @ManyToMany
     @JoinTable(name = "trainingexercise",joinColumns = @JoinColumn( name ="exercise_id" ),inverseJoinColumns = @JoinColumn(name = "training_id"))
     private Set<TrainingEntity> trainingEntitySet = new HashSet<>();
+
+
+
+    @ManyToMany
+    @JoinTable(name = "exercisebodypart",joinColumns = @JoinColumn( name ="exercise_id" ),inverseJoinColumns = @JoinColumn(name = "body_part_id"))
+    private Set<BodypartEntity> bodypartEntitySet = new HashSet<>();
+
     public int getId() {
         return id;
     }
@@ -58,6 +66,14 @@ public class ExerciseEntity {
 
     public int getReps() {
         return reps;
+    }
+
+    public Set<BodypartEntity> getBodypartEntitySet() {
+        return bodypartEntitySet;
+    }
+
+    public void setBodypartEntitySet(Set<BodypartEntity> bodypartEntitySet) {
+        this.bodypartEntitySet = bodypartEntitySet;
     }
 
     public void setReps(int reps) {
