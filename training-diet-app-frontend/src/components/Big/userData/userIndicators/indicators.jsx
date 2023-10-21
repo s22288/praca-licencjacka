@@ -25,7 +25,7 @@ const PremiumUserIndicators = () => {
                 SetBmi(data.bmi)
                 SetIbw(data.ibw)
                 setWhr(data.whr)
-                console.log('indicators' + indicators)
+            
 
 
             })
@@ -38,11 +38,12 @@ const PremiumUserIndicators = () => {
 
     return (
         <div className="indicators">
+                        <IBWDiagram data={indicators} />
+
                         <WHRDiagram data={whr} />
 
             <BMIDiagram data={indicators} />
 
-            <IBWDiagram data={ibw} />
         </div>
     )
 }

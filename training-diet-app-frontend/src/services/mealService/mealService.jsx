@@ -4,10 +4,5 @@ const GetMealByMealType = (type) => {
 
     );
 };
-const DelteteMealbyId = ( id) => {
-    return fetch(`http://localhost:9800/normal-user/delete-diet/${id}`, {
-       
-    });
-};
 
-export { DelteteMealbyId, GetMealByMealType };
+export {  GetMealByMealType };

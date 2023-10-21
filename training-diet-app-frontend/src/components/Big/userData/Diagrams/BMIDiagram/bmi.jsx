@@ -1,13 +1,103 @@
 
 import { useState ,useEffect} from 'react';
 import '../diagrams.css'
+import img1  from '../../../../../assets/niedowaga.jpg'
+import img2  from '../../../../../assets/norma.jpg'
+import img3  from '../../../../../assets/nadwaga.jpg'
+import img4  from '../../../../../assets/duzanadwaga.jpg'
+import img5  from '../../../../../assets/bardzoduzaNadwaga.jpg'
+import img6  from '../../../../../assets/megaNadwaga.jpg'
+const images = [
+    {
+      url: img1,
+      title: 'Niedowaga',
+      width: '10%',
+      isDefault: false,
+    },
+    {
+      url: img2,
+      title: 'Norma',
+      width: '10%',
+      isDefault: false,
+  
+    },
+    
+    {
+      url: img3,
+      title: 'Nadwaga',
+      width: '10%',
+      isDefault: false,
+  
+    },
+    {
+      url: img4,
+      title: 'Nadwaga I stopnia',
+      width: '10%',
+      isDefault: false,
+  
+    },
+    {
+      url: img5,
+      title: 'Nadwaga II stopnia',
+      width: '10%',
+      isDefault: false,
+  
+    },
+    {
+      url: img6,
+      title: 'Nadwaga III stopnia',
+      width: '10%',
+      isDefault: false,
+  
+    },
+   
+  ];
+  
 const BMIDiagram = (props) => {
-    const { weight, height } = useState(props.data);
 
-    const bmi = props.data.bmi;
-    const dataOfUser = props.data;
+    const { weight, height,ibw,bmi } = props.data
 
-    // console.log(dataOfUser)
+    useEffect(()=>{
+        localStorage.setItem('userHeight', height);
+        localStorage.setItem('userWeight', weight);
+    },[weight,height])
+   
+       
+        function setIbw(bmi) {
+            let index = parseFloat(localStorage.getItem('index')) || 0;
+
+            if (index < 0) {
+              index = 0;
+            } else if (index >= images.length) {
+              index = images.length - 1;
+            }
+        
+            if (bmi < 18.5) {
+              index = 0;
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+              index = 1;
+            } else if (bmi >= 25 && bmi < 29.9) {
+              index = 2;
+            } else if (bmi >= 30 && bmi < 34.9) {
+              index = 3;
+            } else if (bmi >= 35 && bmi < 39.9) {
+              index = 4;
+            } else if (bmi > 40) {
+              index = 5;
+            }
+        
+            localStorage.setItem('index', index);
+        
+            images.forEach((image, i) => {
+              image.isDefault = i === index;
+            });
+          }
+        
+          setIbw(bmi);
+   
+
+
+ 
    
 
     const asignToGroup = (bmi) => {
@@ -26,8 +116,12 @@ const BMIDiagram = (props) => {
         return 'Otyłość kliniczna'
     }
     let wynik = asignToGroup(bmi)
-    useEffect(() => {
+   
         function placeUserValues() {
+            const savedHeight = parseFloat(localStorage.getItem('userHeight'));
+            const savedWeight = parseFloat(localStorage.getItem('userWeight'));
+            
+
             const chart = document.getElementById('chart');
 
             if (!chart) {
@@ -35,11 +129,11 @@ const BMIDiagram = (props) => {
                 return;
             }
 
-            let ysum = (((height) - 1.43) / 0.57) * 374;
+            let ysum = (((savedHeight) - 1.43) / 0.57) * 374;
             ysum = Math.abs(ysum - 374);
             let yMark = ysum + chart.offsetTop + 37;
 
-            let xsum = (((weight) - 36) / 88) * 734;
+            let xsum = (((savedWeight) - 36) / 88) * 734;
             let xMark = xsum + chart.offsetLeft + 32;
             yMark = yMark - 11;
             xMark = xMark - 11;
@@ -52,11 +146,12 @@ const BMIDiagram = (props) => {
             x.style.fontSize = "20px";
             x.style.fontWeight = "bold";
             x.style.display = "inline-block";
+           
         }
 
         placeUserValues();
 
-    }, []);
+   
     return (
         <div>
             <h2 className='diagrams-desc'>BMI {wynik} wynik:  {bmi}</h2>
@@ -66,6 +161,24 @@ const BMIDiagram = (props) => {
                 <img id="chart" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png" alt="BMI chart" width="800px" />
                 <span id="x">&#10060;</span>
             </div>
+        </div>
+        <div className="image-container">
+          {images.map((image, index) => (
+            image.isDefault?(
+            <img
+              key={index}
+              src={image.url}
+              alt="ibm indicator"
+              className="image-item-unblured"
+            />
+            ):(
+                <img
+                key={index}
+                src={image.url}
+                alt="ibm indicator"
+                className="image-item-blured"  />
+            )
+          ))}
         </div>
 
         </div>

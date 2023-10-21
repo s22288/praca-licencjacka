@@ -43,7 +43,7 @@ public class UserServiceImplementation implements UserService {
     public Indicator calculateIndicators(int userId) {
         PremiumuserEntity userFromDB = premiumUserRepository.findById((long) userId).get();
         double BMI = calculateBMI(userFromDB.getWeight(),userFromDB.getHeight());
-        logger.info("BMI" + BMI);
+
         double IBW = calculateIBW(userFromDB.isSex(),userFromDB.getHeight());
         double Weight = userFromDB.getWeight();
         double Height = userFromDB.getHeight();
