@@ -7,6 +7,7 @@ import FunctionalityNavbar from "../../../../components/Medium/navbar/functional
 const ExcerciseDetails = () => {
     const location = useLocation();
     const data = location.state?.data;
+    
 
     if (!data) {
         return <div>No exercise data available.</div>;
@@ -20,8 +21,10 @@ const ExcerciseDetails = () => {
                     {data.map((exercise) => (
                         <div className="exercise-card" key={exercise.id}>
                             <img src={trainImage} alt={exercise.name} />
+
                             <div className="exercise-details">
-                                <h3>{exercise.name}</h3>
+                                <h3>Name: {exercise.name}</h3>
+                                <p  className="customText">BodyPart:  {exercise.bodypartEntitySet[0].description}</p>
                                 <CustomizedRating rate={exercise.levelOfAdvance} />
                                 <p className="customText">Reps {exercise.reps}</p>
                                 <p className="customText">Series {exercise.series}</p>

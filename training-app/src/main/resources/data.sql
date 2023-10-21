@@ -116,47 +116,24 @@ values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ET
 
 
 
--- wprowadzenie rodzajów cwiczeń ćwiczeń do bazy danych
-insert into training ( max_age, normal_user_id, treining_type, description)
-values (80,1,'FBW','treining dla początkujacych');
--- dodanie cwiczeń
-insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
-values (3,4,15,1,'podciaganie','podciaganie.jpg');
-
-insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
-values (4,3,10,2,'uginanie sztangi','uginanie.jpg');
-
--- connections between training and exercises;
-insert into trainingexercise (exercise_id, training_id)
-values (1,1);
-insert into trainingexercise (exercise_id, training_id)
-values (2,1);
+-- -- wprowadzenie rodzajów cwiczeń ćwiczeń do bazy danych
+-- insert into training ( max_age, normal_user_id, treining_type, description)
+-- values (80,1,'FBW','treining dla początkujacych');
+-- -- dodanie cwiczeń
+-- insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
+-- values (3,4,15,1,'podciaganie','podciaganie.jpg');
+--
+-- insert into exercise ( level_of_advance, series,reps, training_machine_id, name, photo)
+-- values (4,3,10,2,'uginanie sztangi','uginanie.jpg');
+--
+-- -- connections between training and exercises;
+-- insert into trainingexercise (exercise_id, training_id)
+-- values (1,1);
+-- insert into trainingexercise (exercise_id, training_id)
+-- values (2,1);
 
 -- wstawienie partii mieści które można ćwiczyć
 
-insert into bodypart ( description, url)
-values ('Klatka piersiowa','chest.jpg');
 
-
-insert into bodypart ( description, url)
-values ('Plecy','back.jpg');
-
-
-insert into bodypart ( description, url)
-values ('Barki','shoulders.jpg');
-
-
-insert into bodypart ( description, url)
-values ('Ramiona','arms.jpg');
-
-
-insert into bodypart ( description, url)
-values ('Brzuch','abs.jpg');
-
-
-
-
-insert into bodypart ( description, url)
-values ('Nogi','legs.jpg');
 
 

@@ -1,16 +1,21 @@
 .right {
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
+    margin-right: 100px;
+
   }
   
   .alternatives-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 11px;
   }
   .left {
     flex: 1;
-    margin-right: 50px;
+    margin-right:250px;
+    margin-top: 50px;
+
   }
   
   #parent {

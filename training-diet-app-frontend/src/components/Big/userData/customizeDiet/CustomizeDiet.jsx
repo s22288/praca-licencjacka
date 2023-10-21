@@ -69,9 +69,7 @@ const [description,setDescription] = useState('describe diet');
         setAlergic(uniqueNames);
     };
     const replaceData = (index, mainIndex) => {
-        console.log('index ' + index)
-        console.log('main ' + mainIndex)
-
+     
         let userDataIndex = userData.findIndex((d) => {
             return d.mealEntity.id === mainIndex;
         });
@@ -112,7 +110,7 @@ const [description,setDescription] = useState('describe diet');
             mealEntitySet: ToMainMeals(),
         };
         SaveDiet(dietData);
-        navigate("/user-page");
+        navigate("/user-page/create-training/train-customize");
     };
     
 

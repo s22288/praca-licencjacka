@@ -5,24 +5,29 @@ import Button from "@mui/material/Button";
 import backgroundSVG from "../../../../assets/wave.svg"
 import CustomExcercises from "./exercise/exerciseCustom";
 import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
-import { GetExerciseseByTrainingType, SaveTrainig } from "../../../../services/trainingServices/trainingService";
+import { GetExerciseseByBodyPart, SaveTrainig } from "../../../../services/trainingServices/trainingService";
 const TrainingCustomization = () => {
   const [excercise, setExcercise] = useState("");
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
   const [trainingType, setTrainingType] = useState("");
-
+const [description, setDescription] = useState('');
   const saveTrainig = (event) => {
     event.preventDefault();
-    let exercices = userData.map((data) => data.excercise);
+    let exercises = userData.map((data) => data.exerciseEntity);
+    console.log(exercises)
     const trainingToSave = {
-      name: trainingType,
+      description: description,
       maxAge: 99,
-      excercieses: exercices,
+      treiningType: excercise,
+      exerciseEntitySet: exercises,
     };
    
     SaveTrainig( trainingToSave);
     navigate("/user-page");
+  };
+  const handleInput = (event) => {
+    setDescription(event.target.value);
   };
   const HandleSubmit = (event) => {
     event.preventDefault();
@@ -36,20 +41,20 @@ const TrainingCustomization = () => {
   };
   const replaceData = (index, mainIndex) => {
     let userDataIndex = userData.findIndex((d) => {
-      return d.excercise.id === mainIndex;
+      return d.exerciseEntity.id === mainIndex;
     });
     const updatedUserData = [...userData];
     const alternatives = updatedUserData[userDataIndex].alternatives;
     if (alternatives.length > 0) {
-      let copy = updatedUserData[userDataIndex].excercise;
-      updatedUserData[userDataIndex].excercise = alternatives[index];
+      let copy = updatedUserData[userDataIndex].exerciseEntity;
+      updatedUserData[userDataIndex].exerciseEntity = alternatives[index];
       updatedUserData[userDataIndex].alternatives[index] = copy;
     }
     setUserData(updatedUserData);
   };
-  const fetchUserData = (type) => {
+  const fetchUserData = () => {
 
-    GetExerciseseByTrainingType( type)
+    GetExerciseseByBodyPart( )
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -105,12 +110,20 @@ const TrainingCustomization = () => {
             />
             PUSH-PULL 
           </label>
+          <label>Diet description</label>
+                    <input
+        type="text"
+        value={description}
+        onChange={handleInput}
+      />
           <input className="submit-button" type="submit" value="Submit" />
+        
         </form>
         <div className="user-data">
           {userData ? (
             userData.map((item, index) => (
               <div key={index}>
+
                 <CustomExcercises onreplace={replaceData} data={item} />
               </div>
             ))
