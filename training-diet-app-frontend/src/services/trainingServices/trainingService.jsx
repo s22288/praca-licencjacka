@@ -3,6 +3,11 @@ const GetAllTrainings = () => {
 
 };
 
+const GetAllTrainingsWithDays = () => {
+    return fetch("http://localhost:9800/normal-user/trainings-days");
+
+};
+
 const AsignTrainingToDay = (asignItem,idTraining)=>{
     return fetch(`http://localhost:9800/create-training/assign-todate?idTraining=${idTraining}`,{
         method: "POST",
@@ -38,4 +43,4 @@ const DelteteTrainigById = (id) => {
 
 }
 
-export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart,SaveTrainig,AsignTrainingToDay}
+export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart,SaveTrainig,AsignTrainingToDay,GetAllTrainingsWithDays}

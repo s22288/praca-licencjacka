@@ -6,6 +6,7 @@ import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.TrainingEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
+import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
@@ -153,5 +154,15 @@ public class NormalUserController {
 
 
         return ResponseEntity.ok().body(allUserTraining);
+    }
+
+    @CrossOrigin
+
+    @RequestMapping("/trainings-days")
+    public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
+        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(1);
+
+
+        return ResponseEntity.ok().body(trainigsWithDays);
     }
 }

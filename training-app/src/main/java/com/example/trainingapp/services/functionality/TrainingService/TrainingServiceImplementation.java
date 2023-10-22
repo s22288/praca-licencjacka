@@ -5,6 +5,7 @@ import com.example.trainingapp.entities.ExerciseEntity;
 import com.example.trainingapp.entities.TrainingEntity;
 import com.example.trainingapp.entities.TrainingeventEntity;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
+import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.repositories.BodyPartRepository;
 import com.example.trainingapp.services.repositories.ExerciseRepository;
 import com.example.trainingapp.services.repositories.TrainingRepository;
@@ -60,8 +61,13 @@ trainingRepository.save(trainingEntity);
 
     @Override
     public TrainingeventEntity getTrainingById(long id) {
-trainingRepository.findById(id)
+trainingRepository.findById(id);
         return null;
+    }
+
+    @Override
+    public List<TrainingWithDay> getTrainigsWithDays(int id) {
+        return trainingRepository.getTrainingsWithDays(id);
     }
 
 //    @Override

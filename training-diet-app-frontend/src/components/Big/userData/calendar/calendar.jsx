@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './calendar.css'
-import { AsignTrainingToDay, GetAllTrainings } from '../../../../services/trainingServices/trainingService'
+import { AsignTrainingToDay, GetAllTrainings, GetAllTrainingsWithDays } from '../../../../services/trainingServices/trainingService'
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,6 +13,26 @@ const [day,setDay] =useState()
 const [training,setTraining] =useState()
 const [description,setDescription] = useState('desc');
 const[localization,setLocalization] = useState('loc')
+const [datawithDays,setDataWithDays] = useState()
+useEffect(()=>{
+    GetAllTrainingsWithDays().then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Failed to fetch user data");
+        }
+    })
+    .then((data) => {
+        setDataWithDays(data);
+        console.log(data)
+        
+    })
+    .catch((error) => {
+        console.error("Failed to fetch user data", error);
+    });
+
+
+},[])
     useEffect(()=>{
         GetAllTrainings().then((response) => {
             if (response.ok) {
@@ -49,7 +69,7 @@ setDescription(event.currentTarget.value)
         console.log('id '  + training.id)
         const eventTraining = {
             description: description,
-            localization: localization,
+            localozation: localization,
             day: day,
           };
           

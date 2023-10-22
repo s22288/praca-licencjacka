@@ -5,6 +5,7 @@ import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternativ
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
+import com.example.trainingapp.services.repositories.TrainingEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class TrainingController {
     private static final Logger logger = LoggerFactory.getLogger(TrainingController.class);
 @Autowired
   private   PremiumUserRepository premiumUserRepository;
+
+    @Autowired
+    private TrainingEventRepository trainingEventRepository;
     private TrainingService trainingService;
 
 
@@ -56,10 +60,13 @@ public class TrainingController {
     public  ResponseEntity <String> asignTrainingToDay(@RequestBody TrainingeventEntity ev, @RequestParam("idTraining") int idTraining){
         logger.info("Training: " + ev);
         logger.info("idTraining: " + idTraining);
-TrainingeventEntity trainingeventEntity=trainingService.getTrainingById(idTraining);
+
         PremiumuserEntity premiumuserEntity = premiumUserRepository.findById(1L).get();
-       
-        trainingeventEntity.setPremiumuserEntitySet();
+       Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
+       premiumuserEntitySet.add(premiumuserEntity);
+
+        ev.setPremiumuserEntitySet(premiumuserEntitySet);
+trainingEventRepository.save(ev);
 
         return ResponseEntity.ok("treninig");
     }
