@@ -3,6 +3,7 @@ package com.example.trainingapp.services.functionality.TrainingService;
 import com.example.trainingapp.entities.BodypartEntity;
 import com.example.trainingapp.entities.ExerciseEntity;
 import com.example.trainingapp.entities.TrainingEntity;
+import com.example.trainingapp.entities.TrainingeventEntity;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.services.repositories.BodyPartRepository;
 import com.example.trainingapp.services.repositories.ExerciseRepository;
@@ -55,6 +56,12 @@ List<ExerciseEntity> alternatives =exerciseRepository.findTwoAlternatives(b.getD
     @Override
     public void saveTraining(TrainingEntity trainingEntity) {
 trainingRepository.save(trainingEntity);
+    }
+
+    @Override
+    public TrainingeventEntity getTrainingById(long id) {
+trainingRepository.findById(id)
+        return null;
     }
 
 //    @Override

@@ -1,10 +1,12 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
+import java.time.DayOfWeek;
 import java.util.HashSet;
 import java.util.Set;
-
+@ToString
 @Entity
 @Table(name = "trainingevent", schema = "pracalicencjacka_training_db", catalog = "")
 public class TrainingeventEntity {
@@ -14,16 +16,30 @@ public class TrainingeventEntity {
     private int id;
     @Basic
     @Column(name = "description", nullable = false)
-    private int description;
+    private String description;
     @Basic
     @Column(name = "localozation", nullable = false, length = 300)
     private String localozation;
+
+    @Basic
+    @Column(name = "day", nullable = false, length = 300)
+    private String day;
+
+
     @ManyToMany
     @JoinTable(name = "userstrainingevent",joinColumns = @JoinColumn( name ="training_calendar_id" ),inverseJoinColumns = @JoinColumn(name = "premium_user_normal_user_id"))
     private Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
 
     public void setPremiumuserEntitySet(Set<PremiumuserEntity> premiumuserEntitySet) {
         this.premiumuserEntitySet = premiumuserEntitySet;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public Set<PremiumuserEntity> getPremiumuserEntitySet() {
@@ -38,11 +54,11 @@ public class TrainingeventEntity {
         this.id = id;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -72,7 +88,6 @@ public class TrainingeventEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + description;
         result = 31 * result + (localozation != null ? localozation.hashCode() : 0);
         return result;
     }
