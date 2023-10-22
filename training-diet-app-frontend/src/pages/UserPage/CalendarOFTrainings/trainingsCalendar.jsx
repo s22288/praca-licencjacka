@@ -1,7 +1,11 @@
+import CalendarOfTraining from "../../../components/Big/userData/calendar/calendar"
+import FunctionalityNavbar from "../../../components/Medium/navbar/functionalitynavbar"
+
 const TrainingsCalendar =()=>{
     return(
         <div>
-            <h2>Calendar</h2>
+            <FunctionalityNavbar/>
+            <CalendarOfTraining/>
         </div>
     )
 }

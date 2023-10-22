@@ -93,7 +93,7 @@ const CustomExcercises = (props) => {
                Exercise: {alternative.name}
               </Typography>
               <Typography>
-              <CustomizedRating rate={main.levelOfAdvance} />
+              <CustomizedRating rate={alternative.levelOfAdvance} />
               </Typography>
               <Typography variant="h6" color="text.secondary">
              Body Part:   {alternative.bodypartEntitySet[0].description}

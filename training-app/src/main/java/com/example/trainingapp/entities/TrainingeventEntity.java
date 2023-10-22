@@ -2,6 +2,9 @@ package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "trainingevent", schema = "pracalicencjacka_training_db", catalog = "")
 public class TrainingeventEntity {
@@ -15,6 +18,17 @@ public class TrainingeventEntity {
     @Basic
     @Column(name = "localozation", nullable = false, length = 300)
     private String localozation;
+    @ManyToMany
+    @JoinTable(name = "userstrainingevent",joinColumns = @JoinColumn( name ="training_calendar_id" ),inverseJoinColumns = @JoinColumn(name = "premium_user_normal_user_id"))
+    private Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
+
+    public void setPremiumuserEntitySet(Set<PremiumuserEntity> premiumuserEntitySet) {
+        this.premiumuserEntitySet = premiumuserEntitySet;
+    }
+
+    public Set<PremiumuserEntity> getPremiumuserEntitySet() {
+        return premiumuserEntitySet;
+    }
 
     public int getId() {
         return id;
@@ -39,6 +53,7 @@ public class TrainingeventEntity {
     public void setLocalozation(String localozation) {
         this.localozation = localozation;
     }
+
 
     @Override
     public boolean equals(Object o) {

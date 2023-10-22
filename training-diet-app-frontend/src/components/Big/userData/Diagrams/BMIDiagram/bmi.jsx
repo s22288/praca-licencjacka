@@ -61,7 +61,7 @@ const BMIDiagram = (props) => {
         localStorage.setItem('userHeight', height);
         localStorage.setItem('userWeight', weight);
     },[weight,height])
-   
+  
        
         function setIbw(bmi) {
             let index = parseFloat(localStorage.getItem('index')) || 0;

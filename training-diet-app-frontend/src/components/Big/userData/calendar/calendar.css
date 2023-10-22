@@ -1,0 +1,16 @@
+.calendar-days-container{
+    display: flex;
+ justify-content: space-between;
+ margin-left: 100px;
+ margin-right: 100px;
+ margin-top: 70px;
+background-color: darkgrey;
+}
+
+.calendar-day{
+    margin-right: 10px;
+    background-color: red;
+    width: 150px;
+    height: 200px;
+   text-align: center;
+}

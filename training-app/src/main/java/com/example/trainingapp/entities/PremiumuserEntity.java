@@ -1,17 +1,22 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "premiumuser", schema = "pracalicencjacka_training_db", catalog = "")
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+
 
 
 public class PremiumuserEntity extends NormaluserEntity {
@@ -29,14 +34,15 @@ public class PremiumuserEntity extends NormaluserEntity {
     @Basic
     @Column(name = "endSubscription", nullable = false)
     private Date endSubscription;
+    @ManyToMany
+    @JoinTable(name = "userstrainingevent",joinColumns = @JoinColumn( name ="premium_user_normal_user_id" ),inverseJoinColumns = @JoinColumn(name = "training_calendar_id"))
+    private Set<TrainingeventEntity> trainingeventEntitySet = new HashSet<>();
 
     public PremiumuserEntity() {
 
     }
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Id
-//    @Column(name = "NormalUser_id", nullable = false)
-//    private int normalUserId;
+
+
 
 
 

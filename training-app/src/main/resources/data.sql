@@ -33,8 +33,8 @@ values (1,'1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewa','lewand
 
 -- premium users
 
-insert into premiumuser (end_subscription, hips_circumference, id, start_subscription, waist_circumference)
-values ('2000-01-11',200.0,1,'2000-01-09',150.0);
+insert into premiumuser (end_subscription, hips_circumference, start_subscription, waist_circumference,id)
+values ('2000-01-11',200.0,'2000-01-09',150.0,1);
 -- add some maxes
 --
 insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
