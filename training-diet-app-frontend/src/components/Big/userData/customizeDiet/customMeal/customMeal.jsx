@@ -1,11 +1,11 @@
 import React from "react";
+import './customMeal.css'
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import "./custom.css"; // Import your custom CSS file for styling
-
 const CustomMeal = (props) => {
     let exer = props.data;
     let main = props.data.mealEntity;
@@ -20,10 +20,9 @@ const CustomMeal = (props) => {
     }
 
     return (
-        <div className="meal-container">
-            <div className="left">
-                <h4>Meal:</h4>
-                <Card sx={{ maxWidth: 345 }}>
+        <div id="parent">
+            <div className="custom-meal-left">
+                <Card sx={{ maxWidth: 245 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -32,28 +31,25 @@ const CustomMeal = (props) => {
                             alt="green iguana"
                         />
                         <CardContent>
-                           
+
                             <Typography gutterBottom variant="h5" component="div">
-                                {main.mealName}
+                                food:   {main.mealName}
                             </Typography>
 
                             <Typography variant="h6" color="text.secondary">
-                                Calories {main.calories}
+                                {main.calories} kcal
                             </Typography>
-                            <Typography variant="h6" color="text.secondary">
-                                {main.mealTypeId}
-                            </Typography>
+
                         </CardContent>
                     </CardActionArea>
                 </Card>
             </div>
-            <div className="right">
-                <h4>Alternatives:</h4>
-                <div className="alternatives-row">
+            <div className="custom-meal-right">
+                <div className="custom-meal-alternatives-row">
                     {exer.alternatives &&
                         exer.alternatives.map((alt, idx) => (
-                            <div className="altern" key={idx}>
-                                <Card sx={{ maxWidth: 345, backgroundColor: "ActiveBorder" }}>
+                            <div className="custom-meal-altern" key={idx}>
+                                <Card sx={{ maxWidth: 245, backgroundColor: "ActiveBorder" }}>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
@@ -63,32 +59,28 @@ const CustomMeal = (props) => {
                                         />
 
                                         <CardContent>
-                                          
+
                                             <Typography
                                                 gutterBottom
                                                 variant="h5"
                                                 color="white"
                                                 component="div"
                                             >
-                                                {alt && alt.mealName}
+                                                food:     {alt && alt.mealName}
                                             </Typography>
 
                                             <Typography variant="h6" color="white">
-                                                {alt && `Calories ${alt.calories}`}
+                                                {alt && ` ${alt.calories} kcal`}
                                             </Typography>
-                                            <Typography variant="h6" color="white">
-                                                {alt && alt.mealTypeId}
-                                            </Typography>
+                                            <Button className="custom-meal-change-button"
+                                                onClick={() => handleHange(idx, alt.id)}
+                                                variant="contained"
+                                            >
+                                                Change
+                                            </Button>
                                         </CardContent>
                                     </CardActionArea>
-                                    <CardActions>
-                                        <Button
-                                            onClick={() => handleHange(idx, alt.id)}
-                                            variant="contained"
-                                        >
-                                            Change
-                                        </Button>
-                                    </CardActions>
+
                                 </Card>
                             </div>
                         ))}

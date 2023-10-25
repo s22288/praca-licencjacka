@@ -1,13 +1,12 @@
 import { useLocation } from "react-router-dom";
-import "./exercise.css";
 import CustomizedRating from "../ExerciseDetails/customRaiting";
 import trainImage from "../../../../assets/traininguser.jpg";
 import FunctionalityNavbar from "../../../../components/Medium/navbar/functionalitynavbar";
-
+import './../../../../context/mealsandexercisedetails.css'
 const ExcerciseDetails = () => {
     const location = useLocation();
     const data = location.state?.data;
-    
+
 
     if (!data) {
         return <div>No exercise data available.</div>;
@@ -16,18 +15,18 @@ const ExcerciseDetails = () => {
     return (
         <div>
             <FunctionalityNavbar />
-            <div className="alignCenter">
-                <div className="exercise-details-container">
+            <div >
+                <div className="context-details-container">
                     {data.map((exercise) => (
-                        <div className="exercise-card" key={exercise.id}>
+                        <div className="context-card" key={exercise.id}>
                             <img src={trainImage} alt={exercise.name} />
 
                             <div className="exercise-details">
                                 <h3>Name: {exercise.name}</h3>
-                                <p  className="customText">BodyPart:  {exercise.bodypartEntitySet[0].description}</p>
+                                <p>BodyPart:  {exercise.bodypartEntitySet[0].description}</p>
                                 <CustomizedRating rate={exercise.levelOfAdvance} />
-                                <p className="customText">Reps {exercise.reps}</p>
-                                <p className="customText">Series {exercise.series}</p>
+                                <p >Reps {exercise.reps}</p>
+                                <p >Series {exercise.series}</p>
                             </div>
                         </div>
                     ))}

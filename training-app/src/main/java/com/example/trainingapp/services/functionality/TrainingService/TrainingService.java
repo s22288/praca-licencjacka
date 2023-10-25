@@ -1,5 +1,6 @@
 package com.example.trainingapp.services.functionality.TrainingService;
 
+import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.TrainingEntity;
 import com.example.trainingapp.entities.TrainingeventEntity;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
@@ -20,6 +21,10 @@ public interface TrainingService {
      void saveTraining(TrainingEntity trainingEntity);
      TrainingeventEntity getTrainingById(long id);
 
-     List<TrainingWithDay> getTrainigsWithDays(int id);
+     List<TrainingWithDay> getTrainigsWithDays(long id);
+
+     void saveTrainingEvent(TrainingeventEntity trainingeventEntity);
    //  List<String> getAllTrainingtypes();
+
+     void saveMaxInExercise(MaxinexerciseEntity maxinexerciseEntity);
 }

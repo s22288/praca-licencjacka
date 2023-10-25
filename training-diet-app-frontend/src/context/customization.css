@@ -1,4 +1,4 @@
-.container {
+.context-customize-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,14 +8,14 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-data {
+.context-customize-user-data {
     margin-top: 20px;
     margin-left: 35%;
     align-items: center;
 
 }
 
-.comic-form label {
+.context-customize-comic-form label {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -24,11 +24,11 @@
     color: #3a3a3a;
 }
 
-.comic-form input[type="radio"] {
+.context-customize-comic-form input[type="radio"] {
     margin-right: 10px;
 }
 
-.submit-button {
+.context-customize-submit-button {
     padding: 15px 30px;
     background-color: #ff6b6b;
     color: white;
@@ -37,39 +37,43 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 20px;
     cursor: pointer;
+    height: 60px;
 }
 
-.submit-button:hover {
+.context-customize-submit-button:hover {
     background-color: #ff4f4f;
 }
 
+.context-customize-inputdesc {
+    height: 50px;
+}
 
 
-.user-data .warning {
+.context-customize-user-data .warning {
     color: red;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 18px;
 }
 
-.save-button {
+.context-customize-save-button {
     margin-top: 20px;
 }
 
-.calories {
+.context-customize-calories {
     margin-bottom: 10px;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 20px;
     color: #3a3a3a;
 }
 
-.alergic {
+.context-customize-alergic {
     margin: 0;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 18px;
     color: #3a3a3a;
 }
 
-.comic-div {
+.context-customize-comic-div {
     .comic-form {
         display: flex;
         flex-direction: column;
@@ -78,7 +82,7 @@
         background-color: beige;
     }
 
-    .comic-form label {
+    .context-customize-comic-form label {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
@@ -86,21 +90,21 @@
         font-family: "Luckiest Guy", cursive;
     }
 
-    .comic-form label input {
+    .context-customize-comic-form label input {
         margin-left: 5px;
     }
 
-    .submit-button {
+    .context-customize-submit-button {
         margin-top: 10px;
     }
 
-    .calories {
+    .context-customize-calories {
         font-family: "Luckiest Guy", cursive;
         font-size: 30px;
         color: black;
     }
 
-    .comic-div {
+    .context-customize-comic-div {
         display: inline-block;
         padding: 10px;
         background-color: #2e18ac;
@@ -111,12 +115,12 @@
         color: #ffffff;
     }
 
-    .comic-div p {
+    .context-customize-comic-div p {
         margin: 0;
         color: rgb(255, 255, 255);
     }
 
-    .comic-div .alergic {
+    .context-customize-comic-div .alergic {
         font-weight: bold;
     }
 

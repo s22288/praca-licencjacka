@@ -25,14 +25,12 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 public class DietController {
     private static final Logger logger = LoggerFactory.getLogger(DietController.class);
-//    private DietMealRepository dietMealRepository;
     private DietService dietService;
-    private DietRepository dietRepository;
+
 
     public DietController( DietService dietService, DietRepository dietRepository) {
         this.dietService = dietService;
 
-        this.dietRepository = dietRepository;
     }
 
     @GetMapping

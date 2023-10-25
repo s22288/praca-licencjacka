@@ -105,4 +105,9 @@ public class DietServiceImplementation implements DietService {
     public void saveDiet(DietEntity dietEntity) {
 dietRepository.save(dietEntity);
     }
+
+    @Override
+    public void deleteDietById(long id) {
+        dietRepository.deleteById(id);
+    }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TrainingDetails from "./trainingDetails";
-import "./own.css";
+import "./../../../context/own.css";
 import { GetAllTrainings } from "../../../services/trainingServices/trainingService"
 
 
@@ -40,9 +40,9 @@ const OwnTrainings = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : userData && userData.length > 0 ? (
-                <div className="parent">
+                <div className="own-elo">
                     {userData.map((item) => (
-                        <TrainingDetails
+                        <TrainingDetails className="emptytrain"
                             key={item.id}
                             val={item}
                             ondelete={handleNoteDeletion}

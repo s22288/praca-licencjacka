@@ -1,14 +1,9 @@
 package com.example.trainingapp.services.functionality.TrainingService;
 
-import com.example.trainingapp.entities.BodypartEntity;
-import com.example.trainingapp.entities.ExerciseEntity;
-import com.example.trainingapp.entities.TrainingEntity;
-import com.example.trainingapp.entities.TrainingeventEntity;
+import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
-import com.example.trainingapp.services.repositories.BodyPartRepository;
-import com.example.trainingapp.services.repositories.ExerciseRepository;
-import com.example.trainingapp.services.repositories.TrainingRepository;
+import com.example.trainingapp.services.repositories.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,11 +15,16 @@ public class TrainingServiceImplementation implements  TrainingService{
 
     private ExerciseRepository exerciseRepository;
     private BodyPartRepository bodyPartRepository;
+    private TrainingEventRepository trainingEventRepository;
 
-    public TrainingServiceImplementation(TrainingRepository trainingRepository,ExerciseRepository exerciseRepository,BodyPartRepository bodyPartRepository) {
+    private MaxInExerciseRepository maxInExerciseRepository;
+
+    public TrainingServiceImplementation(TrainingRepository trainingRepository, ExerciseRepository exerciseRepository, BodyPartRepository bodyPartRepository, TrainingEventRepository trainingEventRepository, MaxInExerciseRepository maxInExerciseRepository) {
         this.trainingRepository = trainingRepository;
         this.exerciseRepository = exerciseRepository;
-        this.bodyPartRepository =bodyPartRepository;
+        this.bodyPartRepository = bodyPartRepository;
+        this.trainingEventRepository = trainingEventRepository;
+        this.maxInExerciseRepository = maxInExerciseRepository;
     }
 
     @Override
@@ -66,8 +66,18 @@ trainingRepository.findById(id);
     }
 
     @Override
-    public List<TrainingWithDay> getTrainigsWithDays(int id) {
+    public List<TrainingWithDay> getTrainigsWithDays(long id) {
         return trainingRepository.getTrainingsWithDays(id);
+    }
+
+    @Override
+    public void saveTrainingEvent(TrainingeventEntity trainingeventEntity) {
+        trainingEventRepository.save(trainingeventEntity);
+    }
+
+    @Override
+    public void saveMaxInExercise(MaxinexerciseEntity maxinexerciseEntity) {
+        maxInExerciseRepository.save(maxinexerciseEntity);
     }
 
 //    @Override

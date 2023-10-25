@@ -5,6 +5,7 @@
     margin: 0px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     height: 500px;
+
 }
 
 .userData-title {
@@ -30,6 +31,7 @@
 }
 
 .userData-image {
+    margin-right: 50px;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -62,6 +64,7 @@
 
 .userData-content-image-container-data-container {
     text-align: left;
+    margin-top: 50px;
 }
 
 .userData-user-input {

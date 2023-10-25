@@ -8,8 +8,8 @@ const GetAllTrainingsWithDays = () => {
 
 };
 
-const AsignTrainingToDay = (asignItem,idTraining)=>{
-    return fetch(`http://localhost:9800/create-training/assign-todate?idTraining=${idTraining}`,{
+const AsignTrainingToDay = (asignItem, idTraining) => {
+    return fetch(`http://localhost:9800/create-training/assign-todate?idTraining=${idTraining}`, {
         method: "POST",
         headers: {
 
@@ -28,13 +28,13 @@ const SaveTrainig = (training) => {
         body: JSON.stringify(training),
     });
 };
-const GetExerciseseByBodyPart=()=>{
+const GetExerciseseByBodyPart = () => {
     return fetch("http://localhost:9800/create-training/exercise-for-bodyparts");
 }
 const DelteteTrainigById = (id) => {
     return fetch(`http://localhost:9800/normal-user/delete-training/${id}`, {
-       
-});
+
+    });
 
 
 
@@ -43,4 +43,4 @@ const DelteteTrainigById = (id) => {
 
 }
 
-export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart,SaveTrainig,AsignTrainingToDay,GetAllTrainingsWithDays}
+export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart, SaveTrainig, AsignTrainingToDay, GetAllTrainingsWithDays }

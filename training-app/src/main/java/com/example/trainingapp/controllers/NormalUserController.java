@@ -29,22 +29,19 @@ public class NormalUserController {
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
     private UserService userService;
 
-    private UserRepository userRepository;
 
-    private MaxInExerciseRepository maxInExerciseRepository;
+
 
     private DietService dietService;
 
-    private DietRepository dietRepository;
+
 
     private TrainingService trainingService;
 
-    public NormalUserController(UserService userService, UserRepository userRepository,MaxInExerciseRepository maxInExerciseRepository,DietService dietService,DietRepository dietRepository,TrainingService trainingService) {
+    public NormalUserController(UserService userService,DietService dietService,TrainingService trainingService) {
         this.userService = userService;
-        this.userRepository = userRepository;
-        this.maxInExerciseRepository = maxInExerciseRepository;
         this.dietService = dietService;
-        this.dietRepository = dietRepository;
+
         this.trainingService = trainingService;
     }
 
@@ -60,7 +57,7 @@ public class NormalUserController {
     @GetMapping
     @RequestMapping("/cpm")
     public ResponseEntity<Double> getCpmOfUser() {
-        NormaluserEntity normaluserEntity = userRepository.findById(1L).get();
+        NormaluserEntity normaluserEntity = userService.findUserByid(1L);
         logger.info("user data" + normaluserEntity);
         logger.info("age " + normaluserEntity.calculateAgeFromBirthDate());
         return ResponseEntity.ok(normaluserEntity.calculateCPM());
@@ -71,14 +68,14 @@ public class NormalUserController {
     @RequestMapping("/update-data")
     public ResponseEntity<String> updateUserMesurements(@RequestBody NormaluserEntity userData) {
         logger.info("updated user data " + userData);
-        NormaluserEntity userFromDb = userRepository.findById(1L).orElse(null);
+        NormaluserEntity userFromDb = userService.findUserByid(1l);
         if (userFromDb != null) {
             userFromDb.setWeight(userData.getWeight());
             userFromDb.setHeight(userData.getHeight());
             userFromDb.setBirthDate(userData.getBirthDate());
             userFromDb.setPalfactor(userData.getPalfactor());
 
-            userRepository.save(userFromDb);
+            userService.saveUser(userFromDb);
             return ResponseEntity.ok("userUpdated");
         }
         return ResponseEntity.ok("not found");
@@ -90,7 +87,7 @@ public class NormalUserController {
     @PostMapping
     @RequestMapping("/account-data")
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
-        NormaluserEntity userFromDb = userRepository.findById(1L).orElse(null);
+        NormaluserEntity userFromDb = userService.findUserByid(1l);
 
         return ResponseEntity.ok(userFromDb);
 
@@ -108,13 +105,12 @@ public class NormalUserController {
 
     }
 
-
     @PostMapping
     @RequestMapping("/add-maxes")
     public ResponseEntity<String> AddUserMax( @RequestBody MaxinexerciseEntity maxinexerciseEntity) {
-
+logger.info("maxes" + maxinexerciseEntity);
         maxinexerciseEntity.setNormalUserId(1);
-        maxInExerciseRepository.save(maxinexerciseEntity);
+        trainingService.saveMaxInExercise(maxinexerciseEntity);
 
         return ResponseEntity.ok("Updated ok 200");
 
@@ -133,7 +129,7 @@ public class NormalUserController {
     @GetMapping
     @RequestMapping("/delete-diet/{id}")
     public  ResponseEntity<String> deleteDiet(@PathVariable long id){
-        dietRepository.deleteById( id);
+        dietService.deleteDietById( id);
         return  ResponseEntity.ok("deleted");
 
     }
@@ -160,7 +156,7 @@ public class NormalUserController {
 
     @RequestMapping("/trainings-days")
     public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
-        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(1);
+        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(1l);
 
 
         return ResponseEntity.ok().body(trainigsWithDays);

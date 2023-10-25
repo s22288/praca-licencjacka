@@ -18,4 +18,5 @@ public interface DietService {
      List<DietWithMeals> findDietsByUserIdWithMeals (int userId);
 
      void saveDiet(DietEntity dietEntity);
+     void deleteDietById(long id);
 }

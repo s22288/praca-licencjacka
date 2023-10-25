@@ -1,7 +1,7 @@
 package com.example.trainingapp.services.functionality.UserService;
 
-import com.example.trainingapp.controllers.NormalUserController;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
+import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.PremiumuserEntity;
 import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImplementation implements UserService {
-    private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImplementation.class);
 
    private UserRepository userRepository;
    private MaxInExerciseRepository maxInExerciseRepository;
@@ -88,7 +88,15 @@ public class UserServiceImplementation implements UserService {
 
     }
 
+    @Override
+    public NormaluserEntity findUserByid(long id) {
+        return userRepository.findById(id).get();
+    }
 
+    @Override
+    public void saveUser(NormaluserEntity normaluserEntity) {
+        userRepository.save(normaluserEntity);
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.trainingapp.services.functionality.UserService;
 
 import com.example.trainingapp.entities.MaxinexerciseEntity;
+import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,8 @@ public interface UserService {
 
 
      String calculateWHR(double waistCircumference, double hipsCircumference,boolean sex);
+
+     NormaluserEntity findUserByid(long id);
+
+     void saveUser(NormaluserEntity normaluserEntity);
 }

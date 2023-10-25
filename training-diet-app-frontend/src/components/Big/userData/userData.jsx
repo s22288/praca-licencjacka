@@ -101,11 +101,7 @@ const UserAccount = () => {
 
     return (
         <div
-            style={{
 
-                height: "100vh",
-                backgroundSize: "cover",
-            }}
         >
             <FunctionalityNavbar />
 
@@ -171,7 +167,7 @@ const UserAccount = () => {
                             type="date"
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
-                            className="userData-user-input" />
+                            className="userData-user-input" required />
                         <br />
 
                         <label className="customlb">Height:</label>
@@ -180,7 +176,7 @@ const UserAccount = () => {
                             type="number"
                             value={height}
                             onChange={(e) => setHeight(e.target.value)}
-                            className="userData-user-input" />
+                            className="userData-user-input" required />
                         <br />
 
                         <label className="customlb">Weight:</label>
@@ -189,12 +185,12 @@ const UserAccount = () => {
                             type="number"
                             value={weight}
                             onChange={(e) => setWeight(e.target.value)}
-                            className="userData-user-input" />
+                            className="userData-user-input" required />
                         <br />
                         <FormControl fullWidth >
 
                             <InputLabel id="demo-simple-select-label">Pal</InputLabel>
-                            <Select
+                            <Select required
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={pal}
@@ -207,7 +203,7 @@ const UserAccount = () => {
                                 <MenuItem className="userData-title-text-menu-item-text" value={palArray[3].val}>{palArray[3].mess} : {palArray[3].val}</MenuItem>
                                 <MenuItem className="userData-title-text-menu-item-text" value={palArray[4].val}>{palArray[4].mess} : {palArray[4].val}</MenuItem>
 
-                            </Select>
+                            </Select >
                         </FormControl>
 
                         <button type="submit" className="login-button">

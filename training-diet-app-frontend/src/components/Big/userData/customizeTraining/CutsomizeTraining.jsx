@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./customization.css";
+import "../../../../context/customization.css";
 import Button from "@mui/material/Button";
-import backgroundSVG from "../../../../assets/wave.svg"
 import CustomExcercises from "./exercise/exerciseCustom";
 import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
 import { GetExerciseseByBodyPart, SaveTrainig } from "../../../../services/trainingServices/trainingService";
 const TrainingCustomization = () => {
-  const [excercise, setExcercise] = useState("");
+  const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
-  const [trainingType, setTrainingType] = useState("");
-const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('trainin desc');
   const saveTrainig = (event) => {
+
     event.preventDefault();
     let exercises = userData.map((data) => data.exerciseEntity);
-    console.log(exercises)
+   
     const trainingToSave = {
       description: description,
       maxAge: 99,
       treiningType: excercise,
       exerciseEntitySet: exercises,
     };
-   
-    SaveTrainig( trainingToSave);
+
+    SaveTrainig(trainingToSave);
     navigate("/user-page");
   };
   const handleInput = (event) => {
@@ -54,7 +53,7 @@ const [description, setDescription] = useState('');
   };
   const fetchUserData = () => {
 
-    GetExerciseseByBodyPart( )
+    GetExerciseseByBodyPart()
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -66,7 +65,7 @@ const [description, setDescription] = useState('');
         setUserData(data);
 
 
-       
+
       })
       .catch((error) => {
         console.error("Failed to fetch user data", error);
@@ -76,8 +75,8 @@ const [description, setDescription] = useState('');
   return (
     <div>
       <FunctionalityNavbar />
-      <div className="container">
-        <form onSubmit={HandleSubmit} className="comic-form">
+      <div className="context-customize-container">
+        <form onSubmit={HandleSubmit} className="context-customize-comic-form">
           <label htmlFor="split">
             <input
               type="radio"
@@ -85,8 +84,10 @@ const [description, setDescription] = useState('');
               value="SPLIT"
               name="anserw"
               onChange={handleChange}
+              defaultChecked
+
             />
-            SPLIT 
+            SPLIT
           </label>
 
           <label htmlFor="fbw">
@@ -97,7 +98,7 @@ const [description, setDescription] = useState('');
               name="anserw"
               onChange={handleChange}
             />
-            FBW 
+            FBW
           </label>
 
           <label htmlFor="pushpull">
@@ -108,16 +109,18 @@ const [description, setDescription] = useState('');
               name="anserw"
               onChange={handleChange}
             />
-            PUSH-PULL 
+            PUSH-PULL
           </label>
-          <label>Diet description</label>
-                    <input
-        type="text"
-        value={description}
-        onChange={handleInput}
-      />
-          <input className="submit-button" type="submit" value="Submit" />
-        
+          <label>Training description</label>
+          <input className="context-customize-inputdesc"
+            type="text"
+            value={description}
+            onChange={handleInput} required
+          />
+          <br />
+          <br></br>
+          <input className="context-customize-submit-button" type="submit" value="Submit" />
+
         </form>
         <div className="user-data">
           {userData ? (
@@ -128,11 +131,11 @@ const [description, setDescription] = useState('');
               </div>
             ))
           ) : (
-            <p className="warning">Select a training type</p>
+            <p className="context-customize-warning">Select a training type</p>
           )}
         </div>
 
-        <div className="save-button">
+        <div >
           {userData ? (
             <div>
               <Button variant="contained" onClick={saveTrainig}>

@@ -5,4 +5,4 @@ const GetMealByMealType = (type) => {
     );
 };
 
-export {  GetMealByMealType };
+export { GetMealByMealType };

@@ -4,6 +4,7 @@ import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
+import com.example.trainingapp.services.functionality.UserService.PremiumUserSerivice;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import com.example.trainingapp.services.repositories.TrainingEventRepository;
 import org.slf4j.Logger;
@@ -21,18 +22,16 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 public class TrainingController {
     private static final Logger logger = LoggerFactory.getLogger(TrainingController.class);
-@Autowired
-  private   PremiumUserRepository premiumUserRepository;
+private PremiumUserSerivice premiumUserSerivice;
 
-    @Autowired
-    private TrainingEventRepository trainingEventRepository;
+
     private TrainingService trainingService;
 
 
-    public TrainingController(TrainingService trainingService) {
+    public TrainingController(PremiumUserSerivice premiumUserSerivice, TrainingService trainingService) {
+        this.premiumUserSerivice = premiumUserSerivice;
         this.trainingService = trainingService;
     }
-
 
     @GetMapping
     @RequestMapping("/exercise-for-bodyparts")
@@ -61,12 +60,12 @@ public class TrainingController {
         logger.info("Training: " + ev);
         logger.info("idTraining: " + idTraining);
 
-        PremiumuserEntity premiumuserEntity = premiumUserRepository.findById(1L).get();
+        PremiumuserEntity premiumuserEntity = premiumUserSerivice.findById(1L);
        Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
        premiumuserEntitySet.add(premiumuserEntity);
 
         ev.setPremiumuserEntitySet(premiumuserEntitySet);
-trainingEventRepository.save(ev);
+trainingService.saveTrainingEvent(ev);
 
         return ResponseEntity.ok("treninig");
     }

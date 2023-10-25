@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./choose.css";
 import backgroundSVG from "../../../assets/userpage.svg";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 const ChooseTraining = () => {
     const [select, setSelect] = useState("");
@@ -19,18 +20,20 @@ const ChooseTraining = () => {
     const handleChange = (event) => {
         setSelect(event.target.value);
     };
+    let value = 0;
     return (
         <div>
             <div
-                className="center"
+                className="form-choose-center"
                 style={{
                     backgroundImage: `url(${backgroundSVG})`,
                     height: "100vh",
                     backgroundSize: "cover",
                 }}
             >
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <label className="customlb">Training with Diet</label>
+
+                <form className="form-choose-login-form" onSubmit={handleSubmit}>
+                    <label className="form-choose-customlb">Training with Diet</label>
 
                     <input
                         type="radio"
@@ -39,7 +42,7 @@ const ChooseTraining = () => {
                         onChange={handleChange}
                     />
 
-                    <label className="customlb">Only Training</label>
+                    <label className="form-choose-customlb">Only Training</label>
                     <input
                         type="radio"
                         value="train"
@@ -47,7 +50,7 @@ const ChooseTraining = () => {
                         onChange={handleChange}
                     />
 
-                    <input className=" login-button " type="submit" value="Submit" />
+                    <input className=" form-choose-login-button " type="submit" value="Submit" />
                 </form>
             </div>
         </div>

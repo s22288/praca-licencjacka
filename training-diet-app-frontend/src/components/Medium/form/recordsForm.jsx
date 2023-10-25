@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import MaxesDiagram from "../../Big/userData/maxesDiagram/maxesdiagram";
 import { addUserMaxes } from "../../../services/usersServices/UserService";
 import './form-records.css'
@@ -12,21 +12,18 @@ const RecordForm = () => {
     const [squad, setSquad] = useState(0);
 
     const [deadlift, setDeadlift] = useState(0);
-    const [dayOfRecord, setDayOfRecords] = useState(null);
+    const [dayOfRecord, setDayOfRecords] = useState(Date.now);
 
-    useEffect(() => {
-        const date = new Date();
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
 
-        let currentDate = `${year}-${month}-${day}`;
-
-        setDayOfRecords(currentDate)
-    }, [])
 
 
     const handleSubmit = () => {
+        console.log(bench)
+        console.log(pullups)
+        console.log(squad)
+        console.log(deadlift)
+        console.log(dayOfRecord)
+
         const record = {
             bench: bench,
             pullups: pullups,
@@ -35,70 +32,72 @@ const RecordForm = () => {
             dayOfRecords: dayOfRecord,
 
         }
+
         addUserMaxes(record)
 
     }
 
     return (
-        <div className="container">
+        <div className="form-container">
 
             <MaxesDiagram />
-            <form onSubmit={handleSubmit} className="login-form">
-                <label className="customlb">Benchpress Max :</label>
+            <form onSubmit={handleSubmit} className="form-login-form">
+                <label className="form-customlb">Benchpress Max :</label>
                 <input
 
                     type="number"
                     value={bench}
                     onChange={(e) => setBench(e.target.value)}
-                    className="user-input" />
+                    className="form-user-input" />
                 <br />
 
-                <label className="customlb">Pullups Max :</label>
+                <label className="form-customlb">Pullups Max :</label>
                 <input
 
                     type="number"
                     value={pullups}
                     onChange={(e) => setPullups(e.target.value)}
-                    className="user-input" />
+                    className="form-user-input" />
                 <br />
 
-                <label className="customlb">Squad Max :</label>
+                <label className="form-customlb">Squad Max :</label>
                 <input
 
                     type="number"
                     value={squad}
                     onChange={(e) => setSquad(e.target.value)}
-                    className="user-input" />
+                    className="form-user-input" />
                 <br />
 
 
-                <label className="customlb">Deadlift Max :</label>
+                <label className="form-customlb">Deadlift Max :</label>
                 <input
 
                     type="number"
                     value={deadlift}
                     onChange={(e) => setDeadlift(e.target.value)}
-                    className="user-input" />
+                    className="form-user-input" />
                 <br />
 
 
-                <label className="customlb">Date:</label>
+                <label className="form-customlb">Date:</label>
+                <br></br>
                 <input required
 
                     type="date"
                     value={dayOfRecord}
                     onChange={(e) => setDayOfRecords(e.target.value)}
-                    className="user-input" />
+                    className="form-user-input" />
 
                 <br />
 
 
-                <button type="submit" className="login-button">
+                <button type="submit" className="form-login-button">
                     Add
                 </button>
             </form>
 
-        </div>
+        </div >
 
     )
 }

@@ -40,7 +40,7 @@ const CreateAccountPage = () => {
             }}
         >
             <BackNavbar />
-            <form onSubmit={handleSubmit} className="login-form">
+            <form onSubmit={handleSubmit} className="create-account-login-form">
                 {error && <p className="error-message">{error}</p>}{" "}
                 <label className="customlb">Username:</label>
                 <input
@@ -50,7 +50,7 @@ const CreateAccountPage = () => {
                     required
                 />
                 <br />
-                <label className="customlb">Password:</label>
+                <label className="create-account-customlb">Password:</label>
                 <input
                     type="password"
                     value={password}
@@ -58,7 +58,7 @@ const CreateAccountPage = () => {
                     required
                 />
                 <br />
-                <label className="customlb">Email:</label>
+                <label className="create-account-customlb">Email:</label>
                 <input
                     type="email"
                     value={email}
@@ -66,7 +66,7 @@ const CreateAccountPage = () => {
                     required
                 />
                 <br />
-                <button type="submit" className="login-button">
+                <button type="submit" className="create-account-login-button">
                     Create Account
                 </button>
             </form>

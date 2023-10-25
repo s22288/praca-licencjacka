@@ -9,11 +9,7 @@ const BackNavbar = () => {
     const handleMenuToggle = () => {
         setMenuOpen(!menuOpen);
     };
-    const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("email");
-        localStorage.removeItem("password");
-    };
+
 
     return (
         <nav className="navbar">

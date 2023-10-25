@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import calculateCPM from "../../../../services/usersServices/IndicatorService";
 import './select.css'
 const SelectDietGoal = ({ passGoalToParent }) => {
-    const [cpm, setCpm] = useState()
+    const [cpm, setCpm] = useState('lose')
     const [cpmCopy, setCpmCopy] = useState();
+    let age
     useEffect(() => {
 
 
@@ -31,7 +32,7 @@ const SelectDietGoal = ({ passGoalToParent }) => {
 
     }, []);
 
-    
+
     const handleChange = (event) => {
         setCpmCopy(cpm)
         let goalSett = event.target.value
@@ -46,13 +47,12 @@ const SelectDietGoal = ({ passGoalToParent }) => {
         }
     }
 
-    let age
     return (
         <div>
             <div className="select-container">
                 <FormControl className="custom-select" >
                     <InputLabel className="custom-select-label" id="demo-simple-select-label">Set Goal</InputLabel>
-                    <Select
+                    <Select required
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={age}
@@ -63,7 +63,8 @@ const SelectDietGoal = ({ passGoalToParent }) => {
                         <MenuItem value={'gain'}>Gain Weight</MenuItem>
                     </Select>
                 </FormControl>
-                <h2>{cpmCopy} kcal </h2>
+                {cpmCopy ? <h2>{cpmCopy} kcal</h2> : null}
+
 
             </div>
 

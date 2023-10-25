@@ -1,9 +1,11 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.sql.Date;
 
+@ToString
 @Entity
 @Table(name = "maxinexercise", schema = "pracalicencjacka_training_db", catalog = "")
 public class MaxinexerciseEntity {
@@ -12,22 +14,22 @@ public class MaxinexerciseEntity {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "bench", nullable = false, precision = 2)
+    @Column(name = "bench", precision = 2)
     private double bench;
     @Basic
-    @Column(name = "pullups", nullable = false)
+    @Column(name = "pullups")
     private int pullups;
     @Basic
-    @Column(name = "squad", nullable = false, precision = 2)
+    @Column(name = "squad", precision = 2)
     private double squad;
     @Basic
-    @Column(name = "deadlift", nullable = false, precision = 2)
+    @Column(name = "deadlift", precision = 2)
     private double deadlift;
     @Basic
     @Column(name = "NormalUser_id", nullable = false)
     private int normalUserId;
     @Basic
-    @Column(name = "DayOfRecords", nullable = false)
+    @Column(name = "DayOfRecords")
     private Date dayOfRecords;
 
     public int getId() {

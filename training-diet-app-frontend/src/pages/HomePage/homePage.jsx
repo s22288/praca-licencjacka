@@ -28,15 +28,11 @@ const HomePage = () => {
 
 
         <div
-            className="mainbacground"
-            style={{
-                backgroundImage: `url(${backgroundSVG})`,
-                height: "100vh",
-                backgroundSize: "cover",
-            }}
+            className="home-page-background"
+
         >
             <UserMenuNavbar />
-            <div className="maincontainer">
+            <div className="home-page-maincontainer">
                 <MainPageCard data={traing} />
                 <MainPageCard data={diet} />
             </div>

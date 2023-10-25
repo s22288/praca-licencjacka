@@ -1,11 +1,11 @@
 
- function  getUserData() {
-    return  fetch("http://localhost:9800/normal-user/account-data")
+function getUserData() {
+    return fetch("http://localhost:9800/normal-user/account-data")
 }
 
 
-function  getUserMaxes() {
-    return  fetch("http://localhost:9800/normal-user/user-maxes")
+function getUserMaxes() {
+    return fetch("http://localhost:9800/normal-user/user-maxes")
 }
 
 
@@ -33,10 +33,10 @@ async function addUserMaxes(data) {
     )
 }
 
-function CreateAccount(){
+function CreateAccount() {
 
 }
 
 
 
-export { addUserMaxes,getUserData, updateUsersData,getUserMaxes,CreateAccount }
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, CreateAccount }

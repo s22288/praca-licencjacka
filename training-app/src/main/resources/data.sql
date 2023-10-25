@@ -37,39 +37,25 @@ insert into premiumuser (end_subscription, hips_circumference, start_subscriptio
 values ('2000-01-11',200.0,'2000-01-09',150.0,1);
 -- add some maxes
 --
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (100,'2000-01-11',156,1,12,200);
+# insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+# values (100,'2000-01-11',156,1,12,200);
+#
+# --
+# insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+# values (120,'2001-01-12',160,1,10,220);
+# --
+# --
+# insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+# values (120,'2001-01-12',160,1,10,220);
+# --
+# --
+# insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+# values (160,'2002-01-12',179,1,40,300);
+# --
+# --
+# insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
+# values (100,'2002-01-12',90,1,70,150);
 
---
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (120,'2001-01-12',160,1,10,220);
---
---
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (120,'2001-01-12',160,1,10,220);
---
---
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (160,'2002-01-12',179,1,40,300);
---
---
-insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)
-values (100,'2002-01-12',90,1,70,150);
--- insert meals
--- create
--- definer = root@localhost procedure InsertData(IN countMeals int)
--- BEGIN
---     DECLARE i INT DEFAULT 1;
---     DECLARE max_count INT DEFAULT countMeals;
---
---     WHILE i <= max_count DO
---             INSERT INTO meal (calories, meal_type_id, meal_name, photo)
---             VALUES (FLOOR(RAND() * (1000 - 300 + 1) + 300), 1, concat('name',i), concat('photo',i));
---             SET i = i + 1;
--- END WHILE;
--- END;
---
---
 --
 --
 -- create
