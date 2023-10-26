@@ -10,6 +10,7 @@ import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MealRepostiory;
 import com.example.trainingapp.services.repositories.UserRepository;
+import jakarta.validation.Valid;
 import org.apache.coyote.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class DietController {
     private DietService dietService;
 
 
-    public DietController( DietService dietService, DietRepository dietRepository) {
+    public DietController( DietService dietService) {
         this.dietService = dietService;
 
     }
@@ -44,14 +45,13 @@ public class DietController {
     @RequestMapping("/getMeals-byType")
     public ResponseEntity<List<MealWithAlternatives>> getMealsWithSpecificType(@RequestParam("typeid") int typeid) {
 
-        logger.info("dania " + dietService.findForuMealsBaseOnMealType(typeid));
         return ResponseEntity.ok(dietService.findForuMealsBaseOnMealType(typeid));
     }
 
     @PostMapping()
     @RequestMapping("/save-diet")
 
-    public ResponseEntity<String> saveDiet(@RequestBody DietEntity dietEntity) {
+    public ResponseEntity<String> saveDiet(@Valid @RequestBody DietEntity dietEntity) {
        dietEntity.setNormalUserId(1);
 
 

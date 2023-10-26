@@ -7,6 +7,7 @@ import com.example.trainingapp.services.functionality.TrainingService.TrainingSe
 import com.example.trainingapp.services.functionality.UserService.PremiumUserSerivice;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import com.example.trainingapp.services.repositories.TrainingEventRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,8 @@ private PremiumUserSerivice premiumUserSerivice;
     @PostMapping()
     @RequestMapping("/save-training")
 
-    public ResponseEntity<String> saveDiet(@RequestBody TrainingEntity trainingEntity) {
-        logger.info("training" +trainingEntity.getExerciseEntitySet());
+    public ResponseEntity<String> saveDiet(@Valid @RequestBody TrainingEntity trainingEntity) {
+
         trainingEntity.setNormalUserId(1);
 
 
@@ -56,9 +57,8 @@ private PremiumUserSerivice premiumUserSerivice;
 
     @PostMapping()
     @RequestMapping("/assign-todate")
-    public  ResponseEntity <String> asignTrainingToDay(@RequestBody TrainingeventEntity ev, @RequestParam("idTraining") int idTraining){
-        logger.info("Training: " + ev);
-        logger.info("idTraining: " + idTraining);
+    public  ResponseEntity <String> asignTrainingToDay( @Valid @RequestBody TrainingeventEntity ev){
+
 
         PremiumuserEntity premiumuserEntity = premiumUserSerivice.findById(1L);
        Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();

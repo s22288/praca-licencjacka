@@ -34,19 +34,20 @@ const DietCustomization = () => {
         })
             .then((data) => {
                 setOptions(data)
+
                 console.log(data)
-                calculateCalories()
+
             })
             .catch((error) => {
                 console.error("Failed to fetch user data", error);
             });
+
+
+
     }, [])
     const HandleSubmit = (event) => {
         event.preventDefault();
-
         fetchUserData(selectedOption);
-
-
     };
     const handleChange = (event) => {
         event.preventDefault();
@@ -82,7 +83,7 @@ const DietCustomization = () => {
         }
         setUserData(updatedUserData);
 
-        calculateCalories();
+
 
         // setAlergics(userData);
     };
@@ -90,8 +91,9 @@ const DietCustomization = () => {
 
     const calculateCalories = () => {
         let count = userData.map((data) => data.mealEntity.calories).reduce((start, next) => start + next, 0);
-        console.log(count)
+
         setCalories(count)
+        return count;
     }
 
     const ToMainMeals = () => {
@@ -99,10 +101,11 @@ const DietCustomization = () => {
     }
     const saveDiet = (event) => {
         event.preventDefault();
-        console.log(userData);
+
+
 
         const dietData = {
-            caloriesCount: calories,
+            caloriesCount: calculateCalories(),
             dietName: description,
             dietGoal: goal,
             mealEntitySet: ToMainMeals(),
@@ -125,10 +128,12 @@ const DietCustomization = () => {
             .then((data) => {
                 setUserData(data);
 
+
             })
             .catch((error) => {
                 console.error("Failed to fetch user data", error);
             });
+
     };
     const handleInput = (event) => {
         setDescription(event.target.value);

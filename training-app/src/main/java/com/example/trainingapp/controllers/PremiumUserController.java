@@ -27,7 +27,7 @@ public class PremiumUserController {
 
     public ResponseEntity<Indicator> CalculateIndicators(){
         Indicator indicators = userService.calculateIndicators(1);
-        logger.info("indicators " + indicators);
+
 
         return ResponseEntity.ok(indicators);
 

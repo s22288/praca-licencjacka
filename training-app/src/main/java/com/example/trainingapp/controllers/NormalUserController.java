@@ -13,10 +13,12 @@ import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
 import com.example.trainingapp.services.repositories.UserRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,28 +48,21 @@ public class NormalUserController {
     }
 
 
-    @GetMapping
-    @RequestMapping("/age")
-    public ResponseEntity<Integer> getUsersAge(@RequestParam("id") int id) {
-        int ageOfUser = userService.calculateAge(id);
-        return ResponseEntity.ok(ageOfUser);
 
-    }
 
     @GetMapping
     @RequestMapping("/cpm")
     public ResponseEntity<Double> getCpmOfUser() {
         NormaluserEntity normaluserEntity = userService.findUserByid(1L);
-        logger.info("user data" + normaluserEntity);
-        logger.info("age " + normaluserEntity.calculateAgeFromBirthDate());
+
         return ResponseEntity.ok(normaluserEntity.calculateCPM());
     }
 
 
     @PostMapping
     @RequestMapping("/update-data")
-    public ResponseEntity<String> updateUserMesurements(@RequestBody NormaluserEntity userData) {
-        logger.info("updated user data " + userData);
+    public ResponseEntity<String> updateUserMesurements(@Valid @RequestBody NormaluserEntity userData) {
+
         NormaluserEntity userFromDb = userService.findUserByid(1l);
         if (userFromDb != null) {
             userFromDb.setWeight(userData.getWeight());
@@ -98,8 +93,7 @@ public class NormalUserController {
 
     @GetMapping
     @RequestMapping("/user-maxes")
-    public ResponseEntity<List<MaxinexerciseEntity>> getUsersAge() {
-//        NormaluserEntity userFromDb = userRepository.findById(1L).orElse(null);
+    public ResponseEntity<List<MaxinexerciseEntity>> getUsersMaxes() {
         List<MaxinexerciseEntity> usersMaxes = userService.getUsersMaxes(1);
         return ResponseEntity.ok(usersMaxes);
 
@@ -107,7 +101,7 @@ public class NormalUserController {
 
     @PostMapping
     @RequestMapping("/add-maxes")
-    public ResponseEntity<String> AddUserMax( @RequestBody MaxinexerciseEntity maxinexerciseEntity) {
+    public ResponseEntity<String> AddUserMax( @Valid @RequestBody MaxinexerciseEntity maxinexerciseEntity) {
 logger.info("maxes" + maxinexerciseEntity);
         maxinexerciseEntity.setNormalUserId(1);
         trainingService.saveMaxInExercise(maxinexerciseEntity);
