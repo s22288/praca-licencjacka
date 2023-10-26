@@ -1,8 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import "../../../context/own.css";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActions } from "@mui/material";
+import { Link } from "react-router-dom";
+import { DelteteTrainigById, GetAllTrainings } from "../../../services/trainingServices/trainingService";
+import photo from '../../../assets/traininguser.jpg'
 import TrainingDetails from "./trainingDetails";
-import "./../../../context/own.css";
-import { GetAllTrainings } from "../../../services/trainingServices/trainingService"
-
 
 const OwnTrainings = () => {
     const [userData, setUserData] = useState(null);

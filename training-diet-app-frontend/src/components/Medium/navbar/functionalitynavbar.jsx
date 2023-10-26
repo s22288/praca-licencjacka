@@ -3,6 +3,7 @@ import './navbar.css'
 import { ReactComponent as Logo } from '../../../assets/logo.svg'
 import { Link } from "react-router-dom";
 
+
 const FunctionalityNavbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 

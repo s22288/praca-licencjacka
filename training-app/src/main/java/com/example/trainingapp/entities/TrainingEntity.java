@@ -37,6 +37,7 @@ public class TrainingEntity {
     private Set<ExerciseEntity> exerciseEntitySet = new HashSet<>();
 
 
+
     public Set<ExerciseEntity> getExerciseEntitySet() {
         return exerciseEntitySet;
     }

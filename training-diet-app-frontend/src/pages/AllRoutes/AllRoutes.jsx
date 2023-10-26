@@ -13,6 +13,7 @@ import MealDetails from "../UserPage/UserDiets/mealDetails/mealDetails"
 import ExcerciseDetails from "../UserPage/UserTrainings/ExerciseDetails/exerciseDetails"
 import TrainingsCalendar from "../UserPage/CalendarOFTrainings/trainingsCalendar"
 import TrainingCustomization from "../../components/Big/userData/customizeTraining/CutsomizeTraining"
+import SmallTrainigDetails from "../../components/Big/ownTrainings/smallTrainingDetails"
 
 const AllRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const AllRoutes = () => {
       <Route path="/user-page/calendar" element={<TrainingsCalendar />} />
 
       <Route path="/user-page/create-training/train-customize" element={<TrainingCustomization />} />
+      <Route path="/user-page/calendar/details/:id" element={<SmallTrainigDetails />} />
 
     </Routes>
   )

@@ -30,46 +30,45 @@ public class TrainingeventEntity {
     @JoinTable(name = "userstrainingevent",joinColumns = @JoinColumn( name ="training_calendar_id" ),inverseJoinColumns = @JoinColumn(name = "premium_user_normal_user_id"))
     private Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
 
+
     public void setPremiumuserEntitySet(Set<PremiumuserEntity> premiumuserEntitySet) {
         this.premiumuserEntitySet = premiumuserEntitySet;
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public Set<PremiumuserEntity> getPremiumuserEntitySet() {
-        return premiumuserEntitySet;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getLocalozation() {
-        return localozation;
     }
 
     public void setLocalozation(String localozation) {
         this.localozation = localozation;
     }
 
+    public void setDay(String day) {
+        this.day = day;
+
+
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLocalozation() {
+        return localozation;
+    }
+
+    public String getDay() {
+        return day;
+    }
 
     @Override
     public boolean equals(Object o) {

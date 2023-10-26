@@ -42,9 +42,45 @@ public class PremiumuserEntity extends NormaluserEntity {
 
     }
 
+    public double getHipsCircumference() {
+        return hipsCircumference;
+    }
 
+    public void setHipsCircumference(double hipsCircumference) {
+        this.hipsCircumference = hipsCircumference;
+    }
 
+    public double getWaistCircumference() {
+        return waistCircumference;
+    }
 
+    public void setWaistCircumference(double waistCircumference) {
+        this.waistCircumference = waistCircumference;
+    }
+
+    public Date getStartSubscription() {
+        return startSubscription;
+    }
+
+    public void setStartSubscription(Date startSubscription) {
+        this.startSubscription = startSubscription;
+    }
+
+    public Date getEndSubscription() {
+        return endSubscription;
+    }
+
+    public void setEndSubscription(Date endSubscription) {
+        this.endSubscription = endSubscription;
+    }
+
+    public Set<TrainingeventEntity> getTrainingeventEntitySet() {
+        return trainingeventEntitySet;
+    }
+
+    public void setTrainingeventEntitySet(Set<TrainingeventEntity> trainingeventEntitySet) {
+        this.trainingeventEntitySet = trainingeventEntitySet;
+    }
 
     public  double calculateBMI(){
         return  getWeight() / Math.pow(getHeight(),2);
