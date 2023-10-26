@@ -16,7 +16,7 @@ const IBWDiagram = (props) => {
 
   return (
     <div>
-      <h2 className='diagrams-desc'>IBW wynik: {ibw}</h2>
+      <h4 className='diagrams-desc'>IBW {ibw}</h4>
 
     </div>
 

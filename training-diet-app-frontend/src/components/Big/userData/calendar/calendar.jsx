@@ -9,9 +9,10 @@ import { CardActions } from "@mui/material";
 import SmallTraining from '../../ownTrainings/smallTraining';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css'; // Import Splide CSS
+import { AlignHorizontalCenter } from '@mui/icons-material';
 
 const CalendarOfTraining = () => {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [day, setDay] = useState('mon')
     const [training, setTraining] = useState()
     const [description, setDescription] = useState('desc');
@@ -33,7 +34,7 @@ const CalendarOfTraining = () => {
             }
         })
             .then((data) => {
-
+                setData(data)
                 setMondayTrainings(data.filter((d) => d.day.day === 'mon'));
                 setTuesdayTrainings(data.filter((d) => d.day.day === 'tue'));
                 setWendsdayTrainings(data.filter((d) => d.day.day === 'wen'));
@@ -69,10 +70,15 @@ const CalendarOfTraining = () => {
 
     }, [])
     const chooseDay = (event) => {
+        event.preventDefault();
+
         setDay(event.currentTarget.value)
 
     }
     const handleAsign = (event) => {
+        event.preventDefault();
+
+
         setTraining(event.currentTarget.value)
     }
     const handleInput = (event) => {
@@ -84,19 +90,18 @@ const CalendarOfTraining = () => {
     }
     const HandleSubmit = (event) => {
         event.preventDefault();
-        console.log('id ' + training.id)
-        console.log(day)
+
         const eventTraining = {
             description: description,
             localozation: localization,
             day: day,
         };
 
-        const idTraining = 1;
 
 
 
-        AsignTrainingToDay(eventTraining, idTraining)
+
+        AsignTrainingToDay(eventTraining, training)
         addToCalendar()
     }
     return (
@@ -131,7 +136,7 @@ const CalendarOfTraining = () => {
 
                             {tuesdayTrainings && tuesdayTrainings.map((item, index) => (
                                 <SplideSlide key={index}>
-                                    <SmallTraining className="emptytrain"
+                                    <SmallTraining className="calendar-emptytrain"
                                         key={item.trainingEntity.id}
                                         val={item}
                                     />
@@ -148,7 +153,7 @@ const CalendarOfTraining = () => {
                             {wendsdayTrainings && wendsdayTrainings.map((item, index) => (
                                 <SplideSlide>
 
-                                    <SmallTraining className="emptytrain" key={item.trainingEntity.id} val={item} />
+                                    <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                                 </SplideSlide>
 
                             ))}
@@ -161,7 +166,7 @@ const CalendarOfTraining = () => {
                         {thursdayTrainings && thursdayTrainings.map(item => (
                             <SplideSlide>
 
-                                <SmallTraining className="emptytrain" key={item.trainingEntity.id} val={item} />
+                                <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                             </SplideSlide>
 
                         ))}
@@ -173,7 +178,7 @@ const CalendarOfTraining = () => {
                         {fridayTrainings && fridayTrainings.map(item => (
                             <SplideSlide>
 
-                                <SmallTraining className="emptytrain" key={item.trainingEntity.id} val={item} />
+                                <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                             </SplideSlide>
 
                         ))}
@@ -185,7 +190,7 @@ const CalendarOfTraining = () => {
                         {saturdayTrainings && saturdayTrainings.map(item => (
                             <SplideSlide>
 
-                                <SmallTraining className="emptytrain" key={item.trainingEntity.id} val={item} />
+                                <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                             </SplideSlide>
 
                         ))}
@@ -197,7 +202,7 @@ const CalendarOfTraining = () => {
                         {sundayTrainings && sundayTrainings.map(item => (
                             <SplideSlide>
 
-                                <SmallTraining className="emptytrain" key={item.trainingEntity.id} val={item} />
+                                <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                             </SplideSlide>
 
                         ))}
@@ -207,58 +212,63 @@ const CalendarOfTraining = () => {
 
             </div>
 
+            {data.length >= 1 ? (
+
+                <form onSubmit={HandleSubmit} className="calendar-day-form">
+
+                    <Splide aria-label="My Favorite Images">
+
+                        {data && data.map((item, index) => (
+                            <SplideSlide>
+
+                                <div key={index}>
+
+                                    <Card sx={{ height: 130 }}>
+                                        <CardContent>
+
+                                            <Typography variant="body1" color="warning">
+                                                {item.description}
+                                            </Typography>
+                                            <Typography variant="body1" color="warning">
+                                                Type: {item.treiningType}
+                                            </Typography>
+
+                                        </CardContent>
+                                        <CardActions>
+                                            <button value={item.id} onClick={handleAsign} className="calendar-button">
+                                                Assign
+                                            </button>
+
+                                        </CardActions>
+                                    </Card>
+
+                                </div>                        </SplideSlide>
+
+                        ))}
+                    </Splide>
+                    <label>Give description</label>
+                    <input
+                        type="text"
+                        value={description}
+                        onChange={handleInput}
+                        required />
+
+                    <label>Localization</label>
+                    <input
+                        type="text"
+                        value={localization}
+                        onChange={handleInputloc}
+                        required />
+
+                    <input className="submit-button" type="submit" value="Submit" />
+
+                </form>
+            ) :
+                (<p className='calendar-day-instruction'>Add some Training first</p>)
+
+            }
 
 
-
-            <form onSubmit={HandleSubmit} className="calendar-day-form">
-
-                <Splide aria-label="My Favorite Images">
-
-                    {data && data.map((item, index) => (
-                        <SplideSlide>
-
-                            <div key={index}>
-
-                                <Card sx={{ height: 130 }}>
-                                    <CardContent>
-
-                                        <Typography variant="h6" color="text.secondary">
-                                            Opis:  {item.description}
-                                        </Typography>
-                                        <Typography variant="body1" color="text.secondary">
-                                            Type: {item.treiningType}
-                                        </Typography>
-
-                                    </CardContent>
-                                    <CardActions>
-                                        <button value={item} onClick={handleAsign} className="">
-                                            Assign
-                                        </button>
-
-                                    </CardActions>
-                                </Card>
-
-                            </div>                        </SplideSlide>
-
-                    ))}
-                </Splide>
-                <label>Give description</label>
-                <input
-                    type="text"
-                    value={description}
-                    onChange={handleInput}
-                    required />
-
-                <label>Localization</label>
-                <input
-                    type="text"
-                    value={localization}
-                    onChange={handleInputloc}
-                    required />
-
-                <input className="submit-button" type="submit" value="Submit" />
-
-            </form>
 
 
 

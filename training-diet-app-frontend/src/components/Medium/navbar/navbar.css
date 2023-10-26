@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .logo {
@@ -45,9 +46,15 @@
 }
 
 .nav-link {
-    color: #333;
-    font-size: 19px;
+    font-family: 'Bangers', cursive;
+    text-shadow: 0 0 3px #0de334, 0 0 5px #0000FF;
+
+
+    color: #ffffff;
+    font-size: 20px;
     text-decoration: none;
+
+
 }
 
 .nav-link:hover {

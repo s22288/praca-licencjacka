@@ -154,11 +154,11 @@ const BMIDiagram = (props) => {
 
   return (
     <div>
-      <h2 className='diagrams-desc'>BMI {wynik} wynik:  {bmi}</h2>
+      <h4 className='diagrams-desc'>BMI  {bmi}</h4>
       <h3></h3>
       <div>
         <div id="graphic-container">
-          <img id="chart" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png" alt="BMI chart" width="800px" />
+          <img id="chart" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png" alt="BMI chart" width="650px" />
           <span id="x">&#10060;</span>
         </div>
       </div>

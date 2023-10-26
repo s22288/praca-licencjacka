@@ -40,11 +40,12 @@ const OwnDiets = () => {
                 <div className="parent">
                     {userData.map((item) => (
                         <div className="column">
-                            <DietDetails val={item} ondelete={handleNoteDeletion} />
+                            <DietDetails key={item.id} val={item} ondelete={handleNoteDeletion} />
                         </div>
                     ))}
                 </div>
             ) : (
+
                 <p className="emptytrain">No Diet available</p>
             )}
         </div>

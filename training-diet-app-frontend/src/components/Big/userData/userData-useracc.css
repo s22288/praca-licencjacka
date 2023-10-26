@@ -12,22 +12,35 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-    font-family: "Lobster", cursive;
+    font-family: 'Bangers', cursive;
+
+
 }
 
 .userData-title-text {
     font-size: 20px;
     font-weight: normal;
     margin-bottom: 5px;
-    color: black;
-    font-family: "Lobster", cursive;
+    font-weight: bold;
+
+
+
 }
+
+.customlb {
+    font-family: 'Bangers', cursive;
+
+}
+
+
 
 .userData-title-text-menu-item-text {
     max-width: '200px';
     overflow: 'hidden';
     text-overflow: 'ellipsis';
-    white-space: 'nowrap'
+    white-space: 'nowrap';
+
+
 }
 
 .userData-image {
@@ -69,6 +82,9 @@
 
 .userData-user-input {
     width: calc(100% - 10px);
+    font-family: 'Bangers', cursive;
+
+    font-size: 20px;
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;

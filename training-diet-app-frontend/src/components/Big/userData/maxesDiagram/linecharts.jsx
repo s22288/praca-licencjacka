@@ -48,7 +48,9 @@ const LineChart = (props) => {
   };
   // white
   const options = {
+
     scales: {
+
       x: {
         grid: {
           color: "black",
@@ -64,6 +66,8 @@ const LineChart = (props) => {
         },
       },
       y: {
+        min: 1,
+        max: 1000,
         grid: {
 
           color: "black",

@@ -1,5 +1,6 @@
 .image-container {
   white-space: nowrap;
+  ;
 }
 
 .image-item-blured {
@@ -20,5 +21,7 @@
 }
 
 .diagrams-desc {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: black;
+
 }

@@ -40,8 +40,10 @@ export default function MainPageCard(props) {
                         sx={{
                             color: "white",
                             fontSize: "20px",
-                            fontFamily: "'Bangers', sans-serif",
+                            fontFamily: "Bangers, cursive",
+
                         }}
+
                         variant="body2"
                         color="text.secondary"
                     >

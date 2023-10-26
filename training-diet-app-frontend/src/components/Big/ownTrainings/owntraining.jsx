@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import "../../../context/own.css";
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActions } from "@mui/material";
-import { Link } from "react-router-dom";
-import { DelteteTrainigById, GetAllTrainings } from "../../../services/trainingServices/trainingService";
-import photo from '../../../assets/traininguser.jpg'
+
+import { GetAllTrainings } from "../../../services/trainingServices/trainingService";
+
 import TrainingDetails from "./trainingDetails";
 
 const OwnTrainings = () => {
@@ -57,7 +52,9 @@ const OwnTrainings = () => {
                     ))}
                 </div>
             ) : (
+
                 <p className="emptytrain">No Training available</p>
+
             )}
         </div>
     );

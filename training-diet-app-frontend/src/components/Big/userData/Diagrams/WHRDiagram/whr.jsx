@@ -5,7 +5,7 @@ const WHRDiagram = (props) => {
 
     return (
         <div>
-            <h2 className="diagrams-desc">WHR wynik: {whr}</h2>
+            <h4 className="diagrams-desc">WHR {whr}</h4>
 
 
         </div>

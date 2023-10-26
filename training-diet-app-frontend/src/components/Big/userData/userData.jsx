@@ -116,7 +116,7 @@ const UserAccount = () => {
                                 <img src={MenPhoto} className="userData-image" />
 
                             ) :
-                                <img src={userData.photo} className="userData-image" />
+                                <img src={userData.photo} className="uuserData-image" />
 
 
                         ) : (
@@ -124,9 +124,12 @@ const UserAccount = () => {
                         )}
                     </div>
                     <div className="data-container">
+                        <div className="userData-background-div"></div>
+
                         <h1 className="userData-title">User Data</h1>
+
                         {userData ? (
-                            <div>
+                            <div className="userData-background-div">
                                 {userData.mail ? (
                                     <p className="userData-title-text">Email: {userData.mail}</p>
                                 ) : (
@@ -154,7 +157,9 @@ const UserAccount = () => {
                                 ) : (
                                     <p className="userData-title-text">Weight: ?</p>
                                 )}
+
                             </div>
+
                         ) : (
                             <p className="text">No user data available.</p>
                         )}
