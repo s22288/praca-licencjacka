@@ -35,7 +35,7 @@ const CustomExcercises = (props) => {
 
       <div className="exercise-left">
 
-        <Card sx={{ maxWidth: 600, backgroundColor: 'gold' }}>
+        <Card sx={{ maxWidth: 400, backgroundColor: 'gold' }}>
           <CardActionArea>
             <div style={{ display: 'flex' }}>
               <CardMedia
@@ -88,7 +88,7 @@ const CustomExcercises = (props) => {
         <div className="exercise-alternatives-row">
           {exer.alternatives.map((alternative, idx) => (
             <div className="exercise-altern" key={idx}>
-              <Card sx={{ maxWidth: 600 }}>
+              <Card sx={{ maxWidth: 400 }}>
                 <CardActionArea>
 
                   <CardMedia

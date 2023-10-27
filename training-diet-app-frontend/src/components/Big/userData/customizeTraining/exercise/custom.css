@@ -1,26 +1,26 @@
 .exercise-left {
-  flex: 1;
   margin-right: 250px;
+
   margin-top: 20px;
 }
 
 .exercise-right {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 20px;
+
 }
 
 .exercise-alternatives-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 50px;
 }
 
 
 #parent {
   display: flex;
-  align-items: flex-start;
+  /* align-items: first baseline; */
 }
 
 .exercise-altern {

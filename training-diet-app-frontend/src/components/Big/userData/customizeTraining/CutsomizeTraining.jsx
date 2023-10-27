@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "../../../../context/customization.css";
 import Button from "@mui/material/Button";
 import CustomExcercises from "./exercise/exerciseCustom";
 import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
 import { GetExerciseseByBodyPart, SaveTrainig } from "../../../../services/trainingServices/trainingService";
+import FbwTraining from "./fbw/fbwTraining";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 const TrainingCustomization = () => {
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
   const [description, setDescription] = useState('trainin desc');
+  const contentArray = new Array(3).fill(null);
+
   const saveTrainig = (event) => {
 
     event.preventDefault();
@@ -122,8 +127,25 @@ const TrainingCustomization = () => {
           <input className="context-customize-submit-button" type="submit" value="Submit" />
 
         </form>
+
         <div className="user-data">
-          {userData ? (
+          <Splide aria-label="My Favorite Images">
+
+            {excercise == 'FBW' && userData && contentArray.map((_, index) => (
+              <SplideSlide>
+
+                <div key={index}>
+                  <h2 className="context-day-data">day {index + 1}</h2>
+                  {excercise == 'FBW' && userData ? (
+                    <FbwTraining data={userData} />
+                  ) : (
+                    <p className="context-customize-warning">Select a training type</p>
+                  )}
+                </div>
+              </SplideSlide>
+            ))}
+          </Splide>
+          {/* {userData ? (
             userData.map((item, index) => (
               <div key={index}>
 
@@ -132,7 +154,7 @@ const TrainingCustomization = () => {
             ))
           ) : (
             <p className="context-customize-warning">Select a training type</p>
-          )}
+          )} */}
         </div>
 
         <div >
@@ -147,7 +169,7 @@ const TrainingCustomization = () => {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
