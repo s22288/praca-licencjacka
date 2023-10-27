@@ -2,6 +2,9 @@ package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "alergicingridients", schema = "pracalicencjacka_training_db", catalog = "")
 public class AlergicingridientsEntity {
@@ -18,6 +21,12 @@ public class AlergicingridientsEntity {
     @Basic
     @Column(name = "photo", nullable = false,length = 2000)
     private String photo;
+
+    @ManyToMany
+    @JoinTable(name = "mealalergen",joinColumns = @JoinColumn( name ="alergicingridientsId" ),inverseJoinColumns = @JoinColumn(name = "mealId"))
+    private Set<MealEntity> mealEntitySet = new HashSet<>();
+
+
 
     public int getId() {
         return id;

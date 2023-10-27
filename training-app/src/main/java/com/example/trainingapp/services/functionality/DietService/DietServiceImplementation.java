@@ -1,5 +1,6 @@
 package com.example.trainingapp.services.functionality.DietService;
 
+import com.example.trainingapp.entities.AlergicingridientsEntity;
 import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MealEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
@@ -11,7 +12,9 @@ import com.example.trainingapp.services.repositories.MealTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -57,14 +60,23 @@ public class DietServiceImplementation implements DietService {
     public List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeId) {
         List<MealWithAlternatives> mealAndAlternatives = new ArrayList<>();
         List<MealEntity> findFourMeals = mealRepostiory.findAll().stream().filter(m -> m.getMealTypeId() == typeId).limit(4).toList();
+List<AlergicingridientsEntity> alergicingridientsEntityList = new ArrayList<>();
         used.addAll(findFourMeals);
         findFourMeals.forEach(t -> {
             MealWithAlternatives alternatives = new MealWithAlternatives();
+
             alternatives.setMealEntity(t);
             List<MealEntity> different = findDifferent(used, t.getMealTypeId());
+            alergicingridientsEntityList.addAll(t.getAlergicingridientsEntitySet());
+            different.forEach( d->{
+                alergicingridientsEntityList.addAll(d.getAlergicingridientsEntitySet());
+            });
             alternatives.setAlternatives(different);
             mealAndAlternatives.add(alternatives);
+
         });
+        List<AlergicingridientsEntity> distinctAlergens = alergicingridientsEntityList.stream().distinct().toList();
+        mealAndAlternatives.get(0).setAllAlergics(distinctAlergens);
         return mealAndAlternatives;
 
     }
@@ -109,5 +121,13 @@ dietRepository.save(dietEntity);
     @Override
     public void deleteDietById(long id) {
         dietRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AlergicingridientsEntity> findAllAlergens(List<MealEntity> mealEntityList) {
+        Set<AlergicingridientsEntity> uniqueAlergicIngridients = new HashSet<>();
+        List<Set<AlergicingridientsEntity>> setofAlergics = mealEntityList.stream().map(MealEntity::getAlergicingridientsEntitySet).toList();
+        setofAlergics.forEach(uniqueAlergicIngridients::addAll);
+        return uniqueAlergicIngridients.stream().toList();
     }
 }

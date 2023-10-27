@@ -17,7 +17,7 @@ const DietCustomization = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState();
     const [description, setDescription] = useState('describe diet');
-    const [alergic, setAlergic] = useState([]);
+    const [alergic, setAlergic] = useState();
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState(1);
     const [goal, setGoal] = useState('lose')
@@ -35,7 +35,8 @@ const DietCustomization = () => {
             .then((data) => {
                 setOptions(data)
 
-                console.log(data)
+
+
 
             })
             .catch((error) => {
@@ -56,17 +57,7 @@ const DietCustomization = () => {
     };
 
 
-    const setAlergics = (all) => {
-        let ing = [];
-        all.forEach((a) => {
-            let element = a.mealEntity.ingridient;
-            ing.push(element);
-        });
-        let names = ing.map((i) => i.name);
-        let uniqueNames = Array.from(new Set(names));
-
-        setAlergic(uniqueNames);
-    };
+  
     const replaceData = (index, mainIndex) => {
 
         let userDataIndex = userData.findIndex((d) => {
@@ -85,7 +76,6 @@ const DietCustomization = () => {
 
 
 
-        // setAlergics(userData);
     };
 
 
@@ -127,6 +117,11 @@ const DietCustomization = () => {
             })
             .then((data) => {
                 setUserData(data);
+                console.log(data)
+
+
+
+                setAlergic(data[0].allAlergics)
 
 
             })
@@ -205,10 +200,12 @@ const DietCustomization = () => {
                 {userData ? (
                     <div>
                         <p className="calories">
-                            Alergeny:
+                            <h2>Alergeny:</h2>
                             {alergic.map((a, index) => (
                                 <div key={index} className="context-customize-comic-div">
-                                    <p className="context-customize-alergic"> {a}</p>
+                                    <p className="context-customize-alergic">{a.id})  <img className="context-customize-diet-alergens-img " src={a.photo} alt="alergeny" /> Name: {a.name}, Description: {a.description}</p>
+
+
                                 </div>
                             ))}
                         </p>

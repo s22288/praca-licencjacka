@@ -7,13 +7,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import CustomizedRating from '../../../../../pages/UserPage/UserTrainings/ExerciseDetails/customRaiting'
+import { Link } from "react-router-dom";
+import FadeMenu from "../../../../Medium/drop-down-menu/dropDown";
+import { FindMachineById } from "../../../../../services/trainingServices/trainingService";
 
 const CustomExcercises = (props) => {
-
   let exer = props.data;
 
 
+
+
   let main = props.data.exerciseEntity;
+  console.log(main)
+
+
 
   const id = main.id;
   const handleHange = (altIndex) => {
@@ -64,6 +71,9 @@ const CustomExcercises = (props) => {
                 {main.trainingType}
               </Typography>
 
+              <Typography variant="h6" color="text.secondary">
+                <FadeMenu data={main.trainingMachineId} />
+              </Typography>
 
 
 
@@ -109,13 +119,18 @@ const CustomExcercises = (props) => {
 
                     </Typography>
 
+                    <Typography variant="h6" color="text.secondary">
+                      <FadeMenu data={alternative.trainingMachineId} />
+
+                    </Typography>
+
 
                     <CardActions>
                       <Button
                         onClick={() => handleHange(idx, alternative.id)}
                         variant="contained"
                       >
-                        Change
+                        change
                       </Button>
                     </CardActions>
 

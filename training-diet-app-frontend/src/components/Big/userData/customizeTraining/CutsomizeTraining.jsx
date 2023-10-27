@@ -14,7 +14,7 @@ const TrainingCustomization = () => {
 
     event.preventDefault();
     let exercises = userData.map((data) => data.exerciseEntity);
-   
+
     const trainingToSave = {
       description: description,
       maxAge: 99,
@@ -137,7 +137,7 @@ const TrainingCustomization = () => {
 
         <div >
           {userData ? (
-            <div>
+            <div >
               <Button variant="contained" onClick={saveTrainig}>
                 Save
               </Button>

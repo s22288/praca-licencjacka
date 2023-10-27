@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class TrainingServiceImplementation implements  TrainingService{
     private TrainingRepository trainingRepository;
+    private  MachineRepository machineRepository;
 
     private ExerciseRepository exerciseRepository;
     private BodyPartRepository bodyPartRepository;
@@ -19,12 +20,13 @@ public class TrainingServiceImplementation implements  TrainingService{
 
     private MaxInExerciseRepository maxInExerciseRepository;
 
-    public TrainingServiceImplementation(TrainingRepository trainingRepository, ExerciseRepository exerciseRepository, BodyPartRepository bodyPartRepository, TrainingEventRepository trainingEventRepository, MaxInExerciseRepository maxInExerciseRepository) {
+    public TrainingServiceImplementation(TrainingRepository trainingRepository, ExerciseRepository exerciseRepository, BodyPartRepository bodyPartRepository, TrainingEventRepository trainingEventRepository, MaxInExerciseRepository maxInExerciseRepository,MachineRepository machineRepository) {
         this.trainingRepository = trainingRepository;
         this.exerciseRepository = exerciseRepository;
         this.bodyPartRepository = bodyPartRepository;
         this.trainingEventRepository = trainingEventRepository;
         this.maxInExerciseRepository = maxInExerciseRepository;
+        this.machineRepository = machineRepository;
     }
 
     @Override
@@ -78,6 +80,12 @@ trainingRepository.findById(id);
     @Override
     public void saveMaxInExercise(MaxinexerciseEntity maxinexerciseEntity) {
         maxInExerciseRepository.save(maxinexerciseEntity);
+    }
+
+    @Override
+    public TrainingmachineEntity findMachineById(long id) {
+
+        return machineRepository.findById(id).get();
     }
 
 //    @Override

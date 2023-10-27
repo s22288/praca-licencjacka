@@ -70,4 +70,13 @@ trainingService.saveTrainingEvent(ev);
         return ResponseEntity.ok("treninig");
     }
 
+
+    @GetMapping
+    @RequestMapping("/findMachine/{id}")
+    public  ResponseEntity<TrainingmachineEntity> findMachineByid(@PathVariable long id){
+        TrainingmachineEntity machineById = trainingService.findMachineById(id);
+        return  ResponseEntity.ok(machineById);
+
+    }
+
 }

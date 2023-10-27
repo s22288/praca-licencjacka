@@ -28,6 +28,13 @@
     margin-right: 10px;
 }
 
+.context-customize-diet-alergens-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+}
+
 .context-customize-submit-button {
     padding: 15px 30px;
     background-color: #ff6b6b;
@@ -57,6 +64,7 @@
 
 .context-customize-save-button {
     margin-top: 20px;
+    margin-left: 30%;
 }
 
 .context-customize-calories {

@@ -20,7 +20,7 @@ public class DbServiceImplementation implements DbService {
 @PostConstruct
     public  void initDB (){
     mealRepostiory.InsertMeals(1000);
-    exerciseRepository.insertExercises(100);
+    exerciseRepository.insertExercises(1000);
     }
 
 

@@ -91,15 +91,15 @@ insert  into mealtype( name, description, photo) values ('LactozeeFree','Wyklucz
 -- insert into dietmeals(diet_id, meal_id)  values (2,5);
 -- insert into dietmeals(diet_id, meal_id)  values (2,6);
 
-insert into alergicingridients (description, photo, name)
-values ('eggs','https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg','egg');
-
-insert into alergicingridients (description, photo, name)
-values ('nuts','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJWJmpQqhIknvDN2QvNv2KcemXnjgoTX0EKMYQsxlE-Eiz8XxyDorkqaNmklTbMONX7B4&usqp=CAU','nuts');
-
-insert into alergicingridients (description, photo, name)
-values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ETl1LTQbSQeaz89-hDvEyl5CulomHXSdwB2KCqXtr-4U-PBFc7ZTyUWrrDFIl9ClLG4&usqp=CAU','sea fruit');
-
+# insert into alergicingridients (description, photo, name)
+# values ('eggs','https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg','egg');
+#
+# insert into alergicingridients (description, photo, name)
+# values ('nuts','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJWJmpQqhIknvDN2QvNv2KcemXnjgoTX0EKMYQsxlE-Eiz8XxyDorkqaNmklTbMONX7B4&usqp=CAU','nuts');
+#
+# insert into alergicingridients (description, photo, name)
+# values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ETl1LTQbSQeaz89-hDvEyl5CulomHXSdwB2KCqXtr-4U-PBFc7ZTyUWrrDFIl9ClLG4&usqp=CAU','sea fruit');
+#
 
 
 -- -- wprowadzenie rodzajów cwiczeń ćwiczeń do bazy danych
@@ -119,7 +119,8 @@ values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ET
 -- values (2,1);
 
 -- wstawienie partii mieści które można ćwiczyć
-
+-- wstawianie maszyn
+ insert  into trainingmachine(  max_weight, name, description, photo) values (500,'suwnica','do wykonywanie przysiadów oraz podnoszenia sztangi','')
 
 
 

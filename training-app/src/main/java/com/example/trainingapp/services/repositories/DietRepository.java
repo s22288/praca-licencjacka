@@ -11,4 +11,7 @@ import java.util.List;
 public interface DietRepository extends JpaRepository<DietEntity,Long> {
     @Query(nativeQuery = true,value = "select * from diet where normal_user_id = ?1")
     List<DietEntity> findDietsByUserId(int userId);
+
+
+
 }

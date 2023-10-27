@@ -29,9 +29,34 @@ public class MealEntity {
     @Basic
     @Column(name = "MealType_id", nullable = false)
     private int mealTypeId;
+    @ManyToMany
+    @JoinTable(name = "mealalergen",joinColumns = @JoinColumn( name ="mealId" ),inverseJoinColumns = @JoinColumn(name = "alergicingridientsId"))
+    private Set<AlergicingridientsEntity> alergicingridientsEntitySet = new HashSet<>();
 
+
+    @ManyToMany
+    @JoinTable (name = "dietmeals",joinColumns =@JoinColumn(name ="mealId" ),inverseJoinColumns = @JoinColumn(name = "dietId"))
+    private Set<DietEntity> dietEntitySet = new HashSet<>();
     public void setId(int id) {
         this.id = id;
+    }
+
+    @JsonIgnore
+
+    public Set<DietEntity> getDietEntitySet() {
+        return dietEntitySet;
+    }
+
+    public Set<AlergicingridientsEntity> getAlergicingridientsEntitySet() {
+        return alergicingridientsEntitySet;
+    }
+
+    public void setAlergicingridientsEntitySet(Set<AlergicingridientsEntity> alergicingridientsEntitySet) {
+        this.alergicingridientsEntitySet = alergicingridientsEntitySet;
+    }
+
+    public void setDietEntitySet(Set<DietEntity> dietEntitySet) {
+        this.dietEntitySet = dietEntitySet;
     }
 
     public void setMealName(String mealName) {
@@ -61,11 +86,9 @@ dietEntity.getMealEntitySet().add(this);
 //    }
 
 
-@JsonIgnore
 
-    public Set<DietEntity> getDietEntitySet() {
-        return dietEntitySet;
-    }
+
+
 
     public int getCalories() {
         return calories;
@@ -87,9 +110,7 @@ dietEntity.getMealEntitySet().add(this);
         return mealTypeId;
     }
 
-    @ManyToMany
-    @JoinTable (name = "dietmeals",joinColumns =@JoinColumn(name ="mealId" ),inverseJoinColumns = @JoinColumn(name = "dietId"))
-   private Set<DietEntity> dietEntitySet = new HashSet<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

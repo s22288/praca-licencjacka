@@ -1,6 +1,8 @@
 package com.example.trainingapp.services.functionality.DietService;
 
+import com.example.trainingapp.entities.AlergicingridientsEntity;
 import com.example.trainingapp.entities.DietEntity;
+import com.example.trainingapp.entities.MealEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
@@ -19,4 +21,6 @@ public interface DietService {
 
      void saveDiet(DietEntity dietEntity);
      void deleteDietById(long id);
+
+     List<AlergicingridientsEntity> findAllAlergens(List<MealEntity> mealEntityList);
 }

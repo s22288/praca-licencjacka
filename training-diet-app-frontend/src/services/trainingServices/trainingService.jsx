@@ -7,6 +7,11 @@ const GetAllTrainingsWithDays = () => {
     return fetch("http://localhost:9800/normal-user/trainings-days");
 
 };
+const FindMachineById = (machineId) => {
+    return fetch(`http://localhost:9800/create-training/findMachine/${machineId}`, {
+
+    });
+}
 
 const AsignTrainingToDay = (asignItem, idTraining) => {
     return fetch(`http://localhost:9800/create-training/assign-todate?idTraining=${idTraining}`, {
@@ -41,6 +46,7 @@ const DelteteTrainigById = (id) => {
 
 
 
+
 }
 
-export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart, SaveTrainig, AsignTrainingToDay, GetAllTrainingsWithDays }
+export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart, SaveTrainig, AsignTrainingToDay, GetAllTrainingsWithDays, FindMachineById }
