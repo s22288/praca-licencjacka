@@ -20,6 +20,8 @@ const FbwTraining = (props) => {
     };
     return (
         <div>
+            <h2>3X per week</h2>
+
             {userData ? (
                 userData.map((item, index) => (
                     <div key={index}>

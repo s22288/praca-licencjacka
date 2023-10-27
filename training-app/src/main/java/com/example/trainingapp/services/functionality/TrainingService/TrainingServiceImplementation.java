@@ -2,6 +2,7 @@ package com.example.trainingapp.services.functionality.TrainingService;
 
 import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
+import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.repositories.*;
 import org.springframework.stereotype.Service;
@@ -88,6 +89,31 @@ trainingRepository.findById(id);
         return machineRepository.findById(id).get();
     }
 
+    @Override
+    public List<TrainingEntity> createSplitTraining() {
+        List<ExerciseWithAlternatives> exerciseWithAlternatives = new ArrayList<>();
+
+
+        // barki triceps
+        exerciseRepository.ThreeChestExerciseses();
+        exerciseRepository.ThreeTricepsExerciseses();
+        // biceps plecy
+        exerciseRepository.ThreeBackExerciseses();
+        exerciseRepository.ThreeArmsExerciseses();
+        // nogi i barki
+        exerciseRepository.ThreeLegsExerciseses();
+        exerciseRepository.ThreeShouldersExerciseses();
+        exerciseRepository.ThreeAbsExerciseses();
+
+
+        return null;
+    }
+
+
+//    public MealWithAlternatives  convertToMealWithAlternative(){
+//        MealWithAlternatives converted = new MealWithAlternatives();
+//
+//    }
 //    @Override
 //    public List<String> getAllTrainingtypes() {
 //        return trainingRepository.getTrainingTypes();

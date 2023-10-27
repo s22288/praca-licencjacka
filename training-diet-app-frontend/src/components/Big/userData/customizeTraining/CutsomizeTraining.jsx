@@ -129,23 +129,20 @@ const TrainingCustomization = () => {
         </form>
 
         <div className="user-data">
-          <Splide aria-label="My Favorite Images">
 
-            {excercise == 'FBW' && userData && contentArray.map((_, index) => (
-              <SplideSlide>
 
-                <div key={index}>
-                  <h2 className="context-day-data">day {index + 1}</h2>
-                  {excercise == 'FBW' && userData ? (
-                    <FbwTraining data={userData} />
-                  ) : (
-                    <p className="context-customize-warning">Select a training type</p>
-                  )}
-                </div>
-              </SplideSlide>
-            ))}
-          </Splide>
-          {/* {userData ? (
+
+
+
+          {excercise == 'FBW' && userData ? (
+            
+            <FbwTraining data={userData} />
+          ) : (
+            <p className="context-customize-warning">Select a training type</p>
+          )}
+        </div>
+
+        {/* {userData ? (
             userData.map((item, index) => (
               <div key={index}>
 
@@ -155,7 +152,7 @@ const TrainingCustomization = () => {
           ) : (
             <p className="context-customize-warning">Select a training type</p>
           )} */}
-        </div>
+
 
         <div >
           {userData ? (

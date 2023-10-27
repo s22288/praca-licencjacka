@@ -40,19 +40,19 @@ const CustomExcercises = (props) => {
             <div style={{ display: 'flex' }}>
               <CardMedia
                 component="img"
-                style={{ height: "140px", width: "150px" }}
+                style={{ height: "100px", width: "100px" }}
                 image={main.bodypartEntitySet[0].url}
               />
               <CardMedia
                 component="img"
-                height="140"
+                height="100"
                 image="https://t3.ftcdn.net/jpg/03/25/72/12/360_F_325721295_x224QeDphb6ZAFl2tkoX0TlBuczNwBek.jpg"
                 alt="green iguana"
               />
 
             </div>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h6" component="div">
                 Exercise: {main.name}
               </Typography>
               <Typography>
@@ -93,7 +93,8 @@ const CustomExcercises = (props) => {
 
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="100"
+                    width="100"
                     image="https://t3.ftcdn.net/jpg/03/25/72/12/360_F_325721295_x224QeDphb6ZAFl2tkoX0TlBuczNwBek.jpg"
                     alt="green iguana"
                   />
