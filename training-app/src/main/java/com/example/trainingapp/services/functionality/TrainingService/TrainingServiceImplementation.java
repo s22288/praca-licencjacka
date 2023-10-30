@@ -93,7 +93,7 @@ trainingRepository.findById(id);
     }
 
     @Override
-    public Map<String,List<ExerciseEntity>>createSplitTraining() {
+    public Map<String,List<MealWithAlternatives>>createSplitTraining() {
         List<ExerciseWithAlternatives> exerciseWithAlternatives = new ArrayList<>();
 
 
@@ -124,7 +124,7 @@ trainingRepository.findById(id);
         shouldersWithLegsAndAbs.addAll(shouldersExerciseses);
         shouldersWithLegsAndAbs.addAll(absExerciseses);
 
-        Map<String,List<ExerciseEntity>> listOfExericsesAndDays = new HashMap<>();
+        Map<String,List<MealWithAlternatives>> listOfExericsesAndDays = new HashMap<>();
         listOfExericsesAndDays.put("first",chestAndTriceps);
         listOfExericsesAndDays.put("second",backWithBiceps);
         listOfExericsesAndDays.put("third",shouldersWithLegsAndAbs);

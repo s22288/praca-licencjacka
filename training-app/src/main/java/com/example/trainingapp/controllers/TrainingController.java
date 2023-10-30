@@ -88,5 +88,13 @@ trainingService.saveTrainingEvent(ev);
 
     }
 
+    @GetMapping
+    @RequestMapping("/split-training")
+    public  ResponseEntity<Map<String,List<ExerciseEntity>>> createPushPullTraining(){
+        Map<String, List<ExerciseEntity>> splitTraining = trainingService.createSplitTraining();
+        return  ResponseEntity.ok(splitTraining);
+
+    }
+
 
 }

@@ -5,9 +5,10 @@ import "../../../../context/customization.css";
 import Button from "@mui/material/Button";
 import CustomExcercises from "./exercise/exerciseCustom";
 import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
-import { GetExerciseseByBodyPart, SaveTrainig } from "../../../../services/trainingServices/trainingService";
+import { GetExerciseseByBodyPartFbw, GetExerciseseByBodyPartSplit, GetExerciseseByBodyPartPushPull, SaveTrainig } from "../../../../services/trainingServices/trainingService";
 import FbwTraining from "./fbw/fbwTraining";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import SplitTraining from "./split/splitTraining";
 const TrainingCustomization = () => {
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
@@ -35,7 +36,7 @@ const TrainingCustomization = () => {
   };
   const HandleSubmit = (event) => {
     event.preventDefault();
-    console.log(excercise)
+
     fetchUserData(excercise);
   };
 
@@ -58,23 +59,68 @@ const TrainingCustomization = () => {
   };
   const fetchUserData = () => {
 
-    GetExerciseseByBodyPart()
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch user data");
-        }
-      })
-      .then((data) => {
-        setUserData(data);
+    if (excercise === 'FBW') {
+
+
+      GetExerciseseByBodyPartFbw()
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to fetch user data");
+          }
+        })
+        .then((data) => {
+          setUserData(data);
 
 
 
-      })
-      .catch((error) => {
-        console.error("Failed to fetch user data", error);
-      });
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user data", error);
+        });
+    }
+
+    if (excercise === 'PUSHPULL') {
+      GetExerciseseByBodyPartSplit()
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to fetch user data");
+          }
+        })
+        .then((data) => {
+          setUserData(data);
+
+
+
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user data", error);
+        });
+    }
+
+
+    if (excercise === 'SPLIT') {
+      GetExerciseseByBodyPartSplit()
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to fetch user data");
+          }
+        })
+        .then((data) => {
+          setUserData(data);
+
+
+
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user data", error);
+        });
+    }
   };
 
   return (
@@ -135,8 +181,16 @@ const TrainingCustomization = () => {
 
 
           {excercise == 'FBW' && userData ? (
-            
+
             <FbwTraining data={userData} />
+          ) : (
+            <p className="context-customize-warning">Select a training type</p>
+          )}
+
+
+          {excercise == 'SPLIT' && userData ? (
+
+            <SplitTraining data={userData} />
           ) : (
             <p className="context-customize-warning">Select a training type</p>
           )}

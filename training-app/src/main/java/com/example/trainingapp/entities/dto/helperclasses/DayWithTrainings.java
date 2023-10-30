@@ -15,6 +15,6 @@ import java.util.Map;
 @AllArgsConstructor
 
 public class DayWithTrainings {
-    private Map<String,List<ExerciseEntity>> listOfExericsesAndDays;
+    private Map<String,List<MealWithAlternatives>> listOfExericsesAndDays;
 
 }

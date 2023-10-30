@@ -33,9 +33,17 @@ const SaveTrainig = (training) => {
         body: JSON.stringify(training),
     });
 };
-const GetExerciseseByBodyPart = () => {
+const GetExerciseseByBodyPartFbw = () => {
     return fetch("http://localhost:9800/create-training/exercise-for-bodyparts");
 }
+const GetExerciseseByBodyPartSplit = () => {
+    return fetch("http://localhost:9800/create-training/split-training");
+}
+const GetExerciseseByBodyPartPushPull = () => {
+    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts");
+}
+
+
 const DelteteTrainigById = (id) => {
     return fetch(`http://localhost:9800/normal-user/delete-training/${id}`, {
 
@@ -49,4 +57,4 @@ const DelteteTrainigById = (id) => {
 
 }
 
-export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPart, SaveTrainig, AsignTrainingToDay, GetAllTrainingsWithDays, FindMachineById }
+export { GetAllTrainings, DelteteTrainigById, GetExerciseseByBodyPartFbw, GetExerciseseByBodyPartSplit, GetExerciseseByBodyPartPushPull, SaveTrainig, AsignTrainingToDay, GetAllTrainingsWithDays, FindMachineById }
