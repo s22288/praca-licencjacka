@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -78,5 +79,14 @@ trainingService.saveTrainingEvent(ev);
         return  ResponseEntity.ok(machineById);
 
     }
+
+    @GetMapping
+      @RequestMapping("/split-training")
+    public  ResponseEntity<Map<String,List<ExerciseEntity>>> creteSplitTraining(){
+        Map<String, List<ExerciseEntity>> splitTraining = trainingService.createSplitTraining();
+        return  ResponseEntity.ok(splitTraining);
+
+    }
+
 
 }

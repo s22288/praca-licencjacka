@@ -1,6 +1,7 @@
 package com.example.trainingapp.services.functionality.TrainingService;
 
 import com.example.trainingapp.entities.*;
+import com.example.trainingapp.entities.dto.helperclasses.DayWithTrainings;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
@@ -8,7 +9,9 @@ import com.example.trainingapp.services.repositories.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TrainingServiceImplementation implements  TrainingService{
@@ -90,32 +93,49 @@ trainingRepository.findById(id);
     }
 
     @Override
-    public List<TrainingEntity> createSplitTraining() {
+    public Map<String,List<ExerciseEntity>>createSplitTraining() {
         List<ExerciseWithAlternatives> exerciseWithAlternatives = new ArrayList<>();
 
 
         // barki triceps
-        exerciseRepository.ThreeChestExerciseses();
-        exerciseRepository.ThreeTricepsExerciseses();
+        List<ExerciseEntity> chestExerciseses = exerciseRepository.findTop3ExercisesForChest();
+        List<ExerciseEntity> tricepsExerciseses = exerciseRepository.findTop3ExercisesForTriceps();
         // biceps plecy
-        exerciseRepository.ThreeBackExerciseses();
-        exerciseRepository.ThreeArmsExerciseses();
+        List<ExerciseEntity> backExerciseses = exerciseRepository.findTop3ExercisesForBack();
+        List<ExerciseEntity> armsExerciseses = exerciseRepository.findTop3ExercisesForArms();
         // nogi i barki
-        exerciseRepository.ThreeLegsExerciseses();
-        exerciseRepository.ThreeShouldersExerciseses();
-        exerciseRepository.ThreeAbsExerciseses();
+        List<ExerciseEntity> legsExerciseses = exerciseRepository.findTop3ExercisesForLegs();
+        List<ExerciseEntity> shouldersExerciseses = exerciseRepository.findTop3ExercisesForShoulders();
+        List<ExerciseEntity> absExerciseses = exerciseRepository.findTop3ExercisesForAbs();
+        DayWithTrainings dayWithTrainings  = new DayWithTrainings();
+        dayWithTrainings.setListOfExericsesAndDays(null);
+        List<ExerciseEntity> chestAndTriceps = new ArrayList<>();
+        chestAndTriceps.addAll(chestExerciseses);
+        chestAndTriceps.addAll(tricepsExerciseses);
 
 
-        return null;
+        List<ExerciseEntity> backWithBiceps = new ArrayList<>();
+        backWithBiceps.addAll(backExerciseses);
+        backWithBiceps.addAll(armsExerciseses);
+
+        List<ExerciseEntity> shouldersWithLegsAndAbs = new ArrayList<>();
+
+        shouldersWithLegsAndAbs.addAll(legsExerciseses);
+        shouldersWithLegsAndAbs.addAll(shouldersExerciseses);
+        shouldersWithLegsAndAbs.addAll(absExerciseses);
+
+        Map<String,List<ExerciseEntity>> listOfExericsesAndDays = new HashMap<>();
+        listOfExericsesAndDays.put("first",chestAndTriceps);
+        listOfExericsesAndDays.put("second",backWithBiceps);
+        listOfExericsesAndDays.put("third",shouldersWithLegsAndAbs);
+
+
+
+
+
+        return  listOfExericsesAndDays;
     }
 
 
-//    public MealWithAlternatives  convertToMealWithAlternative(){
-//        MealWithAlternatives converted = new MealWithAlternatives();
-//
-//    }
-//    @Override
-//    public List<String> getAllTrainingtypes() {
-//        return trainingRepository.getTrainingTypes();
-//    }
+
 }

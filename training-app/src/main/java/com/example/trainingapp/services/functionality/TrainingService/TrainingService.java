@@ -1,14 +1,12 @@
 package com.example.trainingapp.services.functionality.TrainingService;
 
-import com.example.trainingapp.entities.MaxinexerciseEntity;
-import com.example.trainingapp.entities.TrainingEntity;
-import com.example.trainingapp.entities.TrainingeventEntity;
-import com.example.trainingapp.entities.TrainingmachineEntity;
+import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface TrainingService {
@@ -30,7 +28,7 @@ public interface TrainingService {
      void saveMaxInExercise(MaxinexerciseEntity maxinexerciseEntity);
      TrainingmachineEntity findMachineById(long id);
 
-     List<TrainingEntity> createSplitTraining();
+     Map<String,List<ExerciseEntity>> createSplitTraining();
 
 
 

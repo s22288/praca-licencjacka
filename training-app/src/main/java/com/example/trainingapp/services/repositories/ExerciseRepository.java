@@ -23,28 +23,62 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity,Long> {
     List<ExerciseEntity> findTwoAlternatives(String bodyPart, int used);
 
 
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id where b.description = 'Klatka piersiowa' limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeChestExerciseses();
+
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Klatka piersiowa' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForChest();
+
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Triceps' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForTriceps();
+
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Nogi' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForLegs();
+
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Plecy' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForBack();
+
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Ramiona' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForArms();
 
 
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id =  b.id  where b.description = 'Triceps' limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeTricepsExerciseses();
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Brzuch' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForAbs();
 
+    @Query(value = "SELECT e.* " +
+            "FROM exercise e " +
+            "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
+            "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
+            "WHERE b.description = 'Barki' " +
+            "LIMIT 3", nativeQuery = true)
+    List<ExerciseEntity> findTop3ExercisesForShoulders();
 
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id   where b.description = 'Nogi' limit 3 ",nativeQuery = true)
-    List<ExerciseEntity> ThreeLegsExerciseses();
-
-
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id   where b.description = 'Plecy' limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeBackExerciseses();
-
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id   where b.description = 'Ramiona'  limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeArmsExerciseses();
-
-
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id   where b.description = 'Brzuch' limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeAbsExerciseses();
-
-    @Query(value = "select * from exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join  bodypart b on eb.body_part_id = b.id   where b.description = 'Barki' limit 3",nativeQuery = true)
-    List<ExerciseEntity> ThreeShouldersExerciseses();
 }
