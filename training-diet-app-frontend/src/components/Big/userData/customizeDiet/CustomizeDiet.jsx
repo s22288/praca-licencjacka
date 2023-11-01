@@ -57,7 +57,7 @@ const DietCustomization = () => {
     };
 
 
-  
+
     const replaceData = (index, mainIndex) => {
 
         let userDataIndex = userData.findIndex((d) => {
@@ -181,7 +181,7 @@ const DietCustomization = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="context-customize-warning">Select a Diet type</p>
+                    <p className="context-customize-warning"></p>
                 )}
                 <div className="context-customize-save-button">
 

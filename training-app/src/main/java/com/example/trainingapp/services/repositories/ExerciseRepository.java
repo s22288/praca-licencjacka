@@ -22,7 +22,8 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity,Long> {
     @Query(value = "select  e.id, e.level_of_advance,e.reps,e.series,e.training_machine_id,e.name,e.photo from  exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join bodypart b on eb.body_part_id = b.id where b.description = ?1 and e.id != ?2 order by RAND() limit 2 ",nativeQuery = true)
     List<ExerciseEntity> findTwoAlternatives(String bodyPart, int used);
 
-
+    @Query(value = "select  e.id, e.level_of_advance,e.reps,e.series,e.training_machine_id,e.name,e.photo from  exercise e inner join exercisebodypart eb on e.id = eb.exercise_id inner join bodypart b on eb.body_part_id = b.id where b.description = ?1 order by RAND() limit 2 ",nativeQuery = true)
+    List<ExerciseEntity> findTwoAlternativesWithoutUsed(String bodyPart);
 
     @Query(value = "SELECT e.* " +
             "FROM exercise e " +
@@ -80,5 +81,11 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity,Long> {
             "WHERE b.description = 'Barki' " +
             "LIMIT 3", nativeQuery = true)
     List<ExerciseEntity> findTop3ExercisesForShoulders();
+
+
+    @Query(value = "select  b.description from exercisebodypart eb inner join bodypart b on eb.body_part_id = b.id where eb.exercise_id = :id ", nativeQuery = true)
+    String findBodyPart(@Param("id") int id);
+
+
 
 }

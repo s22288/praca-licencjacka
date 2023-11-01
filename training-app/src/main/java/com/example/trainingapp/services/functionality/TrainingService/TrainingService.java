@@ -29,8 +29,8 @@ public interface TrainingService {
      void saveMaxInExercise(MaxinexerciseEntity maxinexerciseEntity);
      TrainingmachineEntity findMachineById(long id);
 
-     Map<String,List<MealWithAlternatives>> createSplitTraining();
+//     Map<String,List<ExerciseWithAlternatives>> createSplitTraining();
 
-
+     Map<String,List<ExerciseWithAlternatives>> createSplitTraining();
 
 }

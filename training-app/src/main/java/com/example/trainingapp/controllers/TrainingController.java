@@ -82,19 +82,19 @@ trainingService.saveTrainingEvent(ev);
 
     @GetMapping
       @RequestMapping("/split-training")
-    public  ResponseEntity<Map<String,List<ExerciseEntity>>> creteSplitTraining(){
-        Map<String, List<ExerciseEntity>> splitTraining = trainingService.createSplitTraining();
+    public  ResponseEntity<Map<String,List<ExerciseWithAlternatives>>> creteSplitTraining(){
+        Map<String,List<ExerciseWithAlternatives>> splitTraining = trainingService.createSplitTraining();
         return  ResponseEntity.ok(splitTraining);
 
     }
 
-    @GetMapping
-    @RequestMapping("/split-training")
-    public  ResponseEntity<Map<String,List<ExerciseEntity>>> createPushPullTraining(){
-        Map<String, List<ExerciseEntity>> splitTraining = trainingService.createSplitTraining();
-        return  ResponseEntity.ok(splitTraining);
-
-    }
+//    @GetMapping
+//    @RequestMapping("/split-training")
+//    public  ResponseEntity<Map<String,List<ExerciseEntity>>> createPushPullTraining(){
+//        Map<String, List<ExerciseWithAlternatives>> splitTraining = trainingService.createSplitTraining();
+//        return  ResponseEntity.ok(splitTraining);
+//
+//    }
 
 
 }

@@ -84,7 +84,7 @@ const CustomExcercises = (props) => {
         </Card>
       </div>
 
-      <div className="exercise-right">
+      <div className="exercise-right-split">
         <div className="exercise-alternatives-row">
           {exer.alternatives.map((alternative, idx) => (
             <div className="exercise-altern" key={idx}>

@@ -12,6 +12,8 @@ import SplitTraining from "./split/splitTraining";
 const TrainingCustomization = () => {
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
+  const [userDataSplit, setUserDataSplit] = useState();
+
   const navigate = useNavigate();
   const [description, setDescription] = useState('trainin desc');
   const contentArray = new Array(3).fill(null);
@@ -19,13 +21,24 @@ const TrainingCustomization = () => {
   const saveTrainig = (event) => {
 
     event.preventDefault();
-    let exercises = userData.map((data) => data.exerciseEntity);
+    let toSave = []
+    if (excercise === "FBW") {
+      toSave = userData.map((data) => data.exerciseEntity);
 
+    } if (excercise === "SPLIT") {
+      toSave = Object.values(userDataSplit).flat().map(value => value.exerciseEntity)
+      // for (const day of ["one", "two", "three"]) {
+      //   for (const entry of userDataSplit[day]) {
+      //     toSave.push(entry.exerciseEntity);
+      //   }
+      // }
+
+    }
     const trainingToSave = {
       description: description,
       maxAge: 99,
       treiningType: excercise,
-      exerciseEntitySet: exercises,
+      exerciseEntitySet: toSave,
     };
 
     SaveTrainig(trainingToSave);
@@ -81,25 +94,7 @@ const TrainingCustomization = () => {
         });
     }
 
-    if (excercise === 'PUSHPULL') {
-      GetExerciseseByBodyPartSplit()
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("Failed to fetch user data");
-          }
-        })
-        .then((data) => {
-          setUserData(data);
 
-
-
-        })
-        .catch((error) => {
-          console.error("Failed to fetch user data", error);
-        });
-    }
 
 
     if (excercise === 'SPLIT') {
@@ -112,7 +107,7 @@ const TrainingCustomization = () => {
           }
         })
         .then((data) => {
-          setUserData(data);
+          setUserDataSplit(data);
 
 
 
@@ -152,16 +147,7 @@ const TrainingCustomization = () => {
             FBW
           </label>
 
-          <label htmlFor="pushpull">
-            <input
-              type="radio"
-              id="pushpull"
-              value="PUSHPULL"
-              name="anserw"
-              onChange={handleChange}
-            />
-            PUSH-PULL
-          </label>
+
           <label>Training description</label>
           <input className="context-customize-inputdesc"
             type="text"
@@ -184,32 +170,22 @@ const TrainingCustomization = () => {
 
             <FbwTraining data={userData} />
           ) : (
-            <p className="context-customize-warning">Select a training type</p>
+            <p className="context-customize-warning"></p>
           )}
 
 
-          {excercise == 'SPLIT' && userData ? (
+          {excercise == 'SPLIT' && userDataSplit ? (
 
-            <SplitTraining data={userData} />
+            <SplitTraining data={userDataSplit} />
           ) : (
-            <p className="context-customize-warning">Select a training type</p>
+            <p className="context-customize-warning"></p>
           )}
         </div>
 
-        {/* {userData ? (
-            userData.map((item, index) => (
-              <div key={index}>
-
-                <CustomExcercises onreplace={replaceData} data={item} />
-              </div>
-            ))
-          ) : (
-            <p className="context-customize-warning">Select a training type</p>
-          )} */}
 
 
         <div >
-          {userData ? (
+          {userData || userDataSplit ? (
             <div >
               <Button variant="contained" onClick={saveTrainig}>
                 Save
