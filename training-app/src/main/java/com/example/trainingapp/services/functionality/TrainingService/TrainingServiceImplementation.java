@@ -97,52 +97,6 @@ public class TrainingServiceImplementation implements TrainingService {
         return machineRepository.findById(id).get();
     }
 
-//    @Override
-//    public Map<String,List<ExerciseWithAlternatives>>createSplitTraining() {
-//        List<ExerciseWithAlternatives> exerciseWithAlternatives = new ArrayList<>();
-//
-//
-//        // barki triceps
-//        List<ExerciseEntity> chestExerciseses = exerciseRepository.findTop3ExercisesForChest();
-//
-//        List<ExerciseEntity> tricepsExerciseses = exerciseRepository.findTop3ExercisesForTriceps();
-//
-//        // biceps plecy
-//        List<ExerciseEntity> backExerciseses = exerciseRepository.findTop3ExercisesForBack();
-//        List<ExerciseEntity> armsExerciseses = exerciseRepository.findTop3ExercisesForArms();
-//        // nogi i barki
-//        List<ExerciseEntity> legsExerciseses = exerciseRepository.findTop3ExercisesForLegs();
-//        List<ExerciseEntity> shouldersExerciseses = exerciseRepository.findTop3ExercisesForShoulders();
-//        List<ExerciseEntity> absExerciseses = exerciseRepository.findTop3ExercisesForAbs();
-//        DayWithTrainings dayWithTrainings  = new DayWithTrainings();
-//        dayWithTrainings.setListOfExericsesAndDays(null);
-//
-//        List<ExerciseWithAlternatives> chestAndTriceps = new ArrayList<>();
-//        chestAndTriceps.addAll(chestExerciseses);
-//        chestAndTriceps.addAll(tricepsExerciseses);
-//
-//
-//        List<ExerciseWithAlternatives> backWithBiceps = new ArrayList<>();
-//        backWithBiceps.addAll(backExerciseses);
-//        backWithBiceps.addAll(armsExerciseses);
-//
-//        List<ExerciseWithAlternatives> shouldersWithLegsAndAbs = new ArrayList<>();
-//
-//        shouldersWithLegsAndAbs.addAll(legsExerciseses);
-//        shouldersWithLegsAndAbs.addAll(shouldersExerciseses);
-//        shouldersWithLegsAndAbs.addAll(absExerciseses);
-//
-//        Map<String,List<MealWithAlternatives>> listOfExericsesAndDays = new HashMap<>();
-//        listOfExericsesAndDays.put("first",chestAndTriceps);
-//        listOfExericsesAndDays.put("second",backWithBiceps);
-//        listOfExericsesAndDays.put("third",shouldersWithLegsAndAbs);
-//
-//
-//
-//
-//
-//        return  listOfExericsesAndDays;
-//    }
 
 
     @Override

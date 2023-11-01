@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DietDetails from "./dietDetails";
 import { GetAllDiets } from "../../../services/dietServices/dietService";
-
+import "../../../context/own.css";
 const OwnDiets = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);

@@ -12,8 +12,8 @@ import java.util.List;
 
 @Service
 public interface DietService {
-     Integer getDietBaseOnCaloriesAndDietType(int calories);
-     List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeid);
+     List<MealEntity> getDietBaseOnCaloriesAndDietType(int calories);
+     List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeid,int calories);
 
      List<MealtypeEntity> findAllTypeOfMeal();
 

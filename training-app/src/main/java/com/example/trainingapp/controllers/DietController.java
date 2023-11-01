@@ -43,9 +43,9 @@ public class DietController {
 
     @GetMapping
     @RequestMapping("/getMeals-byType")
-    public ResponseEntity<List<MealWithAlternatives>> getMealsWithSpecificType(@RequestParam("typeid") int typeid) {
+    public ResponseEntity<List<MealWithAlternatives>> getMealsWithSpecificType(@RequestParam("typeid") int typeid, @RequestParam("calories") int calories) {
 
-        return ResponseEntity.ok(dietService.findForuMealsBaseOnMealType(typeid));
+        return ResponseEntity.ok(dietService.findForuMealsBaseOnMealType(typeid,calories));
     }
 
     @PostMapping()

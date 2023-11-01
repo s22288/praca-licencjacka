@@ -6,9 +6,12 @@ import com.example.trainingapp.entities.MealEntity;
 import com.example.trainingapp.entities.MealtypeEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
+import com.example.trainingapp.services.functionality.TrainingService.TrainingServiceImplementation;
 import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MealRepostiory;
 import com.example.trainingapp.services.repositories.MealTypeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ public class DietServiceImplementation implements DietService {
 
     private List<MealEntity> used = new ArrayList<>();
 
+    private static final Logger logger = LoggerFactory.getLogger(DietServiceImplementation.class);
 
     private DietRepository dietRepository;
 
@@ -38,28 +42,32 @@ public class DietServiceImplementation implements DietService {
     }
 
     @Override
-    public Integer getDietBaseOnCaloriesAndDietType(int maxCalories) {
-        int upper = maxCalories + 100;
-        int lowwer = maxCalories - 100;
+    public List<MealEntity> getDietBaseOnCaloriesAndDietType(int maxCalories) {
+        int upper = maxCalories + 50;
+        int lowwer = maxCalories - 50;
         AtomicInteger suma = new AtomicInteger();
+        List<MealEntity> mealBaseOnCalories = new ArrayList<>();
         mealRepostiory.findAll().forEach(
                 mealEntity -> {
                     int mealCalories = mealEntity.getCalories();
                     if ((lowwer > suma.get()) && (suma.get() < upper)) {
                         suma.addAndGet(mealCalories);
+                        mealBaseOnCalories.add(mealEntity);
 
 
                     }
                 }
         );
-
-        return suma.get();
+        logger.info("lista " + mealBaseOnCalories);
+        return mealBaseOnCalories;
     }
 
     @Override
-    public List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeId) {
+    public List<MealWithAlternatives> findForuMealsBaseOnMealType(int typeId,int calories) {
+        logger.info("calories " + calories);
         List<MealWithAlternatives> mealAndAlternatives = new ArrayList<>();
-        List<MealEntity> findFourMeals = mealRepostiory.findAll().stream().filter(m -> m.getMealTypeId() == typeId).limit(4).toList();
+//        List<MealEntity> findFourMeals = mealRepostiory.findAll().stream().filter(m -> m.getMealTypeId() == typeId).limit(4).toList();
+        List<MealEntity> findFourMeals = getDietBaseOnCaloriesAndDietType(calories);
 List<AlergicingridientsEntity> alergicingridientsEntityList = new ArrayList<>();
         used.addAll(findFourMeals);
         findFourMeals.forEach(t -> {

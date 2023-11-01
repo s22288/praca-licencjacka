@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import "../../../../context/customization.css";
 import {
+    CountCalories,
     GetAllMealTypes,
     SaveDiet,
 } from "../../../../services/dietServices/dietService"
@@ -13,7 +14,7 @@ import CustomMeal from "./customMeal/customMeal";
 import { GetMealByMealType } from "../../../../services/mealService/mealService";
 import SelectDietGoal from "./SelectInput";
 const DietCustomization = () => {
-
+    const [goalCalories, setGoalCalories] = useState(0);
     const navigate = useNavigate();
     const [userData, setUserData] = useState();
     const [description, setDescription] = useState('describe diet');
@@ -22,7 +23,7 @@ const DietCustomization = () => {
     const [selectedOption, setSelectOption] = useState(1);
     const [goal, setGoal] = useState('lose')
 
-    const [calories, setCalories] = useState()
+    const [calories, setCalories] = useState(0)
 
     useEffect(() => {
         GetAllMealTypes().then((response) => {
@@ -73,14 +74,15 @@ const DietCustomization = () => {
             updatedUserData[userDataIndex].alternatives[index] = copy;
         }
         setUserData(updatedUserData);
-
+        calculateCalories()
 
 
     };
 
 
     const calculateCalories = () => {
-        let count = userData.map((data) => data.mealEntity.calories).reduce((start, next) => start + next, 0);
+        const count = userData.map((data) => data.mealEntity.calories).reduce((start, next) => start + next, 0);
+        console.log('data' + count);
 
         setCalories(count)
         return count;
@@ -106,8 +108,8 @@ const DietCustomization = () => {
 
 
     const fetchUserData = (typeId) => {
-
-        GetMealByMealType(typeId)
+        console.log('koalorie goal ' + goalCalories)
+        GetMealByMealType(typeId, parseInt(goalCalories))
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -129,6 +131,7 @@ const DietCustomization = () => {
                 console.error("Failed to fetch user data", error);
             });
 
+
     };
     const handleInput = (event) => {
         setDescription(event.target.value);
@@ -137,13 +140,16 @@ const DietCustomization = () => {
     const passGoalToParent = (record) => {
         setGoal(record)
     }
+    const passCaloriesToParent = (record) => {
+        setGoalCalories(record)
+    }
     return (
         <div>
             <FunctionalityNavbar />
 
             <div className="context-customize-container">
-                <SelectDietGoal passGoalToParent={passGoalToParent} />
-
+                <SelectDietGoal passGoalToParent={passGoalToParent} passCaloriesToParent={passCaloriesToParent} />
+                <h2>{calories} kcal</h2>
 
                 <form onSubmit={HandleSubmit} className="context-customize-comic-form">
                     {options.map(option => (
