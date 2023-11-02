@@ -3,20 +3,85 @@ create
 BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE max_count INT DEFAULT countMeals;
+    insert into alergicingridients (description, photo, name)
+    values ('eggs','https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg','egg');
+
+    insert into alergicingridients (description, photo, name)
+    values ('nuts','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJWJmpQqhIknvDN2QvNv2KcemXnjgoTX0EKMYQsxlE-Eiz8XxyDorkqaNmklTbMONX7B4&usqp=CAU','nuts');
+
+    insert into alergicingridients (description, photo, name)
+    values ('sea fruits','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ETl1LTQbSQeaz89-hDvEyl5CulomHXSdwB2KCqXtr-4U-PBFc7ZTyUWrrDFIl9ClLG4&usqp=CAU','sea fruit');
+
+    insert into alergicingridients (description, photo, name)
+    values ('milk','https://example.com/milk.jpg','milk');
+
+    insert into alergicingridients (description, photo, name)
+    values ('wheat','https://example.com/wheat.jpg','wheat');
+
+    insert into alergicingridients (description, photo, name)
+    values ('soy','https://example.com/soy.jpg','soy');
+
+    insert into alergicingridients (description, photo, name)
+    values ('shellfish','https://example.com/shellfish.jpg','shellfish');
+
+    insert into alergicingridients (description, photo, name)
+    values ('peanuts','https://example.com/peanuts.jpg','peanuts');
+
+    insert into alergicingridients (description, photo, name)
+    values ('fish','https://example.com/fish.jpg','fish');
+
+
 
     WHILE i <= max_count DO
             INSERT INTO meal (calories, meal_type_id, meal_name, photo)
             VALUES (FLOOR(RAND() * (1000 - 300 + 1) + 300), FLOOR(RAND() * (3) + 1), concat('name',i), concat('photo',i));
-            insert  into mealalergen(alergic_ingridients_id, meal_id)  values (FLOOR(RAND() * (3) + 1),i);
+            insert  into mealalergen(alergicingridients_id, meal_id)  values (FLOOR(RAND() * (3) + 1),i);
             SET i = i + 1;
-END WHILE;
+        END WHILE;
 END;
+
+
 
 create
     definer = root@localhost procedure insertExercises(IN countExercises int)
 BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE max_count INT DEFAULT countExercises;
+    -- Insert 1
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (750, 'Smith Machine', 'Versatile machine for various weightlifting exercises', '');
+
+-- Insert 2
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (300, 'Leg Press Machine', 'Ideal for leg workouts and lower body strength', 'https://4.imimg.com/data4/BH/TW/MY-3142623/leg-press-machine.jpg');
+
+-- Insert 3
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (200, 'Lat Pulldown Machine', 'Great for strengthening back and arm muscles', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw0D46DaeGSrvqazDwLBjwwQcjtKFUgStTAw&usqp=CAU');
+
+-- Insert 4
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (400, 'Cable Crossover Machine', 'For chest and upper body workouts', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ2Ev58KpYo5jp8Q-Xz_RIfhaAhancnOmsUerBRHMgSgewBay-jiiuknr1GDAnFXV-1eM&usqp=CAU');
+
+-- Insert 5
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (350, 'Rowing Machine', 'Full-body cardiovascular and strength training', 'https://m.media-amazon.com/images/I/716moIRbnpL._AC_UF1000,1000_QL80_.jpg');
+
+-- Insert 6
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (150, 'Leg Extension Machine', 'Focus on quad and thigh muscles', 'https://valorfitness.com/cdn/shop/products/cc-4-adjustable-leg-curlextension-machine-1_400x@2x.jpg?v=1670531995');
+
+-- Insert 7
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (200, 'Tricep Dip Machine', 'Effective for tricep and upper body workouts', 'https://www.gymequip.eu/wp-content/uploads/2015/10/Leg-Extension-Leg-Curl-Machine-1-1.jpg');
+
+-- Insert 8
+
+
+-- Insert 9
+    insert into trainingmachine (max_weight, name, description, photo)
+    values (250, 'Bicep Curl Machine', 'Isolate and target bicep muscles', '');
+
     insert into bodypart ( description, url)
     values ('Klatka piersiowa','https://i.pinimg.com/originals/20/08/e3/2008e3218d914487fd636c273a0b4f3b.jpg');
 
@@ -37,6 +102,10 @@ BEGIN
     values ('Brzuch','https://thumbs.dreamstime.com/b/highlighted-abdominal-muscles-d-rendered-illustration-34164375.jpg');
 
 
+    insert into bodypart ( description, url)
+    values ('Triceps','https://i.shgcdn.com/c39f9e9e-8e0a-4fa9-9ead-7ab7c3415c9d/-/format/auto/-/preview/3000x3000/-/quality/lighter/');
+
+
 
     insert into bodypart ( description, url)
     values ('Nogi','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSZTXtGSQNFx9yLlnvqla5qxYJlRFxOL45-g&usqp=CAU');
@@ -45,13 +114,12 @@ BEGIN
     WHILE i <= max_count DO
 
             INSERT INTO exercise (level_of_advance, series, reps, training_machine_id, name, photo)
-            VALUES (FLOOR(RAND() * (5 - 1 + 1) + 1), FLOOR(RAND() * (15 - 1 + 1) + 1), FLOOR(RAND() * (15 - 1 + 1) + 1), 1, CONCAT('exercise', i), CONCAT('photo', i));
+            VALUES (FLOOR(RAND() * (5 - 1 + 1) + 1), FLOOR(RAND() * (15 - 1 + 1) + 1), FLOOR(RAND() * (15 - 1 + 1) + 1), FLOOR(RAND() * (7 ) + 1), CONCAT('exercise', i), CONCAT('photo', i));
 
             INSERT INTO exercisebodypart (body_part_id, exercise_id)
-            VALUES ( FLOOR(1 + RAND() * 6), i);
+            VALUES ( FLOOR(1 + RAND() * 7), i);
 
             SET i = i + 1;
         END WHILE;
 END;
-
 
