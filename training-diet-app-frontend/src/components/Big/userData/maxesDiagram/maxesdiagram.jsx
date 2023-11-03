@@ -24,6 +24,7 @@ const MaxesDiagram = () => {
     return (
         <div>
             <LineChart data={userMaxes} />
+            {/* <button>reset stats</button> */}
         </div>
     )
 }

@@ -1,6 +1,9 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.ToString;
 
 import java.sql.Date;
@@ -15,15 +18,24 @@ public class MaxinexerciseEntity {
     private int id;
     @Basic
     @Column(name = "bench", precision = 2)
+    @DecimalMax(value = "999.0",message = "weigth too big") @DecimalMin(value = "1.0",message = "weight to small")
+
     private double bench;
     @Basic
     @Column(name = "pullups")
+    @DecimalMax(value = "999.0",message = "weigth too big") @DecimalMin(value = "1.0",message = "weight to small")
+
     private int pullups;
     @Basic
     @Column(name = "squad", precision = 2)
+    @DecimalMax(value = "999.0",message = "weigth too big") @DecimalMin(value = "1.0",message = "weight to small")
+
     private double squad;
     @Basic
     @Column(name = "deadlift", precision = 2)
+    @DecimalMax(value = "999.0",message = "weigth too big") @DecimalMin(value = "1.0",message = "weight to small")
+
+
     private double deadlift;
     @Basic
     @Column(name = "NormalUser_id", nullable = false)

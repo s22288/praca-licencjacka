@@ -43,12 +43,13 @@ const RecordForm = () => {
             <MaxesDiagram />
             <form onSubmit={handleSubmit} className="form-login-form">
                 <label className="form-customlb">Benchpress Max :</label>
+                <br></br>
                 <input
 
                     type="number"
                     value={bench}
                     onChange={(e) => setBench(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input" max={999} min={1} />
                 <br />
 
                 <label className="form-customlb">Pullups Max :</label>
@@ -57,26 +58,30 @@ const RecordForm = () => {
                     type="number"
                     value={pullups}
                     onChange={(e) => setPullups(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input" max={999} min={1} />
                 <br />
 
                 <label className="form-customlb">Squad Max :</label>
+                <br></br>
+
                 <input
 
                     type="number"
                     value={squad}
                     onChange={(e) => setSquad(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input" max={999} min={1} />
                 <br />
 
 
                 <label className="form-customlb">Deadlift Max :</label>
+                <br></br>
+
                 <input
 
                     type="number"
                     value={deadlift}
                     onChange={(e) => setDeadlift(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input" max={999} min={1} />
                 <br />
 
 
@@ -87,7 +92,7 @@ const RecordForm = () => {
                     type="date"
                     value={dayOfRecord}
                     onChange={(e) => setDayOfRecords(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input" max={999} min={1} />
 
                 <br />
 

@@ -1,10 +1,13 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.commons.math3.util.Precision;
+import org.hibernate.annotations.Check;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -37,12 +40,18 @@ public class NormaluserEntity {
     private String lastName;
     @Basic
     @Column(name = "birthDate", nullable = false)
+    @Check(constraints = "birthDate >= '1900-01-01'")
+
     private LocalDate birthDate;
     @Basic
     @Column(name = "height", nullable = false, precision = 1)
+    @DecimalMax(value = "1000.0",message = "too much heigh") @DecimalMin(value = "0.0",message = "0.0")
+
     private double height;
     @Basic
     @Column(name = "weight", nullable = false, precision = 2)
+    @DecimalMax(value = "600.0",message = "too much weight") @DecimalMin(value = "0.0",message = "cant weight under 0")
+
     private double weight;
 
 
@@ -58,6 +67,8 @@ public class NormaluserEntity {
     private String photo;
     @Basic
     @Column(name = "palfactor", nullable = false, precision = 3)
+    @DecimalMax(value = "5.0",message = "to high pal factor") @DecimalMin(value = "-5.0",message = "to low pal factor")
+
     private double palfactor;
 
 
