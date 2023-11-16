@@ -1,6 +1,8 @@
 package com.example.trainingapp.services.repositories;
 
 import com.example.trainingapp.entities.MealEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -21,4 +23,7 @@ public interface MealRepostiory extends JpaRepository<MealEntity,Long> {
 
     @Query (value = "select * from meal m inner  join dietmeals d on m.id = d.meal_id and d.diet_id = ?1",nativeQuery = true)
     List<MealEntity> findAllMealsOfDiet(int dietId);
+
+    @Query(value = "select *from meal ",nativeQuery = true)
+    Page<MealEntity> findAllPeagable(Pageable pageable);
 }

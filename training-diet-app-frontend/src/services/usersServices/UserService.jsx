@@ -37,6 +37,19 @@ function CreateAccount() {
 
 }
 
+const GetAllUsers = () => {
+    return fetch(
+        `http://localhost:9800/admin-user/get-users`
+    )
+}
+
+const DeleteUserById = (id) => {
+    return fetch(`http://localhost:9800/admin-user/delete-user/${id}`,{
+
+    });
+
+}
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, CreateAccount }
+
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, CreateAccount, GetAllUsers ,DeleteUserById}

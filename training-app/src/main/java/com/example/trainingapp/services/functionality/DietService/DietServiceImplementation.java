@@ -12,6 +12,8 @@ import com.example.trainingapp.services.repositories.MealRepostiory;
 import com.example.trainingapp.services.repositories.MealTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -137,5 +139,22 @@ dietRepository.save(dietEntity);
         List<Set<AlergicingridientsEntity>> setofAlergics = mealEntityList.stream().map(MealEntity::getAlergicingridientsEntitySet).toList();
         setofAlergics.forEach(uniqueAlergicIngridients::addAll);
         return uniqueAlergicIngridients.stream().toList();
+    }
+
+    @Override
+    public List<MealEntity> getAllMeals() {
+        return mealRepostiory.findAll();
+    }
+
+
+
+    @Override
+    public List<MealEntity> getAllPageable(Pageable pageable) {
+        return mealRepostiory.findAllPeagable(pageable).stream().toList();
+    }
+
+    @Override
+    public void deleteMealByid(long id) {
+        mealRepostiory.deleteById(id);
     }
 }

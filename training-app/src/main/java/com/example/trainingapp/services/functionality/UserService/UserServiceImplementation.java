@@ -98,5 +98,15 @@ public class UserServiceImplementation implements UserService {
         userRepository.save(normaluserEntity);
     }
 
+    @Override
+    public List<NormaluserEntity> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
 
 }

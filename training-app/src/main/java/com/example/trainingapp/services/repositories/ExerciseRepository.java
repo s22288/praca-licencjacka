@@ -1,6 +1,9 @@
 package com.example.trainingapp.services.repositories;
 
 import com.example.trainingapp.entities.ExerciseEntity;
+import com.example.trainingapp.entities.MealEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -86,6 +89,7 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity,Long> {
     @Query(value = "select  b.description from exercisebodypart eb inner join bodypart b on eb.body_part_id = b.id where eb.exercise_id = :id ", nativeQuery = true)
     String findBodyPart(@Param("id") int id);
 
-
+    @Query(value = "select *from exercise ",nativeQuery = true)
+    Page<ExerciseEntity> findAllPeagable(Pageable pageable);
 
 }

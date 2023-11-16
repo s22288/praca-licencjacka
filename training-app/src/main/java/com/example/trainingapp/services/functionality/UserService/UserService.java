@@ -26,4 +26,8 @@ public interface UserService {
      NormaluserEntity findUserByid(long id);
 
      void saveUser(NormaluserEntity normaluserEntity);
+
+
+     List<NormaluserEntity> getAllUsers();
+     void deleteUser(long id);
 }

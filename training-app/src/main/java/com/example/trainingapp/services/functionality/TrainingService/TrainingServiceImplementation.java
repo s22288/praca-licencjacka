@@ -9,6 +9,7 @@ import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -140,6 +141,21 @@ public class TrainingServiceImplementation implements TrainingService {
 
 
         return mapOfDaysAndExericses;
+    }
+
+    @Override
+    public List<ExerciseEntity> getAllExercies() {
+        return exerciseRepository.findAll();
+    }
+
+    @Override
+    public List<ExerciseEntity> getAllExerciesPageable(Pageable pageable) {
+        return exerciseRepository.findAllPeagable(pageable).stream().toList();
+    }
+
+    @Override
+    public void deleteExerciseByid(long id) {
+        exerciseRepository.deleteById(id);
     }
 
     public List<ExerciseWithAlternatives> findAlternativesForlistofExercises(List<ExerciseEntity> exerciseEntities) {

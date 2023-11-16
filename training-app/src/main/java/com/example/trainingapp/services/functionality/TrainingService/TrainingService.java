@@ -4,6 +4,7 @@ import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,4 +34,8 @@ public interface TrainingService {
 
      Map<String,List<ExerciseWithAlternatives>> createSplitTraining();
 
+
+     List<ExerciseEntity> getAllExercies();
+     List<ExerciseEntity> getAllExerciesPageable(Pageable pageable);
+     void deleteExerciseByid(long id);
 }
