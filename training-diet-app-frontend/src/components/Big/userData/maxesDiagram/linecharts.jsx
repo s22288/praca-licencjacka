@@ -15,6 +15,7 @@ const LineChart = (props) => {
   let deadliftMax = userMaxArray.map(b => b.deadlift);
 
   userMaxArray.forEach(element => {
+    console.log(element.dayOfRecords)
     labels.push(element.dayOfRecords)
   });
   const data = {
@@ -67,7 +68,7 @@ const LineChart = (props) => {
       },
       y: {
         min: 1,
-        max: 1000,
+        max: 500,
         grid: {
 
           color: "black",

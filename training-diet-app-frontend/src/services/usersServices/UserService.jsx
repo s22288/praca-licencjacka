@@ -1,57 +1,69 @@
-import axios from "axios";
+;
 
 async function getUserData() {
     const token = localStorage.getItem('jwtToken');
-    const t = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGlib3VAbWFpbC5jb20iLCJpYXQiOjE3MDA4NDEyNTcsImV4cCI6MTcwMDg0MjY5N30.AusExtifE2gd5WDZvPKTQNK5cI80Fb1kgCRFzGf0Cqc'
-    return axios
-        .get("http://localhost:9800/normal-user/account-data", {
-            withCredentials: true,
-            
-            headers: {
-                
-                Authorization: `Bearer ${t}`,
-            },
-        })
+    console.log(token)
+    return fetch("http://localhost:9800/normal-user/account-data", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
 
-    // return fetch("http://localhost:9800/normal-user/account-data", {
-    //     withCredentials: "true",
-    //     headers: {
-
-    //         'Authorization': 'Bearer ' + token
-    //     },
+    })
 
 
-    // })
 }
 
 
 
 
 function getUserMaxes() {
-    return fetch("http://localhost:9800/normal-user/user-maxes")
+    const token = localStorage.getItem('jwtToken');
+
+    return fetch("http://localhost:9800/normal-user/user-maxes", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
+
+    })
 }
 
 
 
 async function updateUsersData(data) {
+    const token = localStorage.getItem('jwtToken');
+
     return await fetch("http://localhost:9800/normal-user/update-data", {
         method: 'Post',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }, body: JSON.stringify(data)
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include', body: JSON.stringify(data)
     }
     )
 }
 
 
 async function addUserMaxes(data) {
+    const token = localStorage.getItem('jwtToken');
+
     return await fetch("http://localhost:9800/normal-user/add-maxes", {
         method: 'Post',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }, body: JSON.stringify(data)
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include', body: JSON.stringify(data)
     }
     )
 }
@@ -59,14 +71,30 @@ async function addUserMaxes(data) {
 
 
 const GetAllUsers = () => {
+    const token = localStorage.getItem('jwtToken');
+
     return fetch(
-        `http://localhost:9800/admin-user/get-users`
+        `http://localhost:9800/admin-user/get-users`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
+    }
     )
 }
 
 const DeleteUserById = (id) => {
-    return fetch(`http://localhost:9800/admin-user/delete-user/${id}`, {
+    const token = localStorage.getItem('jwtToken');
 
+    return fetch(`http://localhost:9800/admin-user/delete-user/${id}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
     });
 
 }

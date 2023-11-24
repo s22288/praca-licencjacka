@@ -7,6 +7,7 @@ import jakarta.validation.constraints.DecimalMin;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @ToString
 @Entity
@@ -42,7 +43,7 @@ public class MaxinexerciseEntity {
     private int normalUserId;
     @Basic
     @Column(name = "DayOfRecords")
-    private Date dayOfRecords;
+    private LocalDate dayOfRecords;
 
     public int getId() {
         return id;
@@ -92,11 +93,11 @@ public class MaxinexerciseEntity {
         this.normalUserId = normalUserId;
     }
 
-    public Date getDayOfRecords() {
+    public LocalDate getDayOfRecords() {
         return dayOfRecords;
     }
 
-    public void setDayOfRecords(Date dayOfRecords) {
+    public void setDayOfRecords(LocalDate dayOfRecords) {
         this.dayOfRecords = dayOfRecords;
     }
 

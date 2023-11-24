@@ -12,9 +12,10 @@ const UserAccount = () => {
     const [weight, setWeight] = useState('');
     const [pal, setPal] = useState(0);
 
+
     const [userData, setUserData] = useState(null);
     useEffect(() => {
-    
+
         getUserData()
             .then((response) => {
                 if (response.ok) {
@@ -30,6 +31,7 @@ const UserAccount = () => {
 
                 setHeight(data.height)
                 setPal(data.palfactor)
+                console.log(userData)
 
             })
             .catch((error) => {
@@ -131,17 +133,13 @@ const UserAccount = () => {
 
                         {userData ? (
                             <div className="userData-background-div">
-                                {userData.mail ? (
-                                    <p className="userData-title-text">Email: {userData.mail}</p>
+                                {userData.email ? (
+                                    <p className="userData-title-text">Email: {userData.email}</p>
                                 ) : (
                                     <p className="userData-title-text">Email: ?</p>
                                 )}
 
-                                {userData.login ? (
-                                    <p className="userData-title-text">Login: {userData.login}</p>
-                                ) : (
-                                    <p className="userData-title-text">Login: ?</p>
-                                )}
+                               
 
                                 {userData.birthDate ? (
                                     <p className="userData-title-text">BirthDate: {userData.birthDate}</p>

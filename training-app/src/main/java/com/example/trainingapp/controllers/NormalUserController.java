@@ -25,7 +25,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/normal-user")
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 
 public class NormalUserController {
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
@@ -81,8 +81,10 @@ public class NormalUserController {
 
     @PostMapping
     @RequestMapping("/account-data")
+   
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
         NormaluserEntity userFromDb = userService.findUserByid(1l);
+        logger.info("data " + userFromDb);
 
         return ResponseEntity.ok(userFromDb);
 
