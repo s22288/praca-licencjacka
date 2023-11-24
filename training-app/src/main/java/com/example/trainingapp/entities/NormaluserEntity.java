@@ -37,9 +37,7 @@ public class NormaluserEntity implements UserDetails {
     private String firstName;
 
 
-    @Basic
-    @Column(name = "login", nullable = false, length = 200)
-    private String login;
+
     @Basic
     @Column(name = "lastName", nullable = false, length = 200)
     private String lastName;

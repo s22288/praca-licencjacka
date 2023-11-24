@@ -15,6 +15,7 @@ import TrainingsCalendar from "../UserPage/CalendarOFTrainings/trainingsCalendar
 import TrainingCustomization from "../../components/Big/userData/customizeTraining/CutsomizeTraining"
 import SmallTrainigDetails from "../../components/Big/ownTrainings/smallTrainingDetails"
 import AdminPanel from "../AdminPanel/adminPage"
+import LoginPage from "../LoginPage/createAcount/loginPage"
 
 const AllRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AllRoutes = () => {
       <Route path="/" element={<HomePage />} />
 
       <Route path="/create-acc" element={<CreateAccountPage />} />
+      <Route path="/login" element={<LoginPage />} />
 
       <Route path="/user-page" element={<UserPage />} />
 

@@ -14,6 +14,7 @@ const UserAccount = () => {
 
     const [userData, setUserData] = useState(null);
     useEffect(() => {
+    
         getUserData()
             .then((response) => {
                 if (response.ok) {

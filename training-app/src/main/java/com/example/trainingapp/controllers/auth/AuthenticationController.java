@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class AuthenticationController {
     private final AuthenticationService service;
 
@@ -15,7 +17,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.register(request));
     }
 
-    @GetMapping("/authenticate")
+    @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticatedRequest  request){
         return ResponseEntity.ok(service.authenticate(request));
 

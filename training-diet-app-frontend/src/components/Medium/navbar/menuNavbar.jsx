@@ -19,7 +19,7 @@ const UserMenuNavbar = () => {
             </button>
             <ul className={`menu-list ${menuOpen ? "show" : ""}`}>
                 <li>
-                    <Link to="/user-page" className="nav-link">
+                    <Link to="/login" className="nav-link">
                         Login
                     </Link>
                 </li>
