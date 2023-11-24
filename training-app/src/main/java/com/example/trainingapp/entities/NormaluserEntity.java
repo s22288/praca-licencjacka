@@ -1,27 +1,32 @@
 package com.example.trainingapp.entities;
 
+import com.example.trainingapp.entities.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.apache.commons.math3.util.Precision;
 import org.hibernate.annotations.Check;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
+@Builder
 @Table(name = "normaluser", schema = "pracalicencjacka_training_db", catalog = "")
 @Getter
 @Setter
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
+@AllArgsConstructor
 
-public class NormaluserEntity {
+public class NormaluserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,17 +45,19 @@ public class NormaluserEntity {
     private String lastName;
     @Basic
     @Column(name = "birthDate", nullable = false)
-    @Check(constraints = "birthDate >= '1900-01-01'")
+
 
     private LocalDate birthDate;
     @Basic
     @Column(name = "height", nullable = false, precision = 1)
-    @DecimalMax(value = "1000.0",message = "too much heigh") @DecimalMin(value = "0.0",message = "0.0")
+    @DecimalMax(value = "1000.0", message = "too much heigh")
+    @DecimalMin(value = "0.0", message = "0.0")
 
     private double height;
     @Basic
     @Column(name = "weight", nullable = false, precision = 2)
-    @DecimalMax(value = "600.0",message = "too much weight") @DecimalMin(value = "0.0",message = "cant weight under 0")
+    @DecimalMax(value = "600.0", message = "too much weight")
+    @DecimalMin(value = "0.0", message = "cant weight under 0")
 
     private double weight;
 
@@ -60,14 +67,15 @@ public class NormaluserEntity {
     private String password;
 
     @Basic
-    @Column(name = "mail", nullable = false, length = 200)
-    private String mail;
+    @Column(name = "email", nullable = false, length = 200)
+    private String email;
     @Basic
-    @Column(name = "photo", nullable = false, length = 2000)
+    @Column(name = "photo", length = 2000)
     private String photo;
     @Basic
     @Column(name = "palfactor", nullable = false, precision = 3)
-    @DecimalMax(value = "5.0",message = "to high pal factor") @DecimalMin(value = "-5.0",message = "to low pal factor")
+    @DecimalMax(value = "5.0", message = "to high pal factor")
+    @DecimalMin(value = "-5.0", message = "to low pal factor")
 
     private double palfactor;
 
@@ -76,32 +84,35 @@ public class NormaluserEntity {
     @Column(name = "sex", nullable = false)
     private boolean sex;
 
-    @Basic
-    @Column(name = "Authority_id", nullable = false)
-    private int authorityId;
 
-public  long calculateAgeFromBirthDate(){
-    return  ChronoUnit.YEARS.between( birthDate,LocalDate.now());
-}
-   public double calculatePPM(){
-       if(sex){
-           return     66.47 + ( 13.75 * this.weight) + (5 * this.height ) - (6.75 * calculateAgeFromBirthDate());
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-       }
-       return 665.09 + ( 9.56 * this.weight) + (1.85 * this.height ) - (4.67 * calculateAgeFromBirthDate());
+    public long calculateAgeFromBirthDate() {
+        return ChronoUnit.YEARS.between(birthDate, LocalDate.now());
+    }
 
-   }
-   public  double calculateCPM(){
-    return Precision.round(getPalfactor() * calculatePPM(),2);
-   }
+    public double calculatePPM() {
+        if (sex) {
+            return 66.47 + (13.75 * this.weight) + (5 * this.height) - (6.75 * calculateAgeFromBirthDate());
+
+        }
+        return 665.09 + (9.56 * this.weight) + (1.85 * this.height) - (4.67 * calculateAgeFromBirthDate());
+
+    }
+
+    public double calculateCPM() {
+        return Precision.round(getPalfactor() * calculatePPM(), 2);
+    }
 
 
-   public  double roundValues(double value){
-    value = value*100;
-    value = Math.round(value);
-    value = value/100;
-    return value;
-   }
+    public double roundValues(double value) {
+        value = value * 100;
+        value = Math.round(value);
+        value = value / 100;
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,12 +125,11 @@ public  long calculateAgeFromBirthDate(){
         if (Double.compare(that.weight, weight) != 0) return false;
         if (Double.compare(that.palfactor, palfactor) != 0) return false;
 
-        if (authorityId != that.authorityId) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
         if (birthDate != null ? !birthDate.equals(that.birthDate) : that.birthDate != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (photo != null ? !photo.equals(that.photo) : that.photo != null) return false;
 
         return true;
@@ -138,13 +148,46 @@ public  long calculateAgeFromBirthDate(){
         temp = Double.doubleToLongBits(weight);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (photo != null ? photo.hashCode() : 0);
         temp = Double.doubleToLongBits(palfactor);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
 
-        result = 31 * result + authorityId;
         return result;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
