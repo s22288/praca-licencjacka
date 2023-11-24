@@ -22,6 +22,8 @@ const GetAllMeals = (page, size, order) => {
     return fetch(
         `http://localhost:9800/admin-user/get-meals?page=${page}&size=${size}&sort=id,${order}`
         , {
+            method: 'GET',
+
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

@@ -8,6 +8,8 @@ const GetAllExercises = (page, size, order, sortpar) => {
     return fetch(
         `http://localhost:9800/admin-user/get-exercises?page=${page}&size=${size}&sort=${sortpar},${order}`
         , {
+            method: 'GET',
+
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

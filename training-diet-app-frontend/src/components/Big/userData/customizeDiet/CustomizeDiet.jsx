@@ -149,7 +149,7 @@ const DietCustomization = () => {
 
             <div className="context-customize-container">
                 <SelectDietGoal passGoalToParent={passGoalToParent} passCaloriesToParent={passCaloriesToParent} />
-                <h2>{calories} kcal</h2>
+                
 
                 <form onSubmit={HandleSubmit} className="context-customize-comic-form">
                     {options.map(option => (

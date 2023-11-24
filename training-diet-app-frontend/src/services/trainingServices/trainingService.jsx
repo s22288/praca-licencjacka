@@ -3,59 +3,130 @@ const GetAllTrainings = () => {
 
     return fetch("http://localhost:9800/normal-user/trainings", {
         method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
+        method: 'GET',
 
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
     });
 
 };
 
 const GetAllTrainingsWithDays = () => {
-    return fetch("http://localhost:9800/normal-user/trainings-days");
+    const token = localStorage.getItem('jwtToken');
+
+    return fetch("http://localhost:9800/normal-user/trainings-days", {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
+    });
 
 };
 const FindMachineById = (machineId) => {
-    return fetch(`http://localhost:9800/create-training/findMachine/${machineId}`, {
+    const token = localStorage.getItem('jwtToken');
 
+    return fetch(`http://localhost:9800/create-training/findMachine/${machineId}`, {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
     });
 }
 
 const AsignTrainingToDay = (asignItem, idTraining) => {
+    const token = localStorage.getItem('jwtToken');
+
     return fetch(`http://localhost:9800/create-training/assign-todate?idTraining=${idTraining}`, {
         method: "POST",
         headers: {
-
-            'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(asignItem),
+        credentials: 'include', body: JSON.stringify(asignItem),
     });
 }
 const SaveTrainig = (training) => {
+    const token = localStorage.getItem('jwtToken');
+
     fetch("http://localhost:9800/create-training/save-training", {
         method: "POST",
         headers: {
-
-            'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
+        credentials: 'include',
         body: JSON.stringify(training),
     });
 };
 const GetExerciseseByBodyPartFbw = () => {
-    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts");
+    const token = localStorage.getItem('jwtToken');
+
+    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts", {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include'
+    });
 }
 const GetExerciseseByBodyPartSplit = () => {
-    return fetch("http://localhost:9800/create-training/split-training");
+    const token = localStorage.getItem('jwtToken');
+
+    return fetch("http://localhost:9800/create-training/split-training", {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include'
+    });
 }
 const GetExerciseseByBodyPartPushPull = () => {
-    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts");
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGlib3VAbWFpbC5jb20iLCJpYXQiOjE3MDA4NjE2MTksImV4cCI6MTcwMDg2MzA1OX0.8nmoUJY44exg1KkpPT5gP-Poh9_L64n4LaLg0iN2Gtc'
+
+    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include'
+    });
 }
 
 
 const DelteteTrainigById = (id) => {
-    return fetch(`http://localhost:9800/normal-user/delete-training/${id}`, {
+    const token = localStorage.getItem('jwtToken');
 
+    return fetch(`http://localhost:9800/normal-user/delete-training/${id}`, {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include'
     });
 
 
