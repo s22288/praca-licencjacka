@@ -18,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,10 +83,15 @@ public class NormalUserController {
 
     @PostMapping
     @RequestMapping("/account-data")
-   
+
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
-        NormaluserEntity userFromDb = userService.findUserByid(1l);
-        logger.info("data " + userFromDb);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+
+//        NormaluserEntity userFromDb = userService.findUserByid(1l);
+
 
         return ResponseEntity.ok(userFromDb);
 

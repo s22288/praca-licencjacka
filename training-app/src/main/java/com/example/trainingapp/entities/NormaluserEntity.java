@@ -186,6 +186,25 @@ public class NormaluserEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "NormaluserEntity{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", photo='" + photo + '\'' +
+                ", palfactor=" + palfactor +
+                ", sex=" + sex +
+                ", role=" + role +
+                '}';
     }
 }

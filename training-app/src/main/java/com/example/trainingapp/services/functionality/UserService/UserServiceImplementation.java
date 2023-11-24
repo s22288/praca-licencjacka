@@ -94,6 +94,11 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public NormaluserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email).get();
+    }
+
+    @Override
     public void saveUser(NormaluserEntity normaluserEntity) {
         userRepository.save(normaluserEntity);
     }

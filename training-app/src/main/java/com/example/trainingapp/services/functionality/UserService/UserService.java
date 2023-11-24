@@ -24,6 +24,7 @@ public interface UserService {
      String calculateWHR(double waistCircumference, double hipsCircumference,boolean sex);
 
      NormaluserEntity findUserByid(long id);
+     NormaluserEntity findByEmail(String email);
 
      void saveUser(NormaluserEntity normaluserEntity);
 
