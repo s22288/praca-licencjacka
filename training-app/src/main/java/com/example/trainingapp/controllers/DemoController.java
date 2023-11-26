@@ -21,13 +21,5 @@ public class DemoController {
         return ResponseEntity.ok("Hello for secure");
     }
 
-    @PostMapping
-    @RequestMapping("/account-data")
-    public ResponseEntity<NormaluserEntity> updateUserMesurements() {
-        NormaluserEntity userFromDb = userService.findUserByid(1l);
 
-        return ResponseEntity.ok(userFromDb);
-
-
-    }
 }

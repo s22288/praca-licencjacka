@@ -18,6 +18,7 @@ const RecordForm = () => {
 
 
     const handleSubmit = () => {
+
         console.log(bench)
         console.log(pullups)
         console.log(squad)
@@ -25,13 +26,12 @@ const RecordForm = () => {
         console.log(dayOfRecord)
 
         const record = {
-            bench: bench,
-            pullups: pullups,
-            squad: squad,
-            deadlift: deadlift,
-            dayOfRecords: dayOfRecord,
-
-        }
+            "bench": 100,
+            "pullups": 130,
+            "squad": 324,
+            "deadlift": 213,
+            "dayOfRecords": "2022-01-01",
+        };
 
         addUserMaxes(record)
 
@@ -49,7 +49,7 @@ const RecordForm = () => {
                     type="number"
                     value={bench}
                     onChange={(e) => setBench(e.target.value)}
-                    className="form-user-input" max={999} min={1} />
+                    className="form-user-input" />
                 <br />
 
                 <label className="form-customlb">Pullups Max :</label>
@@ -58,7 +58,7 @@ const RecordForm = () => {
                     type="number"
                     value={pullups}
                     onChange={(e) => setPullups(e.target.value)}
-                    className="form-user-input" max={999} min={1} />
+                    className="form-user-input" />
                 <br />
 
                 <label className="form-customlb">Squad Max :</label>
@@ -69,7 +69,7 @@ const RecordForm = () => {
                     type="number"
                     value={squad}
                     onChange={(e) => setSquad(e.target.value)}
-                    className="form-user-input" max={999} min={1} />
+                    className="form-user-input" />
                 <br />
 
 
@@ -81,7 +81,7 @@ const RecordForm = () => {
                     type="number"
                     value={deadlift}
                     onChange={(e) => setDeadlift(e.target.value)}
-                    className="form-user-input" max={999} min={1} />
+                    className="form-user-input" />
                 <br />
 
 
@@ -92,7 +92,7 @@ const RecordForm = () => {
                     type="date"
                     value={dayOfRecord}
                     onChange={(e) => setDayOfRecords(e.target.value)}
-                    className="form-user-input" max={999} min={1} />
+                    className="form-user-input" />
 
                 <br />
 

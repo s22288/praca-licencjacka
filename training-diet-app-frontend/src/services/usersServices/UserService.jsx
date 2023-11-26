@@ -46,18 +46,17 @@ async function updateUsersData(data) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-        },
-        credentials: 'include', body: JSON.stringify(data)
+        },body: JSON.stringify(data)
     }
     )
 }
 
 
 async function addUserMaxes(data) {
-    const token = localStorage.getItem('jwtToken');
-
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGlib3VAbWFpbC5jb20iLCJpYXQiOjE3MDA5MTk5NTYsImV4cCI6MTcwMDkyMTM5Nn0.EfZ70Dmb54sXheO3vTQLl5ERoZJI2vn3gGmaLNO-Fsc'
+    console.log(data)
     return await fetch("http://localhost:9800/normal-user/add-maxes", {
-        method: 'Post',
+        method: 'post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

@@ -55,17 +55,23 @@ public class NormalUserController {
     @GetMapping
     @RequestMapping("/cpm")
     public ResponseEntity<Double> getCpmOfUser() {
-        NormaluserEntity normaluserEntity = userService.findUserByid(1L);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
 
-        return ResponseEntity.ok(normaluserEntity.calculateCPM());
+        return ResponseEntity.ok(userFromDb.calculateCPM());
     }
 
 
     @PostMapping
     @RequestMapping("/update-data")
     public ResponseEntity<String> updateUserMesurements(@Valid @RequestBody NormaluserEntity userData) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
 
-        NormaluserEntity userFromDb = userService.findUserByid(1l);
         if (userFromDb != null) {
             userFromDb.setWeight(userData.getWeight());
             userFromDb.setHeight(userData.getHeight());
@@ -103,17 +109,31 @@ public class NormalUserController {
     @GetMapping
     @RequestMapping("/user-maxes")
     public ResponseEntity<List<MaxinexerciseEntity>> getUsersMaxes() {
-        List<MaxinexerciseEntity> usersMaxes = userService.getUsersMaxes(1);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        logger.info("id" + userFromDb.getId());
+        List<MaxinexerciseEntity> usersMaxes = userService.getUsersMaxes(userFromDb.getId());
         return ResponseEntity.ok(usersMaxes);
 
     }
 
     @PostMapping
+
     @RequestMapping("/add-maxes")
-    public ResponseEntity<String> AddUserMax( @Valid @RequestBody MaxinexerciseEntity maxinexerciseEntity) {
-logger.info("maxes" + maxinexerciseEntity);
-        maxinexerciseEntity.setNormalUserId(1);
-        trainingService.saveMaxInExercise(maxinexerciseEntity);
+    public ResponseEntity<String> addUserMax( @RequestBody MaxinexerciseEntity maxinexerciseEntity ) {
+
+        logger.info("add max" + maxinexerciseEntity);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        logger.info("id" + userFromDb.getEmail() + " email " + email);
+
+//        maxinexerciseEntity.setNormalUserId(userFromDb.getId());
+//        trainingService.saveMaxInExercise(maxinexerciseEntity);
 
         return ResponseEntity.ok("Updated ok 200");
 
@@ -149,7 +169,11 @@ logger.info("maxes" + maxinexerciseEntity);
 
     @RequestMapping("/trainings")
     public ResponseEntity<List<TrainingEntity>> getUserTrainings() {
-        List<TrainingEntity> allUserTraining = trainingService.getAllUserTraining(1);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        List<TrainingEntity> allUserTraining = trainingService.getAllUserTraining(userFromDb.getId());
 
 
         return ResponseEntity.ok().body(allUserTraining);
@@ -159,9 +183,14 @@ logger.info("maxes" + maxinexerciseEntity);
 
     @RequestMapping("/trainings-days")
     public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
-        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(1l);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
 
 
         return ResponseEntity.ok().body(trainigsWithDays);
     }
+
 }

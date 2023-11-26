@@ -86,6 +86,7 @@ public class NormaluserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
     public long calculateAgeFromBirthDate() {
         return ChronoUnit.YEARS.between(birthDate, LocalDate.now());
     }

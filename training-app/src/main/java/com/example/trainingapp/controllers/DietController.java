@@ -7,6 +7,7 @@ import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.DietService.DietService;
+import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.DietRepository;
 import com.example.trainingapp.services.repositories.MealRepostiory;
 import com.example.trainingapp.services.repositories.UserRepository;
@@ -16,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +30,12 @@ import java.util.Set;
 public class DietController {
     private static final Logger logger = LoggerFactory.getLogger(DietController.class);
     private DietService dietService;
+    private UserService userService;
 
 
-    public DietController( DietService dietService) {
+    public DietController(DietService dietService, UserService userService) {
         this.dietService = dietService;
-
+        this.userService = userService;
     }
 
     @GetMapping
@@ -52,7 +56,11 @@ public class DietController {
     @RequestMapping("/save-diet")
 
     public ResponseEntity<String> saveDiet(@Valid @RequestBody DietEntity dietEntity) {
-       dietEntity.setNormalUserId(1);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+       dietEntity.setNormalUserId(userFromDb.getId());
 
 
 

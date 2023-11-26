@@ -28,7 +28,7 @@ const CreateAccountPage = () => {
             "birthDate": birthDate,
             "height": height,
             "weight": weight,
-            "palfactor": 1.5,
+            "palfactor": 1.2,
             "sex": sex
         }
 
