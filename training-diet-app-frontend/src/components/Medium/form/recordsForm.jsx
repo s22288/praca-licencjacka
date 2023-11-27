@@ -2,7 +2,7 @@ import { useState } from "react"
 import MaxesDiagram from "../../Big/userData/maxesDiagram/maxesdiagram";
 import { addUserMaxes } from "../../../services/usersServices/UserService";
 import './form-records.css'
-import Chart from 'chart.js/auto'; // to musi tu być
+import Chart from 'chart.js/auto'; 
 
 const RecordForm = () => {
 
@@ -17,21 +17,21 @@ const RecordForm = () => {
 
 
 
+
+
+
+
+
     const handleSubmit = () => {
 
-        console.log(bench)
-        console.log(pullups)
-        console.log(squad)
-        console.log(deadlift)
-        console.log(dayOfRecord)
-
+console.log(dayOfRecord)
         const record = {
-            "bench": 100,
-            "pullups": 130,
-            "squad": 324,
-            "deadlift": 213,
-            "dayOfRecords": "2022-01-01",
-        };
+            "bench": bench,
+                  "pullups": pullups,
+                  "squad": squad,
+                  "deadlift": deadlift,
+                  "dayOfRecords": dayOfRecord
+      }
 
         addUserMaxes(record)
 
@@ -44,27 +44,27 @@ const RecordForm = () => {
             <form onSubmit={handleSubmit} className="form-login-form">
                 <label className="form-customlb">Benchpress Max :</label>
                 <br></br>
-                <input
+                <input required
 
                     type="number"
                     value={bench}
                     onChange={(e) => setBench(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input"  /> 
                 <br />
 
                 <label className="form-customlb">Pullups Max :</label>
-                <input
+                <input required
 
                     type="number"
                     value={pullups}
                     onChange={(e) => setPullups(e.target.value)}
-                    className="form-user-input" />
+                    className="form-user-input"  />
                 <br />
 
                 <label className="form-customlb">Squad Max :</label>
                 <br></br>
 
-                <input
+                <input required
 
                     type="number"
                     value={squad}
@@ -76,7 +76,7 @@ const RecordForm = () => {
                 <label className="form-customlb">Deadlift Max :</label>
                 <br></br>
 
-                <input
+                <input required
 
                     type="number"
                     value={deadlift}

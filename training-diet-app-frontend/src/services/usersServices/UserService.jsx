@@ -20,10 +20,10 @@ async function getUserData() {
 
 
 
-function getUserMaxes() {
+async function getUserMaxes() {
     const token = localStorage.getItem('jwtToken');
 
-    return fetch("http://localhost:9800/normal-user/user-maxes", {
+    return await fetch("http://localhost:9800/normal-user/user-maxes", {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -39,7 +39,7 @@ function getUserMaxes() {
 
 async function updateUsersData(data) {
     const token = localStorage.getItem('jwtToken');
-
+console.log('data' +data)
     return await fetch("http://localhost:9800/normal-user/update-data", {
         method: 'Post',
         headers: {
@@ -53,10 +53,9 @@ async function updateUsersData(data) {
 
 
 async function addUserMaxes(data) {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGlib3VAbWFpbC5jb20iLCJpYXQiOjE3MDA5MTk5NTYsImV4cCI6MTcwMDkyMTM5Nn0.EfZ70Dmb54sXheO3vTQLl5ERoZJI2vn3gGmaLNO-Fsc'
-    console.log(data)
+    const token = localStorage.getItem('jwtToken');
     return await fetch("http://localhost:9800/normal-user/add-maxes", {
-        method: 'post',
+        method: 'Post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

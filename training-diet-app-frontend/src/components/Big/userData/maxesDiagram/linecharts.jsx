@@ -1,25 +1,17 @@
-
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-
-
 const LineChart = (props) => {
-  const userMaxArray = props.data;
+  const userMaxArray = props.data ?? [];
 
-  const labels = []
-  let benchMax = userMaxArray.map(b => b.bench);
-  let pullupMax = userMaxArray.map(b => b.pullups);
+  const labels = userMaxArray.map((b) => String(b?.dayOfRecords));
+  const benchMax = userMaxArray.map((b) => b?.bench || 0);
+  const pullupMax = userMaxArray.map((b) => b?.pullups || 0);
+  const squadMax = userMaxArray.map((b) => b?.squad || 0);
+  const deadliftMax = userMaxArray.map((b) => b?.deadlift || 0);
 
-  let squadMax = userMaxArray.map(b => b.squad);
-  let deadliftMax = userMaxArray.map(b => b.deadlift);
-
-  userMaxArray.forEach(element => {
-    console.log(element.dayOfRecords)
-    labels.push(element.dayOfRecords)
-  });
   const data = {
-    labels: labels,
+    labels: labels.length > 0 ? labels : [new Date().toLocaleDateString()],
     datasets: [
       {
         label: "Bench Max",
@@ -29,77 +21,69 @@ const LineChart = (props) => {
       },
       {
         label: "Pullups Max",
-        backgroundColor: "rgb(0,0,255)",
-        borderColor: "rgb(0,0,255)",
+        backgroundColor: "rgb(0, 0, 255)",
+        borderColor: "rgb(0, 0, 255)",
         data: pullupMax,
       },
       {
         label: "Squad Max",
-        backgroundColor: "rgb(255,255,0)",
-        borderColor: "rgb(255,255,0)",
+        backgroundColor: "rgb(255, 255, 0)",
+        borderColor: "rgb(255, 255, 0)",
         data: squadMax,
       },
       {
         label: "Deadlift Max",
-        backgroundColor: "rgb(0,100,0)",
-        borderColor: "rgb(0,100,0)",
+        backgroundColor: "rgb(0, 100, 0)",
+        borderColor: "rgb(0, 100, 0)",
         data: deadliftMax,
       },
     ],
   };
-  // white
+
   const options = {
-
     scales: {
-
       x: {
         grid: {
           color: "black",
         },
         ticks: {
-          color: "#black",
+          color: "black",
           font: {
             size: 30,
             family: "Bangers",
-
           },
-
         },
       },
       y: {
-        min: 1,
-        max: 500,
         grid: {
-
           color: "black",
         },
         ticks: {
-          color: "#black",
+          
+          color: "black",
           font: {
             size: 34,
             family: "Bangers",
-
           },
-
+          
         },
+        max: 500, 
+      min: 0,   
       },
     },
     plugins: {
       legend: {
         labels: {
-          color: "#black",
+          color: "black",
           font: {
             size: 30,
             family: "Bangers",
-            border: "2px solid black"
-
+            border: "2px solid black",
           },
         },
-
       },
     },
   };
-
   return (
     <div className="diagram-div">
       <Line data={data} options={options} />

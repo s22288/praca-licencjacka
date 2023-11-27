@@ -132,8 +132,8 @@ public class NormalUserController {
         NormaluserEntity userFromDb = userService.findByEmail(email);
         logger.info("id" + userFromDb.getEmail() + " email " + email);
 
-//        maxinexerciseEntity.setNormalUserId(userFromDb.getId());
-//        trainingService.saveMaxInExercise(maxinexerciseEntity);
+        maxinexerciseEntity.setNormalUserId(userFromDb.getId());
+        trainingService.saveMaxInExercise(maxinexerciseEntity);
 
         return ResponseEntity.ok("Updated ok 200");
 
