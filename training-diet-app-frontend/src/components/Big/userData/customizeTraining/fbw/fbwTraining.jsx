@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomExcercises from "../exercise/exerciseCustom";
 
 const FbwTraining = (props) => {
-    const [userData, setUserData] = useState(props.data);
+    const [userData, setUserData] = useState(props.data.map(u => ({ ...u, dayName: 'fbw' })));
        
     const replaceData = (index, mainIndex) => {
         let userDataIndex = userData.findIndex((d) => {

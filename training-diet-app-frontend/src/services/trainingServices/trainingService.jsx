@@ -1,17 +1,14 @@
 const GetAllTrainings = () => {
     const token = localStorage.getItem('jwtToken');
 
-    return fetch("http://localhost:9800/normal-user/trainings", {
+    return fetch("http://localhost:9800/normal-user/user-trainings", {
         method: 'GET',
-       
-
-
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include'
+        credentials: 'include',
     });
 
 };

@@ -53,6 +53,7 @@ private PremiumUserSerivice premiumUserSerivice;
     @RequestMapping("/save-training")
 
     public ResponseEntity<String> saveDiet(@Valid @RequestBody TrainingEntity trainingEntity) {
+        logger.info("treniing zapisany" + trainingEntity);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();

@@ -1,14 +1,14 @@
 package com.example.trainingapp.entities;
 
 import com.example.trainingapp.entities.enums.TypeOfTraining;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
-@Getter
-@Setter
+
 @Entity
 @Table(name = "training", schema = "pracalicencjacka_training_db", catalog = "")
 public class TrainingEntity {
@@ -70,5 +70,59 @@ public class TrainingEntity {
         result = 31 * result + normalUserId;
         result = 31 * result + (treiningType != null ? treiningType.hashCode() : 0);
         return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public TypeOfTraining getTreiningType() {
+        return treiningType;
+    }
+
+    public void setTreiningType(TypeOfTraining treiningType) {
+        this.treiningType = treiningType;
+    }
+
+    @JsonIgnore
+    public int getNormalUserId() {
+        return normalUserId;
+    }
+
+    @JsonIgnore
+    public void setNormalUserId(int normalUserId) {
+        this.normalUserId = normalUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "TrainingEntity{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", maxAge=" + maxAge +
+                ", normalUserId=" + normalUserId +
+                ", treiningType=" + treiningType +
+                ", exerciseEntitySet=" + exerciseEntitySet +
+                '}';
     }
 }

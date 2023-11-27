@@ -14,6 +14,8 @@ const ExcerciseDetails = () => {
         return <div>No exercise data available.</div>;
     }
 
+    console.log(data)
+    
     return (
         <div>
             <FunctionalityNavbar />

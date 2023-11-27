@@ -139,7 +139,6 @@ public class NormalUserController {
 
     }
     @CrossOrigin
-
     @RequestMapping("/diets")
     public ResponseEntity<List<DietWithMeals>> getUserDiets() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -170,9 +169,7 @@ public class NormalUserController {
     }
 
     @CrossOrigin
-    @GetMapping
-
-    @RequestMapping("/trainings")
+    @RequestMapping("/user-trainings")
     public ResponseEntity<List<TrainingEntity>> getUserTrainings() {
         logger.info("trainings" + "treniing");
 
@@ -181,8 +178,6 @@ public class NormalUserController {
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity userFromDb = userService.findByEmail(email);
         List<TrainingEntity> allUserTraining = trainingService.getAllUserTraining(userFromDb.getId());
-        ;
-        logger.info("trainings" + allUserTraining);
 
         return ResponseEntity.ok().body(allUserTraining);
     }

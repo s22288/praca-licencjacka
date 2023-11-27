@@ -1,5 +1,6 @@
 package com.example.trainingapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -36,20 +37,19 @@ public class ExerciseEntity {
     @Basic
     @Column(name = "TrainingMachine_id", nullable = false)
     private int trainingMachineId;
-//    @Basic
-//    @Column(name = "dayName")
-//
-//private String  dayName;
+    @Basic
+    @Column(name = "dayName")
+
+    private String dayName;
 
 
     @ManyToMany
-    @JoinTable(name = "trainingexercise",joinColumns = @JoinColumn( name ="exercise_id" ),inverseJoinColumns = @JoinColumn(name = "training_id"))
+    @JoinTable(name = "trainingexercise", joinColumns = @JoinColumn(name = "exercise_id"), inverseJoinColumns = @JoinColumn(name = "training_id"))
     private Set<TrainingEntity> trainingEntitySet = new HashSet<>();
 
 
-
     @ManyToMany
-    @JoinTable(name = "exercisebodypart",joinColumns = @JoinColumn( name ="exercise_id" ),inverseJoinColumns = @JoinColumn(name = "body_part_id"))
+    @JoinTable(name = "exercisebodypart", joinColumns = @JoinColumn(name = "exercise_id"), inverseJoinColumns = @JoinColumn(name = "body_part_id"))
     private Set<BodypartEntity> bodypartEntitySet = new HashSet<>();
 
     public int getId() {
@@ -65,7 +65,6 @@ public class ExerciseEntity {
     }
 
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -78,13 +77,13 @@ public class ExerciseEntity {
         return reps;
     }
 
-//    public String getDayName() {
-//        return dayName;
-//    }
-//
-//    public void setDayName(String dayName) {
-//        this.dayName = dayName;
-//    }
+    public String getDayName() {
+        return dayName;
+    }
+
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
+    }
 
     public Set<BodypartEntity> getBodypartEntitySet() {
         return bodypartEntitySet;
@@ -95,10 +94,11 @@ public class ExerciseEntity {
     }
 
 
-
+    @JsonIgnore
     public Set<TrainingEntity> getTrainingEntitySet() {
         return trainingEntitySet;
     }
+
 
     public void setTrainingEntitySet(Set<TrainingEntity> trainingEntitySet) {
         this.trainingEntitySet = trainingEntitySet;
@@ -136,6 +136,7 @@ public class ExerciseEntity {
         this.trainingMachineId = trainingMachineId;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,5 +150,18 @@ public class ExerciseEntity {
         return Objects.hash(id, name, photo, series, reps, levelOfAdvance, trainingMachineId, trainingEntitySet, bodypartEntitySet);
     }
 
-
+    @Override
+    public String toString() {
+        return "ExerciseEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", photo='" + photo + '\'' +
+                ", series=" + series +
+                ", reps=" + reps +
+                ", levelOfAdvance=" + levelOfAdvance +
+                ", trainingMachineId=" + trainingMachineId +
+                ", dayName='" + dayName + '\'' +
+                ", bodypartEntitySet=" + bodypartEntitySet +
+                '}';
+    }
 }
