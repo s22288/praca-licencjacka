@@ -21,7 +21,7 @@ const DietCustomization = () => {
     const [alergic, setAlergic] = useState();
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState(1);
-    const [goal, setGoal] = useState('lose')
+    const [goal, setGoal] = useState('lose');
 
     const [calories, setCalories] = useState(0)
 
@@ -138,10 +138,14 @@ const DietCustomization = () => {
     };
 
     const passGoalToParent = (record) => {
-        setGoal(record)
+        if (record) {
+            setGoal(record);
+        }
     }
     const passCaloriesToParent = (record) => {
-        setGoalCalories(record)
+        if (record !== undefined) {
+            setGoalCalories(record);
+        }
     }
     return (
         <div>
@@ -215,9 +219,10 @@ const DietCustomization = () => {
                                 </div>
                             ))}
                         </p>
-
+                       <p></p> 
                     </div>
                 ) : (
+
                     <p></p>
                 )}
             </div>

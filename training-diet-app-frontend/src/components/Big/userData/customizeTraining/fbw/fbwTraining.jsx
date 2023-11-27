@@ -3,8 +3,7 @@ import CustomExcercises from "../exercise/exerciseCustom";
 
 const FbwTraining = (props) => {
     const [userData, setUserData] = useState(props.data);
-    console.log(userData)
-
+       
     const replaceData = (index, mainIndex) => {
         let userDataIndex = userData.findIndex((d) => {
             return d.exerciseEntity.id === mainIndex;

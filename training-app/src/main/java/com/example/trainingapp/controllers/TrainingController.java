@@ -5,13 +5,17 @@ import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternativ
 import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.PremiumUserSerivice;
+import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import com.example.trainingapp.services.repositories.TrainingEventRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -30,9 +34,12 @@ private PremiumUserSerivice premiumUserSerivice;
     private TrainingService trainingService;
 
 
-    public TrainingController(PremiumUserSerivice premiumUserSerivice, TrainingService trainingService) {
+    private UserService userService;
+
+    public TrainingController(PremiumUserSerivice premiumUserSerivice, TrainingService trainingService, UserService userService) {
         this.premiumUserSerivice = premiumUserSerivice;
         this.trainingService = trainingService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -46,8 +53,11 @@ private PremiumUserSerivice premiumUserSerivice;
     @RequestMapping("/save-training")
 
     public ResponseEntity<String> saveDiet(@Valid @RequestBody TrainingEntity trainingEntity) {
-
-        trainingEntity.setNormalUserId(1);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        trainingEntity.setNormalUserId(userFromDb.getId());
 
 
 

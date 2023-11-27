@@ -3,14 +3,15 @@ const GetAllTrainings = () => {
 
     return fetch("http://localhost:9800/normal-user/trainings", {
         method: 'GET',
-        method: 'GET',
+       
+
 
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include',
+        credentials: 'include'
     });
 
 };

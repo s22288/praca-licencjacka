@@ -27,11 +27,7 @@ const TrainingCustomization = () => {
 
     } if (excercise === "SPLIT") {
       toSave = Object.values(userDataSplit).flat().map(value => value.exerciseEntity)
-      // for (const day of ["one", "two", "three"]) {
-      //   for (const entry of userDataSplit[day]) {
-      //     toSave.push(entry.exerciseEntity);
-      //   }
-      // }
+    
 
     }
     const trainingToSave = {
@@ -39,6 +35,7 @@ const TrainingCustomization = () => {
       maxAge: 99,
       treiningType: excercise,
       exerciseEntitySet: toSave,
+
     };
 
     SaveTrainig(trainingToSave);

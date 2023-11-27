@@ -173,7 +173,6 @@ const UserAccount = () => {
                         <input
 
                             type="date"
-
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
                             className="userData-user-input" required />
@@ -207,6 +206,7 @@ const UserAccount = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={pal}
+                                
                                 label="Age"
                                 onChange={handleChange}
                             >

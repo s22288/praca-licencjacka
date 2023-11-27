@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './navbar.css'
-import { ReactComponent as Logo } from '../../../assets/logo.svg'
+import { ReactComponent as Logo } from '../../../assets/premiuLogo.svg'
 import { Link } from "react-router-dom";
 
-const UserNavbar = () => {
+const PremiumUserNavbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleMenuToggle = () => {
@@ -16,11 +16,11 @@ const UserNavbar = () => {
     };
 
     return (
-        <nav className="navbar">
+        <nav className="premium-navbar">
             <div className="logo-container">
                 <Logo className="logo" />
             </div>
-            <p>normal</p>
+            <p>premium</p>
             <button className="menu-button" onClick={handleMenuToggle}>
                 Menu
             </button>
@@ -46,7 +46,17 @@ const UserNavbar = () => {
                     </Link>
                 </li>
 
-               
+                <li>
+                    <Link to="/user-page/premium-indicators" className="nav-link">
+                        Body Indicators
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to="/user-page/calendar" className="nav-link">
+                        Calendar
+                    </Link>
+                </li>
                 <li>
                     <Link className="nav-link" to={"/"} onClick={handleLogout}>
                         Logout
@@ -57,4 +67,4 @@ const UserNavbar = () => {
     );
 };
 
-export default UserNavbar;
+export default PremiumUserNavbar;

@@ -1,12 +1,16 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "exercise", schema = "pracalicencjacka_training_db", catalog = "")
 public class ExerciseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +36,10 @@ public class ExerciseEntity {
     @Basic
     @Column(name = "TrainingMachine_id", nullable = false)
     private int trainingMachineId;
+//    @Basic
+//    @Column(name = "dayName")
+//
+//private String  dayName;
 
 
     @ManyToMany
@@ -56,6 +64,8 @@ public class ExerciseEntity {
         return name;
     }
 
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -68,12 +78,30 @@ public class ExerciseEntity {
         return reps;
     }
 
+//    public String getDayName() {
+//        return dayName;
+//    }
+//
+//    public void setDayName(String dayName) {
+//        this.dayName = dayName;
+//    }
+
     public Set<BodypartEntity> getBodypartEntitySet() {
         return bodypartEntitySet;
     }
 
     public void setBodypartEntitySet(Set<BodypartEntity> bodypartEntitySet) {
         this.bodypartEntitySet = bodypartEntitySet;
+    }
+
+
+
+    public Set<TrainingEntity> getTrainingEntitySet() {
+        return trainingEntitySet;
+    }
+
+    public void setTrainingEntitySet(Set<TrainingEntity> trainingEntitySet) {
+        this.trainingEntitySet = trainingEntitySet;
     }
 
     public void setReps(int reps) {
@@ -108,32 +136,18 @@ public class ExerciseEntity {
         this.trainingMachineId = trainingMachineId;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ExerciseEntity that = (ExerciseEntity) o;
-
-        if (id != that.id) return false;
-        if (series != that.series) return false;
-        if (levelOfAdvance != that.levelOfAdvance) return false;
-        if (trainingMachineId != that.trainingMachineId) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (photo != null ? !photo.equals(that.photo) : that.photo != null) return false;
-
-        return true;
+        return id == that.id && series == that.series && reps == that.reps && levelOfAdvance == that.levelOfAdvance && trainingMachineId == that.trainingMachineId && Objects.equals(name, that.name) && Objects.equals(photo, that.photo) && Objects.equals(trainingEntitySet, that.trainingEntitySet) && Objects.equals(bodypartEntitySet, that.bodypartEntitySet);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (photo != null ? photo.hashCode() : 0);
-        result = 31 * result + series;
-        result = 31 * result + levelOfAdvance;
-        result = 31 * result + trainingMachineId;
-        return result;
+        return Objects.hash(id, name, photo, series, reps, levelOfAdvance, trainingMachineId, trainingEntitySet, bodypartEntitySet);
     }
+
+
 }

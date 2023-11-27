@@ -40,4 +40,22 @@ public class PremiumUserController {
         return ResponseEntity.ok(indicators);
 
     }
+
+    @GetMapping
+    @RequestMapping("/check-user-status")
+
+    public ResponseEntity<Indicator> checkIfUserIsPremium(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+
+
+        Indicator indicators = userService.calculateIndicators(userFromDb.getId());
+
+
+        return ResponseEntity.ok(indicators);
+
+    }
 }

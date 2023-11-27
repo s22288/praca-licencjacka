@@ -22,8 +22,8 @@ public class TrainingeventEntity {
     private String localozation;
 
     @Basic
-    @Column(name = "day", nullable = false, length = 300)
-    private String day;
+    @Column(name = "week", nullable = false, length = 300)
+    private String week;
 
 
     @ManyToMany
@@ -47,11 +47,8 @@ public class TrainingeventEntity {
         this.localozation = localozation;
     }
 
-    public void setDay(String day) {
-        this.day = day;
-
-
-
+    public void setWeek(String week) {
+        this.week = week;
     }
 
     public int getId() {
@@ -66,8 +63,8 @@ public class TrainingeventEntity {
         return localozation;
     }
 
-    public String getDay() {
-        return day;
+    public String getWeek() {
+        return week;
     }
 
     @Override

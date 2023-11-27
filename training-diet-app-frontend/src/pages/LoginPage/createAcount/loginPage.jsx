@@ -9,6 +9,8 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
+
+    const [status, userStatus] = useState("USER");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {

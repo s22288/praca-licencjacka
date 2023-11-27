@@ -3,6 +3,8 @@ import CustomizedRating from "../ExerciseDetails/customRaiting";
 import trainImage from "../../../../assets/traininguser.jpg";
 import FunctionalityNavbar from "../../../../components/Medium/navbar/functionalitynavbar";
 import './../../../../context/mealsandexercisedetails.css'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+
 const ExcerciseDetails = () => {
     const location = useLocation();
     const data = location.state?.data;
@@ -32,6 +34,34 @@ const ExcerciseDetails = () => {
                     ))}
                 </div>
             </div>
+            <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="right">Day 1</TableCell>
+            <TableCell align="right">Day 2</TableCell>
+            <TableCell align="right">Day 3</TableCell>
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
         </div>
     );
 };

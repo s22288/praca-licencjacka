@@ -6,6 +6,28 @@
     align-items: center;
 
 }
+.premium-navbar {
+    background-color: gold;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.admin-navbar {
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.admin-text{
+    color: white;
+   
+}
 
 .logo {
     font-size: 20px;

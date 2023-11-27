@@ -142,7 +142,11 @@ public class NormalUserController {
 
     @RequestMapping("/diets")
     public ResponseEntity<List<DietWithMeals>> getUserDiets() {
-        List<DietWithMeals> userDiets = dietService.findDietsByUserIdWithMeals(1);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        List<DietWithMeals> userDiets = dietService.findDietsByUserIdWithMeals(userFromDb.getId());
 
 
         return ResponseEntity.ok().body(userDiets);
@@ -166,20 +170,25 @@ public class NormalUserController {
     }
 
     @CrossOrigin
+    @GetMapping
 
     @RequestMapping("/trainings")
     public ResponseEntity<List<TrainingEntity>> getUserTrainings() {
+        logger.info("trainings" + "treniing");
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity userFromDb = userService.findByEmail(email);
         List<TrainingEntity> allUserTraining = trainingService.getAllUserTraining(userFromDb.getId());
-
+        ;
+        logger.info("trainings" + allUserTraining);
 
         return ResponseEntity.ok().body(allUserTraining);
     }
 
     @CrossOrigin
+    @GetMapping
 
     @RequestMapping("/trainings-days")
     public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {

@@ -113,7 +113,7 @@ const CalendarOfTraining = () => {
             <div className="calendar-days-container">
 
                 <div id="mon" className="calendar-day">
-                    <button value={'mon'} onClick={chooseDay}>Monday</button>
+                    <button value={'mon'} onClick={chooseDay}>WEEK I</button>
                     <div>
                         <Splide aria-label="My Favorite Images">
                             {mondayTrainings && mondayTrainings.map((item, index) => (
@@ -130,7 +130,7 @@ const CalendarOfTraining = () => {
                     </div>
                 </div>
                 <div id="tue" className="calendar-day">
-                    <button value={'tue'} onClick={chooseDay}>Tuesday</button>
+                    <button value={'tue'} onClick={chooseDay}>WEEK II</button>
                     <div>
                         <Splide aria-label="My Favorite Images">
 
@@ -147,7 +147,7 @@ const CalendarOfTraining = () => {
                     </div>
                 </div>
                 <div id="wen" className="calendar-day">
-                    <button value={'wen'} onClick={chooseDay}>Wendsday</button>
+                    <button value={'wen'} onClick={chooseDay}>WEEK III</button>
                     <div>
                         <Splide aria-label="My Favorite Images">
                             {wendsdayTrainings && wendsdayTrainings.map((item, index) => (
@@ -161,7 +161,7 @@ const CalendarOfTraining = () => {
                     </div>
                 </div>
                 <div id="thu" className="calendar-day">
-                    <button value={'thu'} onClick={chooseDay}>Thursday</button>
+                    <button value={'thu'} onClick={chooseDay}>WEEK IV</button>
                     <Splide aria-label="My Favorite Images">
                         {thursdayTrainings && thursdayTrainings.map(item => (
                             <SplideSlide>
@@ -173,7 +173,7 @@ const CalendarOfTraining = () => {
                     </Splide>
                 </div>
                 <div id="fri" className="calendar-day">
-                    <button value={'fri'} onClick={chooseDay}>Friday</button>
+                    <button value={'fri'} onClick={chooseDay}>WEEK V</button>
                     <Splide aria-label="My Favorite Images">
                         {fridayTrainings && fridayTrainings.map(item => (
                             <SplideSlide>
@@ -185,7 +185,7 @@ const CalendarOfTraining = () => {
                     </Splide>
                 </div>
                 <div id="sat" className="calendar-day">
-                    <button value={'sat'} onClick={chooseDay}>Saturday</button>
+                    <button value={'sat'} onClick={chooseDay}>WEEK VI</button>
                     <Splide aria-label="My Favorite Images">
                         {saturdayTrainings && saturdayTrainings.map(item => (
                             <SplideSlide>
@@ -197,7 +197,7 @@ const CalendarOfTraining = () => {
                     </Splide>
                 </div>
                 <div id="sun" className="calendar-day">
-                    <button value={'sun'} onClick={chooseDay}>Sunday</button>
+                    <button value={'sun'} onClick={chooseDay}>WEEK VII</button>
                     <Splide aria-label="My Favorite Images">
                         {sundayTrainings && sundayTrainings.map(item => (
                             <SplideSlide>
