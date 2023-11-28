@@ -1,5 +1,6 @@
 package com.example.trainingapp.config;
 
+import com.example.trainingapp.entities.enums.Role;
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +30,9 @@ public class SecurityConfiguration {
         http.cors(withDefaults()).csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
+//                        .requestMatchers("/normal-user/**").hasAnyRole("USER")
                         .anyRequest().authenticated()
+
 
                 ).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvieder)

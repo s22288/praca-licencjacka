@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./usercard.css";
+import { BuyPremiumSubscription } from "../../../../services/usersServices/UserService";
 
 export default function UserPageCard(props) {
     let image = props.data.img;
@@ -15,6 +16,7 @@ export default function UserPageCard(props) {
     let acess = props.data.acces;
 
     const buyAccess = (event) => {
+        
         event.preventDefault();
         console.log("fetch");
         const username = localStorage.getItem("email");
@@ -43,7 +45,13 @@ export default function UserPageCard(props) {
         localStorage.removeItem("isLoggedIn");
         localStorage.removeItem("email");
         localStorage.removeItem("password");
+
+     
     };
+    const buySubscription =()=>{
+        BuyPremiumSubscription();
+        
+       }
     return (
         <Card sx={{ maxWidth: 800 }}>
             <CardMedia
@@ -69,7 +77,7 @@ export default function UserPageCard(props) {
             <CardActions>
                 {acess ? (
                     <div onClick={buyAccess}>
-                        <Link to={to} className="link-button">
+                        <Link to={to} onClick={buySubscription()} className="link-button">
                             "buy acess"
                         </Link>
                     </div>

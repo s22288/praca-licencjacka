@@ -1,10 +1,7 @@
 package com.example.trainingapp.services.functionality.TrainingService;
 
-import com.example.trainingapp.controllers.TrainingController;
 import com.example.trainingapp.entities.*;
-import com.example.trainingapp.entities.dto.helperclasses.DayWithTrainings;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
-import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.repositories.*;
 import org.slf4j.Logger;
@@ -127,17 +124,27 @@ public class TrainingServiceImplementation implements TrainingService {
         List<ExerciseWithAlternatives> alternativesForShoulders = findAlternativesForlistofExercises(shouldersExerciseses);
 
         List<ExerciseEntity> absExerciseses = exerciseRepository.findTop3ExercisesForAbs();
-        List<ExerciseWithAlternatives> alternativesForAbs = findAlternativesForlistofExercises(absExerciseses);
 
+        List<ExerciseWithAlternatives> alternativesForAbs = findAlternativesForlistofExercises(absExerciseses);
         mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForChest);
+
         mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForTriceps);
+
         mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForAbs);
+
         mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForBack);
+
         mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForArms);
+
         mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForAbs);
+
         mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForLegs);
+
         mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForShoulders);
+
         mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForAbs);
+
+//
 
 
         return mapOfDaysAndExericses;
@@ -163,7 +170,7 @@ public class TrainingServiceImplementation implements TrainingService {
 
         exerciseEntities.forEach(b -> {
            String bodyPart = exerciseRepository.findBodyPart(b.getId());
-        logger.info("bodypart " + bodyPart + " of id " + b.getId());
+
 
             List<ExerciseEntity> alternatives3 = exerciseRepository.findTwoAlternativesWithoutUsed(exerciseRepository.findBodyPart(b.getId()));
             ExerciseWithAlternatives exerciseWithAlternatives3 = ExerciseWithAlternatives.builder().exerciseEntity(b).alternatives(alternatives3).build();

@@ -20,8 +20,15 @@ const LoginPage = () => {
             password: password
         }
         LoginToUserPage(login).then(response => {
+            if (response.status === 403) {
+                window.location.href = '/login';
+              }
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            if(response.ok){
+                navigate('/user-page')
+
             }
             return response.json();
         }).then(data => {
@@ -64,7 +71,6 @@ const LoginPage = () => {
         //         console.error("Login failed", error);
         //         setError("Invalid credentials");
         //     });
-        navigate('/user-page')
     };
 
     return (

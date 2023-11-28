@@ -1,5 +1,7 @@
 package com.example.trainingapp.controllers;
 
+import com.example.trainingapp.controllers.auth.AuthenticationResponse;
+import com.example.trainingapp.controllers.auth.AuthenticationService;
 import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.NormaluserEntity;
@@ -18,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -33,6 +36,7 @@ public class NormalUserController {
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
     private UserService userService;
 
+    private  AuthenticationService service;
 
 
 
@@ -42,15 +46,12 @@ public class NormalUserController {
 
     private TrainingService trainingService;
 
-    public NormalUserController(UserService userService,DietService dietService,TrainingService trainingService) {
+    public NormalUserController(UserService userService, AuthenticationService service, DietService dietService, TrainingService trainingService) {
         this.userService = userService;
+        this.service = service;
         this.dietService = dietService;
-
         this.trainingService = trainingService;
     }
-
-
-
 
     @GetMapping
     @RequestMapping("/cpm")
@@ -88,6 +89,7 @@ public class NormalUserController {
 
 
     @PostMapping
+
     @RequestMapping("/account-data")
 
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
@@ -195,6 +197,13 @@ public class NormalUserController {
 
 
         return ResponseEntity.ok().body(trainigsWithDays);
+    }
+
+    @PostMapping("/update-premium")
+    public ResponseEntity<AuthenticationResponse> updateToPremium(){
+
+        return ResponseEntity.ok(service.updateToPremium());
+
     }
 
 }

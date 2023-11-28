@@ -1,7 +1,11 @@
 package com.example.trainingapp.controllers.auth;
 
+import com.example.trainingapp.entities.NormaluserEntity;
+import com.example.trainingapp.services.functionality.UserService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,4 +26,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.authenticate(request));
 
     }
+
+
 }
