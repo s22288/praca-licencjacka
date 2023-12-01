@@ -39,17 +39,27 @@ async function getUserMaxes() {
 
 async function updateUsersData(data) {
     const token = localStorage.getItem('jwtToken');
-console.log('data' +data)
+    console.log('data' + data)
     return await fetch("http://localhost:9800/normal-user/update-data", {
         method: 'Post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-        },body: JSON.stringify(data)
+        }, body: JSON.stringify(data)
     }
     )
 }
+
+// function requireAuth(nextState, replace, next) {
+//     if (!authenticated) {
+//       replace({
+//         pathname: "/login",
+//         state: {nextPathname: nextState.location.pathname}
+//       });
+//     }
+//     next();
+//   }
 
 
 async function addUserMaxes(data) {
@@ -97,7 +107,7 @@ const DeleteUserById = (id) => {
 
 }
 // /update-premium
-const BuyPremiumSubscription=()=>{
+const BuyPremiumSubscription = () => {
     const token = localStorage.getItem('jwtToken');
 
     return fetch("http://localhost:9800/normal-user/update-premium", {
@@ -135,4 +145,4 @@ const LoginToUserPage = (login) => {
 }
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage,BuyPremiumSubscription }
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, BuyPremiumSubscription }

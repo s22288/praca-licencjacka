@@ -20,7 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -31,8 +35,12 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/normal-user")
 @CrossOrigin("*")
-
-public class NormalUserController {
+@EnableMethodSecurity
+(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
+public class NormalUserController  {
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
     private UserService userService;
 
@@ -66,6 +74,8 @@ public class NormalUserController {
 
 
     @PostMapping
+
+
     @RequestMapping("/update-data")
     public ResponseEntity<String> updateUserMesurements(@Valid @RequestBody NormaluserEntity userData) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -89,8 +99,8 @@ public class NormalUserController {
 
 
     @PostMapping
-
     @RequestMapping("/account-data")
+    @PreAuthorize("hasAnyAuthority('USER')")
 
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

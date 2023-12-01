@@ -22,11 +22,12 @@ const LoginPage = () => {
         LoginToUserPage(login).then(response => {
             if (response.status === 403) {
                 window.location.href = '/login';
-              }
+            }
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            if(response.ok){
+            if (response.ok) {
+
                 navigate('/user-page')
 
             }

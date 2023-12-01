@@ -1,5 +1,6 @@
 package com.example.trainingapp.entities;
 
+import com.example.trainingapp.controllers.NormalUserController;
 import com.example.trainingapp.entities.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
@@ -7,6 +8,8 @@ import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
 import org.apache.commons.math3.util.Precision;
 import org.hibernate.annotations.Check;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +30,8 @@ import java.util.List;
 @AllArgsConstructor
 
 public class NormaluserEntity implements UserDetails {
+    private static final Logger logger = LoggerFactory.getLogger(NormaluserEntity.class);
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -157,7 +162,27 @@ public class NormaluserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        logger.info("rola " + role.name());
+
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+//    public boolean isAdmin() {
+//        return getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//    }
+//
+//    public boolean isUser() {
+//        return getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"));
+//    }
+
+
+    public Role getRole() {
+        return role;
+    }
+
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
