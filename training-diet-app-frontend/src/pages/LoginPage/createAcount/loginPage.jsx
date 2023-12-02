@@ -36,6 +36,22 @@ const LoginPage = () => {
             const token = data.token;
             localStorage.setItem('jwtToken', token);
             console.log(token)
+            const role = JSON.parse(window.atob(token.split(".")[1])).role;
+            let userRole = role[0].authority
+
+            switch (userRole) {
+                case 'ADMIN':
+                    navigate('/admin-page');
+                    break;
+                case 'USER':
+                    navigate('/user-page');
+                    break;
+                case 'PREMIUMUSER':
+                    navigate('/premium-user-page');
+                    break;
+                default:
+                    navigate('/login');
+            }
             return data;
         })
             .catch(error => {

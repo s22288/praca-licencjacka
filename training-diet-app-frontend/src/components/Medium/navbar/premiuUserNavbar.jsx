@@ -20,7 +20,6 @@ const PremiumUserNavbar = () => {
             <div className="logo-container">
                 <Logo className="logo" />
             </div>
-            <p>premium</p>
             <button className="menu-button" onClick={handleMenuToggle}>
                 Menu
             </button>

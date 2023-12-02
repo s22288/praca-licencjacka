@@ -29,6 +29,17 @@ insert into normaluser ( birth_date, height, palfactor,sex, weight, first_name, 
                         photo,role)
 values ('1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewandowska@gmail.com','password14','photo2.jpg','USER');
 
+
+insert into normaluser ( birth_date, height, palfactor,sex, weight, first_name, last_name, email, password,
+                         photo,role)
+values ('1959-12-12',166.0,1.5,false,66,'Rafał','Kowalski','admin@gmail.com','$2a$10$Zd/yNqL0EbjpvPIXuKNw6e2zDV.2eIT7vPtgkG01XYbKU7lQyhbvq','photo2.jpg','ADMIN');
+
+
+
+insert into normaluser ( birth_date, height, palfactor,sex, weight, first_name, last_name, email, password,
+                         photo,role)
+values ('1959-12-12',166.0,1.6,false,66,'Kacper','Nowatorski','premium@gmail.com','$2a$10$HLhKzKaf/6zyu5EdpoEG1OF8U8k3Pe8yZHhAuDwz5FcnkUS4wrkB2','photo2.jpg','PREMIUMUSER');
+
 -- premium users
 
 insert into premiumuser (end_subscription, hips_circumference, start_subscription, waist_circumference,id)

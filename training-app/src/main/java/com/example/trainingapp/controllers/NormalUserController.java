@@ -63,6 +63,8 @@ public class NormalUserController  {
 
     @GetMapping
     @RequestMapping("/cpm")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<Double> getCpmOfUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
@@ -75,6 +77,7 @@ public class NormalUserController  {
 
     @PostMapping
 
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
     @RequestMapping("/update-data")
     public ResponseEntity<String> updateUserMesurements(@Valid @RequestBody NormaluserEntity userData) {
@@ -100,7 +103,7 @@ public class NormalUserController  {
 
     @PostMapping
     @RequestMapping("/account-data")
-    @PreAuthorize("hasAnyAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
     public ResponseEntity<NormaluserEntity> updateUserMesurements() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -120,6 +123,8 @@ public class NormalUserController  {
 
     @GetMapping
     @RequestMapping("/user-maxes")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<List<MaxinexerciseEntity>> getUsersMaxes() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
@@ -135,6 +140,8 @@ public class NormalUserController  {
     @PostMapping
 
     @RequestMapping("/add-maxes")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<String> addUserMax( @RequestBody MaxinexerciseEntity maxinexerciseEntity ) {
 
         logger.info("add max" + maxinexerciseEntity);
@@ -152,6 +159,8 @@ public class NormalUserController  {
     }
     @CrossOrigin
     @RequestMapping("/diets")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<List<DietWithMeals>> getUserDiets() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
@@ -166,6 +175,8 @@ public class NormalUserController  {
 
     @GetMapping
     @RequestMapping("/delete-diet/{id}")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public  ResponseEntity<String> deleteDiet(@PathVariable long id){
         dietService.deleteDietById( id);
         return  ResponseEntity.ok("deleted");
@@ -174,6 +185,8 @@ public class NormalUserController  {
 
     @GetMapping
     @RequestMapping("/delete-training/{id}")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public  ResponseEntity<String> deleteTraining(@PathVariable long id){
         trainingService.deleteTrainingById( id);
         return  ResponseEntity.ok("deleted");
@@ -182,6 +195,8 @@ public class NormalUserController  {
 
     @CrossOrigin
     @RequestMapping("/user-trainings")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<List<TrainingEntity>> getUserTrainings() {
         logger.info("trainings" + "treniing");
 
@@ -198,6 +213,8 @@ public class NormalUserController  {
     @GetMapping
 
     @RequestMapping("/trainings-days")
+    @PreAuthorize("hasAnyAuthority('USER')")
+
     public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
@@ -210,6 +227,8 @@ public class NormalUserController  {
     }
 
     @PostMapping("/update-premium")
+    @PreAuthorize("hasAnyAuthority('USER')")
+
     public ResponseEntity<AuthenticationResponse> updateToPremium(){
 
         return ResponseEntity.ok(service.updateToPremium());

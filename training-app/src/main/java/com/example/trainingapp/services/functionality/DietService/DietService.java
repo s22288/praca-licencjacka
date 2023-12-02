@@ -29,6 +29,6 @@ public interface DietService {
      List<MealEntity> getAllMeals();
 List<MealEntity> getAllPageable(Pageable pageable);
      void deleteMealByid(long id);
-
+     void saveMeal(MealEntity mealEntity);
 
 }

@@ -15,6 +15,19 @@ const GetMealByMealType = (type, goalCalories) => {
 
 
 };
+const EditChoosenMeal = (data) => {
+    const token = localStorage.getItem('jwtToken');
+    return fetch("http://localhost:9800/admin-user/add-meal", {
+        method: 'Post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include', body: JSON.stringify(data)
+    }
+    )
+}
 
 const GetAllMeals = (page, size, order) => {
     const token = localStorage.getItem('jwtToken');
@@ -47,4 +60,4 @@ const DeleteMealByid = (id) => {
 
 }
 
-export { GetMealByMealType, GetAllMeals, DeleteMealByid };
+export { GetMealByMealType, GetAllMeals, DeleteMealByid, EditChoosenMeal };

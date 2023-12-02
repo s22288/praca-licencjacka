@@ -20,7 +20,6 @@ const UserNavbar = () => {
             <div className="logo-container">
                 <Logo className="logo" />
             </div>
-            <p>normal</p>
             <button className="menu-button" onClick={handleMenuToggle}>
                 Menu
             </button>

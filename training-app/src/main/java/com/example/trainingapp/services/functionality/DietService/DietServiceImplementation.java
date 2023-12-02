@@ -157,4 +157,9 @@ dietRepository.save(dietEntity);
     public void deleteMealByid(long id) {
         mealRepostiory.deleteById(id);
     }
+
+    @Override
+    public void saveMeal(MealEntity meal) {
+        mealRepostiory.save(meal);
+    }
 }

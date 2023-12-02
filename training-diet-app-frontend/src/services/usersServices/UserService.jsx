@@ -107,21 +107,21 @@ const DeleteUserById = (id) => {
 
 }
 // /update-premium
-const BuyPremiumSubscription = () => {
-    const token = localStorage.getItem('jwtToken');
+// const BuyPremiumSubscription = () => {
+//     const token = localStorage.getItem('jwtToken');
 
-    return fetch("http://localhost:9800/normal-user/update-premium", {
-        method: 'Post',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+//     return fetch("http://localhost:9800/normal-user/update-premium", {
+//         method: 'Post',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`,
 
-        },
-        credentials: 'include',
-    }
-    )
-}
+//         },
+//         credentials: 'include',
+//     }
+//     )
+// }
 const RegisterUser = (data) => {
     return fetch("http://localhost:9800/api/v1/auth/register", {
         method: 'Post',
@@ -145,4 +145,6 @@ const LoginToUserPage = (login) => {
 }
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, BuyPremiumSubscription }
+
+
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage }

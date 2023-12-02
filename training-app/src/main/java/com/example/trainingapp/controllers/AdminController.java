@@ -7,8 +7,10 @@ import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.DietRepository;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +33,8 @@ public class AdminController {
 
     @GetMapping
     @RequestMapping("/get-users")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public ResponseEntity<List<NormaluserEntity>> getAllUsers() {
 
         return ResponseEntity.ok(userService.getAllUsers());
@@ -39,6 +43,8 @@ public class AdminController {
 
     @PostMapping
     @RequestMapping("/delete-user/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public  ResponseEntity<String> deleteUser(@PathVariable long id){
         userService.deleteUser(id);
         return  ResponseEntity.ok("deleted");
@@ -46,6 +52,8 @@ public class AdminController {
     }
     @GetMapping
     @RequestMapping("/get-exercises")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public  ResponseEntity<List<ExerciseEntity>> getExercises(Pageable pageable){
 
         return  ResponseEntity.ok(trainingService.getAllExerciesPageable(pageable));
@@ -54,6 +62,8 @@ public class AdminController {
 
     @PostMapping
     @RequestMapping("/delete-exercise/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public  ResponseEntity<String> deleteExerciseById(@PathVariable long id){
         trainingService.deleteExerciseByid(id);
         return  ResponseEntity.ok("deleted");
@@ -61,14 +71,40 @@ public class AdminController {
     }
     @GetMapping
     @RequestMapping("/get-meals")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public  ResponseEntity<List<MealEntity>> getMeals(Pageable pageable){
         List<MealEntity> allPageable = dietService.getAllPageable(pageable);
         return  ResponseEntity.ok(allPageable);
 
     }
 
+
+    @PostMapping
+    @RequestMapping("/add-exercise")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
+    public  ResponseEntity<String> addExercise(@Valid @RequestBody ExerciseEntity exerciseEntity){
+        trainingService.saveExercise(exerciseEntity);
+        return  ResponseEntity.ok("200");
+
+    }
+
+    @PostMapping
+    @RequestMapping("/add-meal")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
+    public  ResponseEntity<String> addMeal( @Valid @RequestBody MealEntity mealEntity){
+        dietService.saveMeal(mealEntity);
+
+        return  ResponseEntity.ok("200");
+
+    }
+
     @PostMapping
     @RequestMapping("/delete-meal/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+
     public  ResponseEntity<String> deleteMealById(@PathVariable long id){
         dietService.deleteMealByid(id);
         return  ResponseEntity.ok("deleted");

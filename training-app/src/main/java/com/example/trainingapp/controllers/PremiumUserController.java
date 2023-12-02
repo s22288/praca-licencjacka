@@ -6,6 +6,7 @@ import com.example.trainingapp.services.functionality.UserService.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +28,7 @@ public class PremiumUserController {
 
     @GetMapping
     @RequestMapping("/indicators")
+    @PreAuthorize("hasAnyAuthority('USER')")
 
     public ResponseEntity<Indicator> CalculateIndicators(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

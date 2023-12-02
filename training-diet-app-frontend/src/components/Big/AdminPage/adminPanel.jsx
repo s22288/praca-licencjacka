@@ -13,8 +13,13 @@ import { FixedSizeList } from 'react-window';
 import ListItemButton from '@mui/material/ListItemButton';
 import Box from '@mui/material/Box';
 import { Grid, ListItemSecondaryAction } from '@mui/material';
+import { ReactComponent as Edit } from '../../../assets/edit.svg'
+import { ReactComponent as Delete } from '../../../assets/delete.svg'
 
 import './admin.css'
+import EditExercise from './editExercise';
+import EditMeal from './editMeal';
+import { Link } from 'react-router-dom';
 const AdminMainPanel = () => {
     const [Users, SetUsers] = useState([])
     const [Meals, SetMeals] = useState([])
@@ -163,23 +168,7 @@ const AdminMainPanel = () => {
     }, [])
 
 
-    function sortExercises(event) {
-        const buttonValue = event.target.value;
 
-        GetAllExercises(page, 10, 'asc', buttonValue).then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Failed to fetch user data");
-            }
-        })
-            .then((data) => {
-                SetExercises(data)
-            })
-            .catch((error) => {
-                console.error("Failed to fetch user data", error);
-            });;
-    }
     return (<div className='admin-panel-container' >
 
 
@@ -201,12 +190,13 @@ const AdminMainPanel = () => {
                                 <ListItemText primary={`id: ${value.id}`} />
 
 
-                                <ListItemText primary={`login:  ${value.login}`} />
+                                <ListItemText primary={`login:  ${value.email}`} />
                                 <ListItemSecondaryAction>
 
                                     <IconButton aria-label="delete" onClick={() => handleDeleteUser(value.id)}>
 
-                                        🗑️
+                                        <Delete />
+
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
@@ -216,14 +206,10 @@ const AdminMainPanel = () => {
             </Grid>
             <Grid item xs={4}>
                 <h2>Exercises </h2>
-                <button value={'name'} onClick={sortExercises}>name</button>
-                <button value={'series'} onClick={sortExercises}>series</button>
-                <button value={'reps'} onClick={sortExercises}>rep</button>
 
-                <button value={'levelOfAdvance'} onClick={sortExercises}>level</button>
 
                 <div >
-                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'white' }}>
+                    <List sx={{ width: '100%', maxWidth: 700, bgcolor: 'white' }}>
                         {Exercises.map((value) => (
                             <ListItem
                                 key={value}
@@ -238,10 +224,22 @@ const AdminMainPanel = () => {
 
                                 <ListItemSecondaryAction>
 
+                                    <IconButton aria-label="edit" >
+                                        <Link
+                                            className="link-perfect"
+                                            to={`/admin-page/edit-exercise/${value.id}`}
+                                            state={{ data: value }}
+                                        >
+                                            <Edit />
+                                        </Link>
+
+                                    </IconButton>
                                     <IconButton aria-label="delete" onClick={() => handleDeleteExercise(value.id)}>
 
-                                        🗑️
+                                        <Delete />
+
                                     </IconButton>
+
                                 </ListItemSecondaryAction>
 
                             </ListItem>
@@ -257,7 +255,7 @@ const AdminMainPanel = () => {
                 <h2>Meals </h2>
 
                 <div >
-                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'white' }}>
+                    <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'white' }}>
                         {Meals.map((value) => (
                             <ListItem
                                 key={value}
@@ -272,9 +270,20 @@ const AdminMainPanel = () => {
 
                                 <ListItemSecondaryAction>
 
+                                    <IconButton aria-label="edit" >
+                                        <Link
+                                            className="link-perfect"
+                                            to={`/admin-page/edit-meal/${value.id}`}
+                                            state={{ data: value }}
+                                        >
+                                            <Edit />
+                                        </Link>
+                                    </IconButton>
+
                                     <IconButton aria-label="delete" onClick={() => handleDeleteMeal(value.id)}>
 
-                                        🗑️
+                                        <Delete />
+
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>

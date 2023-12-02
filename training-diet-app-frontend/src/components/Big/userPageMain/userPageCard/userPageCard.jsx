@@ -16,7 +16,7 @@ export default function UserPageCard(props) {
     let acess = props.data.acces;
 
     const buyAccess = (event) => {
-        
+
         event.preventDefault();
         console.log("fetch");
         const username = localStorage.getItem("email");
@@ -46,12 +46,12 @@ export default function UserPageCard(props) {
         localStorage.removeItem("email");
         localStorage.removeItem("password");
 
-     
+
     };
-    const buySubscription =()=>{
-        BuyPremiumSubscription();
-        
-       }
+    const buySubscription = () => {
+        // BuyPremiumSubscription();
+
+    }
     return (
         <Card sx={{ maxWidth: 800 }}>
             <CardMedia

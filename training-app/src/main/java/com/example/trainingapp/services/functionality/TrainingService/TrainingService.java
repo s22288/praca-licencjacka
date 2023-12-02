@@ -38,4 +38,6 @@ public interface TrainingService {
      List<ExerciseEntity> getAllExercies();
      List<ExerciseEntity> getAllExerciesPageable(Pageable pageable);
      void deleteExerciseByid(long id);
+     void saveExercise(ExerciseEntity exercise);
+
 }

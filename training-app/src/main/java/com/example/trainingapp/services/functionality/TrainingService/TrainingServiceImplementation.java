@@ -165,6 +165,11 @@ public class TrainingServiceImplementation implements TrainingService {
         exerciseRepository.deleteById(id);
     }
 
+    @Override
+    public void saveExercise(ExerciseEntity exercise) {
+        exerciseRepository.save(exercise);
+    }
+
     public List<ExerciseWithAlternatives> findAlternativesForlistofExercises(List<ExerciseEntity> exerciseEntities) {
         List<ExerciseWithAlternatives> eachBodyPartExercise = new ArrayList<>();
 

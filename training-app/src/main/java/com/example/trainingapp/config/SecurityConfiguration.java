@@ -47,7 +47,10 @@ public class SecurityConfiguration {
 
                                 .requestMatchers("/api/v1/auth/**").permitAll()
 //                        .requestMatchers("/normal-user/**").hasRole("USER")
-                                .anyRequest().authenticated()
+//                        .requestMatchers("/normal-user/**").hasRole("PREMIUMUSER")
+//                        .requestMatchers("/normal-user/**").hasRole("PREMIUMUSER")
+
+                        .anyRequest().authenticated()
 
 
                 ).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

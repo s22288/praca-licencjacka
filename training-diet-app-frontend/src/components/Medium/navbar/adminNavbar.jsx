@@ -17,15 +17,15 @@ const AdminNavbar = () => {
             <div className="logo-container">
                 <Logo className="logo" />
             </div>
-            <p className="admin-text" >admin</p>
-           
+         
+
             <button className="menu-button" onClick={handleMenuToggle}>
                 Admin Navbar
             </button>
 
             <ul className={`menu-list ${menuOpen ? "show" : ""}`}>
 
-            <li>
+                <li>
                     <Link to="/admin-page" className="nav-link">
                         Panel
                     </Link>

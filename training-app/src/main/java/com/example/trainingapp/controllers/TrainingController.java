@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,8 @@ private PremiumUserSerivice premiumUserSerivice;
 
     @GetMapping
     @RequestMapping("/exercise-for-bodyparts")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public ResponseEntity<List<ExerciseWithAlternatives>> getExercisesForTrainingType() {
         List<ExerciseWithAlternatives> exerciseWithAlternativesForEachBodyPart = trainingService.findExerciseWithAlternativesForEachBodyPart();
         return ResponseEntity.ok(exerciseWithAlternativesForEachBodyPart);
@@ -51,6 +54,7 @@ private PremiumUserSerivice premiumUserSerivice;
 
     @PostMapping()
     @RequestMapping("/save-training")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
     public ResponseEntity<String> saveDiet(@Valid @RequestBody TrainingEntity trainingEntity) {
         logger.info("treniing zapisany" + trainingEntity);
@@ -69,6 +73,8 @@ private PremiumUserSerivice premiumUserSerivice;
 
     @PostMapping()
     @RequestMapping("/assign-todate")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public  ResponseEntity <String> asignTrainingToDay( @Valid @RequestBody TrainingeventEntity ev){
 
 
@@ -85,6 +91,8 @@ trainingService.saveTrainingEvent(ev);
 
     @GetMapping
     @RequestMapping("/findMachine/{id}")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public  ResponseEntity<TrainingmachineEntity> findMachineByid(@PathVariable long id){
         TrainingmachineEntity machineById = trainingService.findMachineById(id);
         return  ResponseEntity.ok(machineById);
@@ -93,6 +101,8 @@ trainingService.saveTrainingEvent(ev);
 
     @GetMapping
       @RequestMapping("/split-training")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+
     public  ResponseEntity<Map<String,List<ExerciseWithAlternatives>>> creteSplitTraining(){
         Map<String,List<ExerciseWithAlternatives>> splitTraining = trainingService.createSplitTraining();
         return  ResponseEntity.ok(splitTraining);

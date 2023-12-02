@@ -18,6 +18,20 @@ const GetAllExercises = (page, size, order, sortpar) => {
             credentials: 'include',
         })
 }
+const EditChoosenExercise = (data) => {
+    const token = localStorage.getItem('jwtToken');
+    return fetch("http://localhost:9800/admin-user/add-exercise", {
+        method: 'Post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include', body: JSON.stringify(data)
+    }
+    )
+
+}
 const DeleteExerciseByid = (id) => {
     const token = localStorage.getItem('jwtToken');
 
@@ -30,5 +44,6 @@ const DeleteExerciseByid = (id) => {
         credentials: 'include',
     });
 
+
 }
-export { GetAllExercises, DeleteExerciseByid };
+export { GetAllExercises, DeleteExerciseByid, EditChoosenExercise };
