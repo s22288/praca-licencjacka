@@ -1,4 +1,5 @@
-;
+import { redirect } from 'react-router';
+
 
 async function getUserData() {
     const token = localStorage.getItem('jwtToken');
@@ -14,6 +15,15 @@ async function getUserData() {
 
     })
 
+
+}
+const authenticate = () => {
+    console.log('authenticate')
+    const token = localStorage.getItem('jwtToken');
+    const role = JSON.parse(window.atob(token.split(".")[1])).role;
+    let userRole = role[0].authority
+    if (!token?.access_token) throw redirect('/login')
+    return { access_token: token, username: 'name' };
 
 }
 
@@ -51,15 +61,6 @@ async function updateUsersData(data) {
     )
 }
 
-// function requireAuth(nextState, replace, next) {
-//     if (!authenticated) {
-//       replace({
-//         pathname: "/login",
-//         state: {nextPathname: nextState.location.pathname}
-//       });
-//     }
-//     next();
-//   }
 
 
 async function addUserMaxes(data) {
@@ -147,4 +148,4 @@ const LoginToUserPage = (login) => {
 
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage }
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, authenticate }
