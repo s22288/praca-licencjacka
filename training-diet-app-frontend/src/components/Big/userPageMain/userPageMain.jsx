@@ -8,13 +8,20 @@ import "@splidejs/react-splide/css/sea-green";
 import "./userp.css";
 import UserPageCard from "./userPageCard/userPageCard";
 import { checkUserRole } from "../../../services/usersServices/UserService";
+import { useLocation } from "react-router-dom";
 
 const UserPageMain = () => {
     const [role, setRole] = React.useState('USER')
-    React.useEffect(() => {
+    const location = useLocation();
 
-        setRole(checkUserRole());
-    }, [])
+    React.useEffect(() => {
+        checkUserRole().then((fulfilledValue) => {
+            const stringValue = String(fulfilledValue);
+            setRole(stringValue);
+        }, []);
+
+
+    }, [location.pathname])
     let tab1 = {
         img: image1,
         desc: "Training and diet",
