@@ -2,21 +2,27 @@ import { useEffect, useState } from "react";
 import "./userData-useracc.css";
 import MenPhoto from '../../../assets/blackMen.png'
 
-import { getUserData, updateUsersData } from "../../../services/usersServices/UserService";
+import { getPremiumUserData, updatePremiumUsersData } from "../../../services/usersServices/UserService";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import FunctionalityNavbar from "../../Medium/navbar/functionalitynavbar";
+import PremiumUserNavbar from "../../Medium/navbar/premiuUserNavbar";
+import FunctionalityPremiumNavbar from "../../Medium/navbar/functionalityPremiumNavbar";
 
-const UserAccount = () => {
+const PremiumUserAccount = () => {
     const [birthDate, setBirthDate] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [pal, setPal] = useState(0);
+    const [hipsCircumference, setHipsCircumference] = useState(0);
+    const [waistCircumference, setWaistCircumference] = useState(0);
+    const [startSubscription, setStartSubscription] = useState(new Date());
+    const [endSubscription, setEndSubscription] = useState(startSubscription + 1);
 
 
     const [userData, setUserData] = useState(null);
     useEffect(() => {
 
-        getUserData()
+        getPremiumUserData()
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -75,16 +81,24 @@ const UserAccount = () => {
             birthDate: birthDate,
             height: height,
             weight: weight,
-            palfactor: pal
+            palfactor: pal,
+            hipsCircumference: hipsCircumference,
+            waistCircumference: waistCircumference,
+            startSubscription: '2000-01-11',
+            endSubscription: '2000-01-11'
         };
 
-        updateUsersData(data).then(() => {
+        updatePremiumUsersData(data).then(() => {
             setUserData({
                 ...userData,
                 birthDate: data.birthDate,
                 height: data.height,
                 weight: data.weight,
-                palfactor: data.palfactor
+                palfactor: data.palfactor,
+                hipsCircumference: data.hipsCircumference,
+                waistCircumference: data.waistCircumference,
+                startSubscription: data.startSubscription,
+                endSubscription: data.endSubscription
             });
         })
             .catch((error) => {
@@ -106,7 +120,7 @@ const UserAccount = () => {
         <div
 
         >
-            <FunctionalityNavbar />
+            <FunctionalityPremiumNavbar />
 
 
 
@@ -160,6 +174,28 @@ const UserAccount = () => {
                                     <p className="userData-title-text">PalFactor: {userData.palfactor}</p>
                                 ) : (
                                     <p className="userData-title-text">PalFactor: ?</p>
+                                )}
+
+                                {userData.hipsCircumference ? (
+                                    <p className="userData-title-text">hipsCircumference: {userData.hipsCircumference}</p>
+                                ) : (
+                                    <p className="userData-title-text">hipsCircumference: ?</p>
+                                )}
+                                {userData.waistCircumference ? (
+                                    <p className="userData-title-text">waistCircumference: {userData.waistCircumference}</p>
+                                ) : (
+                                    <p className="userData-title-text">waistCircumference: ?</p>
+                                )}
+                                {userData.startSubscription ? (
+                                    <p className="userData-title-text">Start Date: {userData.startSubscription}</p>
+                                ) : (
+                                    <p className="userData-title-text">Start Date: ?</p>
+                                )}
+
+                                {userData.endSubscription ? (
+                                    <p className="userData-title-text">End date: {userData.endSubscription}</p>
+                                ) : (
+                                    <p className="userData-title-text">End date: ?</p>
                                 )}
                             </div>
 
@@ -218,6 +254,29 @@ const UserAccount = () => {
 
                             </Select >
                         </FormControl>
+                        <label className="customlb">hipsCircumference:</label>
+                        <input
+
+                            type="number"
+                            value={hipsCircumference}
+                            max={200}
+                            min={40}
+                            onChange={(e) => setHipsCircumference(e.target.value)}
+                            className="userData-user-input" required />
+                        <br />
+
+                        <label className="customlb">waistCircumference:</label>
+                        <input
+
+                            type="number"
+                            value={waistCircumference}
+                            max={200}
+                            min={40}
+                            onChange={(e) => setWaistCircumference(e.target.value)}
+                            className="userData-user-input" required />
+                        <br />
+
+
 
                         <button type="submit" className="login-button">
                             Update
@@ -228,4 +287,4 @@ const UserAccount = () => {
         </div>
     );
 };
-export default UserAccount;
+export default PremiumUserAccount;

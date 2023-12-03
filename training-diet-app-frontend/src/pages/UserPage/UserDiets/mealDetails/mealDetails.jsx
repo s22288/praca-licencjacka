@@ -2,7 +2,15 @@ import { useLocation } from "react-router-dom";
 import trainImage from "../../../../assets/food.jpeg"
 import FunctionalityNavbar from "../../../../components/Medium/navbar/functionalitynavbar";
 import './../../../../context/mealsandexercisedetails.css'
+import { useEffect, useState } from "react";
+import { checkUserRole } from "../../../../services/usersServices/UserService";
+import FunctionalityPremiumNavbar from "../../../../components/Medium/navbar/functionalityPremiumNavbar";
 const MealDetails = () => {
+    const [role, setRole] = useState('USER')
+    useEffect(() => {
+
+        setRole(checkUserRole());
+    }, [])
     const location = useLocation();
     console.log('Location:', location);
     const data = location.state?.data;
@@ -16,7 +24,11 @@ const MealDetails = () => {
 
     return (
         <div>
-            <FunctionalityNavbar />
+            {role === 'USER' ? (
+                <FunctionalityNavbar />
+            ) : (
+                <FunctionalityPremiumNavbar />
+            )}
 
             <div >
 

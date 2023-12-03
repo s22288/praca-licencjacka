@@ -9,7 +9,14 @@ import { GetExerciseseByBodyPartFbw, GetExerciseseByBodyPartSplit, GetExercisese
 import FbwTraining from "./fbw/fbwTraining";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import SplitTraining from "./split/splitTraining";
+import { checkUserRole } from "../../../../services/usersServices/UserService";
+import FunctionalityPremiumNavbar from "../../../Medium/navbar/functionalityPremiumNavbar";
 const TrainingCustomization = () => {
+  const [role, setRole] = useState('USER')
+  useEffect(() => {
+
+    setRole(checkUserRole());
+  }, [])
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
   const [userDataSplit, setUserDataSplit] = useState();
@@ -27,7 +34,7 @@ const TrainingCustomization = () => {
 
     } if (excercise === "SPLIT") {
       toSave = Object.values(userDataSplit).flat().map(value => value.exerciseEntity)
-    
+
 
     }
     const trainingToSave = {
@@ -39,7 +46,11 @@ const TrainingCustomization = () => {
     };
 
     SaveTrainig(trainingToSave);
-    navigate("/user-page");
+    if (role === 'USER') {
+      navigate("/user-page");
+    } else {
+      navigate("/premium-user-page/");
+    }
   };
   const handleInput = (event) => {
     setDescription(event.target.value);
@@ -117,7 +128,11 @@ const TrainingCustomization = () => {
 
   return (
     <div>
-      <FunctionalityNavbar />
+      {role === 'USER' ? (
+        <FunctionalityNavbar />
+      ) : (
+        <FunctionalityPremiumNavbar />
+      )}
       <div className="context-customize-container">
         <form onSubmit={HandleSubmit} className="context-customize-comic-form">
           <label htmlFor="split">

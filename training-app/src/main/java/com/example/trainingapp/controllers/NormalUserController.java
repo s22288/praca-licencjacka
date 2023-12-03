@@ -110,13 +110,7 @@ public class NormalUserController  {
         Object principal =     authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity userFromDb = userService.findByEmail(email);
-
-//        NormaluserEntity userFromDb = userService.findUserByid(1l);
-
-
         return ResponseEntity.ok(userFromDb);
-
-
     }
 
     // users-maxes
@@ -209,22 +203,7 @@ public class NormalUserController  {
         return ResponseEntity.ok().body(allUserTraining);
     }
 
-    @CrossOrigin
-    @GetMapping
 
-    @RequestMapping("/trainings-days")
-    @PreAuthorize("hasAnyAuthority('USER')")
-
-    public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal =     authentication.getPrincipal();
-        String email = ((NormaluserEntity) principal).getEmail();
-        NormaluserEntity userFromDb = userService.findByEmail(email);
-        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
-
-
-        return ResponseEntity.ok().body(trainigsWithDays);
-    }
 
     @PostMapping("/update-premium")
     @PreAuthorize("hasAnyAuthority('USER')")

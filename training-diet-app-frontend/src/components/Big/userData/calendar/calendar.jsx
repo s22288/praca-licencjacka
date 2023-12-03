@@ -12,8 +12,9 @@ import '@splidejs/splide/dist/css/splide.min.css'; // Import Splide CSS
 import { AlignHorizontalCenter } from '@mui/icons-material';
 
 const CalendarOfTraining = () => {
+
     const [data, setData] = useState([]);
-    const [day, setDay] = useState('mon')
+    const [week, setWeek] = useState('mon')
     const [training, setTraining] = useState()
     const [description, setDescription] = useState('desc');
     const [localization, setLocalization] = useState('loc')
@@ -34,6 +35,7 @@ const CalendarOfTraining = () => {
             }
         })
             .then((data) => {
+                console.log('data' + data)
                 setData(data)
                 setMondayTrainings(data.filter((d) => d.day.day === 'mon'));
                 setTuesdayTrainings(data.filter((d) => d.day.day === 'tue'));
@@ -72,7 +74,7 @@ const CalendarOfTraining = () => {
     const chooseDay = (event) => {
         event.preventDefault();
 
-        setDay(event.currentTarget.value)
+        setWeek(event.currentTarget.value)
 
     }
     const handleAsign = (event) => {
@@ -94,7 +96,7 @@ const CalendarOfTraining = () => {
         const eventTraining = {
             description: description,
             localozation: localization,
-            day: day,
+            week: week,
         };
 
 

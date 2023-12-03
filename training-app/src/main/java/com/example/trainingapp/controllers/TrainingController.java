@@ -73,12 +73,15 @@ private PremiumUserSerivice premiumUserSerivice;
 
     @PostMapping()
     @RequestMapping("/assign-todate")
-    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
 
     public  ResponseEntity <String> asignTrainingToDay( @Valid @RequestBody TrainingeventEntity ev){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        String email = ((PremiumuserEntity) principal).getEmail();
 
 
-        PremiumuserEntity premiumuserEntity = premiumUserSerivice.findById(1L);
+        PremiumuserEntity premiumuserEntity = premiumUserSerivice.findByEmail(email);
        Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
        premiumuserEntitySet.add(premiumuserEntity);
 

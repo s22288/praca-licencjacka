@@ -35,7 +35,7 @@ const PremiumUserNavbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/user-page/user-data" className="nav-link">
+                    <Link to="/premium-user-page/premium-user-data" className="nav-link">
                         Account
                     </Link>
                 </li>
@@ -46,7 +46,7 @@ const PremiumUserNavbar = () => {
                 </li>
 
                 <li>
-                    <Link to="/user-page/premium-indicators" className="nav-link">
+                    <Link to="/premium-user-page/premium-indicators" className="nav-link">
                         Body Indicators
                     </Link>
                 </li>

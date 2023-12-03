@@ -13,7 +13,10 @@ import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
 import CustomMeal from "./customMeal/customMeal";
 import { GetMealByMealType } from "../../../../services/mealService/mealService";
 import SelectDietGoal from "./SelectInput";
+import { checkUserRole } from "../../../../services/usersServices/UserService";
+import FunctionalityPremiumNavbar from "../../../Medium/navbar/functionalityPremiumNavbar";
 const DietCustomization = () => {
+
     const [goalCalories, setGoalCalories] = useState(0);
     const navigate = useNavigate();
     const [userData, setUserData] = useState();
@@ -22,10 +25,12 @@ const DietCustomization = () => {
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState(1);
     const [goal, setGoal] = useState('lose');
+    const [role, setRole] = useState('USER')
 
     const [calories, setCalories] = useState(0)
 
     useEffect(() => {
+        setRole(checkUserRole());
         GetAllMealTypes().then((response) => {
             if (response.ok) {
                 return response.json();
@@ -149,11 +154,15 @@ const DietCustomization = () => {
     }
     return (
         <div>
-            <FunctionalityNavbar />
+            {role === 'USER' ? (
+                <FunctionalityNavbar />
+            ) : (
+                <FunctionalityPremiumNavbar />
+            )}
 
             <div className="context-customize-container">
                 <SelectDietGoal passGoalToParent={passGoalToParent} passCaloriesToParent={passCaloriesToParent} />
-                
+
 
                 <form onSubmit={HandleSubmit} className="context-customize-comic-form">
                     {options.map(option => (
@@ -219,7 +228,7 @@ const DietCustomization = () => {
                                 </div>
                             ))}
                         </p>
-                       <p></p> 
+                        <p></p>
                     </div>
                 ) : (
 

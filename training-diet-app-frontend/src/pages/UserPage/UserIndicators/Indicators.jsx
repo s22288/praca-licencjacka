@@ -2,10 +2,12 @@ import PremiumUserIndicators from "../../../components/Big/userData/userIndicato
 import FunctionalityNavbar from "../../../components/Medium/navbar/functionalitynavbar";
 import backgroundSVG from "../../../assets/background.svg"
 import './indicators.css'
+import PremiumUserNavbar from "../../../components/Medium/navbar/premiuUserNavbar";
+import FunctionalityPremiumNavbar from "../../../components/Medium/navbar/functionalityPremiumNavbar";
 const Indicators = () => {
     return (
         <div className="user-indicators-background" >
-            <FunctionalityNavbar />
+            <FunctionalityPremiumNavbar />
             <PremiumUserIndicators />
         </div>)
 }

@@ -43,7 +43,7 @@ values ('1959-12-12',166.0,1.6,false,66,'Kacper','Nowatorski','premium@gmail.com
 -- premium users
 
 insert into premiumuser (end_subscription, hips_circumference, start_subscription, waist_circumference,id)
-values ('2000-01-11',200.0,'2000-01-09',150.0,1);
+values ('2000-01-11',200.0,'2000-01-09',150.0,6);
 -- add some maxes
 --
 # insert into maxinexercise (bench, day_of_records, deadlift, normal_user_id, pullups, squad)

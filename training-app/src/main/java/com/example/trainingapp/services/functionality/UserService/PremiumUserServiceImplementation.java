@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class PremiumUserServiceImplementation implements  PremiumUserSerivice{
     private PremiumUserRepository premiumUserRepository;
 
+
     public PremiumUserServiceImplementation(PremiumUserRepository premiumUserRepository) {
         this.premiumUserRepository = premiumUserRepository;
     }
@@ -15,5 +16,10 @@ public class PremiumUserServiceImplementation implements  PremiumUserSerivice{
     @Override
     public PremiumuserEntity findById(long id) {
         return premiumUserRepository.findById(id).get();
+    }
+
+    @Override
+    public PremiumuserEntity findByEmail(String email) {
+        return premiumUserRepository.findByEmail(email).get();
     }
 }

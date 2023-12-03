@@ -7,8 +7,14 @@ import image2 from "../../../assets/subscribe.jpg";
 import "@splidejs/react-splide/css/sea-green";
 import "./userp.css";
 import UserPageCard from "./userPageCard/userPageCard";
+import { checkUserRole } from "../../../services/usersServices/UserService";
 
 const UserPageMain = () => {
+    const [role, setRole] = React.useState('USER')
+    React.useEffect(() => {
+
+        setRole(checkUserRole());
+    }, [])
     let tab1 = {
         img: image1,
         desc: "Training and diet",
@@ -31,11 +37,15 @@ const UserPageMain = () => {
                     <UserPageCard data={tab1} />
                 </div>
             </SplideSlide>
-            <SplideSlide>
-                <div className="slide-container">
-                    <UserPageCard data={tab2} />
-                </div>
-            </SplideSlide>
+            {role === 'USER' ? (
+                <SplideSlide>
+                    <div className="slide-container">
+                        <UserPageCard data={tab2} />
+                    </div>
+                </SplideSlide>
+            ) : (
+                <p></p>
+            )}
         </Splide>
     );
 };

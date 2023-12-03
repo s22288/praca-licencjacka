@@ -1,6 +1,5 @@
 import { redirect } from 'react-router';
-
-
+import { useNavigate } from 'react-router-dom';
 async function getUserData() {
     const token = localStorage.getItem('jwtToken');
     console.log(token)
@@ -17,14 +16,60 @@ async function getUserData() {
 
 
 }
-const authenticate = () => {
-    console.log('authenticate')
+
+async function getPremiumUserData() {
     const token = localStorage.getItem('jwtToken');
+    console.log(token)
+    return fetch("http://localhost:9800/premium-user/account-data", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
+
+    })
+
+
+}
+async function checkUserRole() {
+    const token = localStorage.getItem('jwtToken');
+
     const role = JSON.parse(window.atob(token.split(".")[1])).role;
     let userRole = role[0].authority
-    if (!token?.access_token) throw redirect('/login')
-    return { access_token: token, username: 'name' };
+    return userRole;
+}
 
+async function updatePremiumUsersData(data) {
+    const token = localStorage.getItem('jwtToken');
+    console.log('data' + data)
+    return await fetch("http://localhost:9800/premium-user/update-data", {
+        method: 'Post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }, body: JSON.stringify(data)
+    }
+    )
+}
+const Authenticate = (navigate) => {
+    console.log('elo320')
+
+    const token = localStorage.getItem('jwtToken');
+
+    if (token) {
+        const role = JSON.parse(window.atob(token.split(".")[1])).role;
+        let authority = role.authority;
+
+        return { access_token: token, username: authority };
+    } else {
+        // Use the passed `navigate` function to redirect
+        navigate('/login');
+        // Optionally, you can return null or some indicator here
+        return null;
+    }
 }
 
 
@@ -148,4 +193,4 @@ const LoginToUserPage = (login) => {
 
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, authenticate }
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, Authenticate, getPremiumUserData, updatePremiumUsersData, checkUserRole }

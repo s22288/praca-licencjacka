@@ -1,4 +1,4 @@
-import { Route, Routes, createBrowserRouter } from "react-router-dom"
+import { Route, Routes, createBrowserRouter, useNavigate } from "react-router-dom"
 import HomePage from "../HomePage/homePage"
 import UserPage from "../UserPage/userPage"
 import UserData from "../UserPage/UserAccout/userData"
@@ -19,42 +19,12 @@ import LoginPage from "../LoginPage/createAcount/loginPage"
 import UserPagePremium from "../UserPage/userPagePremium"
 import EditExercise from "../../components/Big/AdminPage/editExercise"
 import EditMeal from "../../components/Big/AdminPage/editMeal"
-import { authenticate } from "../../services/usersServices/UserService"
+import { Authenticate } from "../../services/usersServices/UserService"
 import { useEffect } from "react"
+import PremiumUserAccount from "../../components/Big/userData/premiumUserData"
 
 const AllRoutes = () => {
-
-  // const router = createBrowserRouter([
-  //   {
-  //     id: 'root',
-  //     path: '/',
-  //     loader: authenticate,
-  //     element: < HomePage />,
-
-  //     children: [
-
-  //       { path: '/create-acc', element: <CreateAccountPage /> },
-  //       { path: '/login', element: <LoginPage /> },
-  //       { path: '/user-page', element: <UserPage /> },
-  //       { path: '/premium-user-page', element: <UserPagePremium /> },
-  //       { path: '/admin-page', element: <AdminPanel /> },
-  //       { path: '/admin-page/edit-exercise/:id', element: <EditExercise /> },
-  //       { path: '/admin-page/edit-meal/:id', element: <EditMeal /> },
-  //       { path: '/user-page/user-data', element: <UserData /> },
-  //       { path: '/user-page/records', element: <Records /> },
-  //       { path: '/user-page/premium-indicators', element: <Indicators /> },
-  //       { path: '/user-page/create-training', element: <AddTranining /> },
-  //       { path: '/user-page/create-training/diet-customize', element: <DietCustomization /> },
-  //       { path: '/user-page/trainings', element: <TrainingsPage /> },
-  //       { path: '/user-page/diets', element: <DietsPage /> },
-  //       { path: 'user-page/diet/details/:id', element: <MealDetails /> },
-  //       { path: '/user-page/training/details/:id', element: <ExcerciseDetails /> },
-  //       { path: '/user-page/calendar', element: <TrainingsCalendar /> },
-  //       { path: '/user-page/create-training/train-customize', element: <TrainingCustomization /> },
-  //       { path: '/user-page/calendar/details/:id', element: <SmallTrainigDetails /> },
-  //     ],
-  //   },
-  // ]);
+  const navigate = useNavigate();
 
   return (
     <Routes>
@@ -64,6 +34,7 @@ const AllRoutes = () => {
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/user-page" element={<UserPage />} />
+
       <Route path="/premium-user-page" element={<UserPagePremium />} />
 
       <Route path="/admin-page" element={<AdminPanel />} />
@@ -71,8 +42,10 @@ const AllRoutes = () => {
       <Route path="/admin-page/edit-meal/:id" element={<EditMeal />} />
 
       <Route path="/user-page/user-data" element={<UserData />} />
+      <Route path="/premium-user-page/premium-user-data" element={<PremiumUserAccount />} />
+
       <Route path="/user-page/records" element={<Records />} />
-      <Route path="/user-page/premium-indicators" element={<Indicators />} />
+      <Route path="/premium-user-page/premium-indicators" element={<Indicators />} />
       <Route path="/user-page/create-training" element={<AddTranining />} />
       <Route path="/user-page/create-training/diet-customize" element={<DietCustomization />} />
       <Route path="/user-page/trainings" element={<TrainingsPage />} />
