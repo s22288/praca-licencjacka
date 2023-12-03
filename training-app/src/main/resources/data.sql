@@ -27,7 +27,7 @@ values ('2001-02-23',157.0,1.6,false,55,'Maja','Niedzielska','niedzielska@gmail.
 
 insert into normaluser ( birth_date, height, palfactor,sex, weight, first_name, last_name, email, password,
                         photo,role)
-values ('1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','lewandowska@gmail.com','password14','photo2.jpg','USER');
+values ('1959-12-12',166.0,1.5,false,66,'Natalia','Lewandowska','user@gmail.com','$2a$10$Cn5tPyV/Sp/TJlsqkKMO/eqjHksoJIWQl6YIzJpiZrHlQ6UuwrD6C','photo2.jpg','USER');
 
 
 insert into normaluser ( birth_date, height, palfactor,sex, weight, first_name, last_name, email, password,

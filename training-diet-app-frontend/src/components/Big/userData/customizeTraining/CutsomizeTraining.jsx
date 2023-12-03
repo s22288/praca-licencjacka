@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "../../../../context/customization.css";
 import Button from "@mui/material/Button";
@@ -13,10 +13,16 @@ import { checkUserRole } from "../../../../services/usersServices/UserService";
 import FunctionalityPremiumNavbar from "../../../Medium/navbar/functionalityPremiumNavbar";
 const TrainingCustomization = () => {
   const [role, setRole] = useState('USER')
-  useEffect(() => {
+  const location = useLocation();
 
-    setRole(checkUserRole());
-  }, [])
+  useEffect(() => {
+    checkUserRole().then((fulfilledValue) => {
+      const stringValue = String(fulfilledValue);
+      setRole(stringValue);
+    }, []);
+
+
+  }, [location.pathname])
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
   const [userDataSplit, setUserDataSplit] = useState();

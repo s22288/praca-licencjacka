@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class PasswordBecrypt {
     public static void main(String[] args) {
           PasswordEncoder passwordEncoder =new BCryptPasswordEncoder();
-        String pass = passwordEncoder.encode("premium");
+        String pass = passwordEncoder.encode("user");
         System.out.println(pass);
     }
 }

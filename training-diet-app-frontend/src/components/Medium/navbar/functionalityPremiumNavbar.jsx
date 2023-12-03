@@ -22,7 +22,7 @@ const FunctionalityPremiumNavbar = () => {
             </button>
             <ul className={`menu-list ${menuOpen ? "show" : ""}`}>
                 <li>
-                    <Link to="/premium-user-page/" className="nav-link">
+                    <Link to="/premium-user-page" className="nav-link">
                         Menu
                     </Link>
                 </li>

@@ -15,7 +15,6 @@ const CreateAccountPage = () => {
     const [sex, setSex] = useState(true);
 
     const [error, setError] = useState("");
-    const [redirectToLogin, setRedirectToLogin] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -36,9 +35,7 @@ const CreateAccountPage = () => {
         navigate('/')
     };
 
-    if (redirectToLogin) {
-        return <Navigate to="/login" replace />;
-    }
+   
 
     return (
         <div

@@ -7,7 +7,7 @@ import {
     GetAllMealTypes,
     SaveDiet,
 } from "../../../../services/dietServices/dietService"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import FunctionalityNavbar from "../../../Medium/navbar/functionalitynavbar";
 import CustomMeal from "./customMeal/customMeal";
@@ -16,7 +16,17 @@ import SelectDietGoal from "./SelectInput";
 import { checkUserRole } from "../../../../services/usersServices/UserService";
 import FunctionalityPremiumNavbar from "../../../Medium/navbar/functionalityPremiumNavbar";
 const DietCustomization = () => {
+    const [role, setRole] = useState('USER')
+    const location = useLocation();
 
+    useEffect(() => {
+        checkUserRole().then((fulfilledValue) => {
+            const stringValue = String(fulfilledValue);
+            setRole(stringValue);
+        }, []);
+
+
+    }, [location.pathname])
     const [goalCalories, setGoalCalories] = useState(0);
     const navigate = useNavigate();
     const [userData, setUserData] = useState();
@@ -25,12 +35,12 @@ const DietCustomization = () => {
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectOption] = useState(1);
     const [goal, setGoal] = useState('lose');
-    const [role, setRole] = useState('USER')
+
 
     const [calories, setCalories] = useState(0)
 
     useEffect(() => {
-        setRole(checkUserRole());
+
         GetAllMealTypes().then((response) => {
             if (response.ok) {
                 return response.json();

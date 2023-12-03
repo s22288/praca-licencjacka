@@ -1,4 +1,4 @@
-import { Route, Routes, createBrowserRouter, useNavigate } from "react-router-dom"
+import { Route, Routes, createBrowserRouter, useNavigate, RouterProvider, } from "react-router-dom"
 import HomePage from "../HomePage/homePage"
 import UserPage from "../UserPage/userPage"
 import UserData from "../UserPage/UserAccout/userData"
@@ -19,18 +19,23 @@ import LoginPage from "../LoginPage/createAcount/loginPage"
 import UserPagePremium from "../UserPage/userPagePremium"
 import EditExercise from "../../components/Big/AdminPage/editExercise"
 import EditMeal from "../../components/Big/AdminPage/editMeal"
-import { Authenticate } from "../../services/usersServices/UserService"
+import { authenticate } from "../../services/usersServices/UserService"
+import * as ReactDOM from "react-dom";
+
 import { useEffect } from "react"
 import PremiumUserAccount from "../../components/Big/userData/premiumUserData"
 
 const AllRoutes = () => {
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
+  
+  // // ReactDOM.createRoot(document.getElementById("root")).render(
+  // //   <RouterProvider router={router} />
+  // // );
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
 
-      <Route path="/create-acc" element={<CreateAccountPage />} />
+      <Route path="/create-acc"  element={<CreateAccountPage />} />
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/user-page" element={<UserPage />} />

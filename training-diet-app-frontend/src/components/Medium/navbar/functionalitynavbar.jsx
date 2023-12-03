@@ -22,7 +22,7 @@ const FunctionalityNavbar = () => {
             </button>
             <ul className={`menu-list ${menuOpen ? "show" : ""}`}>
                 <li>
-                    <Link to="/user-page/" className="nav-link">
+                    <Link to="/user-page" className="nav-link">
                         Menu
                     </Link>
                 </li>

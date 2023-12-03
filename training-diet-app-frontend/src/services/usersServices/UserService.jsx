@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { redirect } from 'react-router';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 async function getUserData() {
     const token = localStorage.getItem('jwtToken');
     console.log(token)
@@ -38,12 +40,12 @@ async function checkUserRole() {
 
     const role = JSON.parse(window.atob(token.split(".")[1])).role;
     let userRole = role[0].authority
-    return userRole;
+    return String(userRole);
 }
 
 async function updatePremiumUsersData(data) {
     const token = localStorage.getItem('jwtToken');
-    console.log('data' + data)
+
     return await fetch("http://localhost:9800/premium-user/update-data", {
         method: 'Post',
         headers: {
@@ -54,22 +56,45 @@ async function updatePremiumUsersData(data) {
     }
     )
 }
-const Authenticate = (navigate) => {
-    console.log('elo320')
-
+const useAuthenticate = () => {
     const token = localStorage.getItem('jwtToken');
+    const role = JSON.parse(window.atob(token.split(".")[1])).role;
+    let userRole = role[0].authority
+    console.log(userRole)
+    const navigate = useNavigate()
+    const location = useLocation()
+    useEffect(() => {
+        if (!token) {
+            if (!['/', '/login', '/create-acc'].includes(location.pathname)) {
+                navigate('/login')
 
-    if (token) {
-        const role = JSON.parse(window.atob(token.split(".")[1])).role;
-        let authority = role.authority;
+            }
+        }
+        else {
+            if (userRole === "USER") {
+                if (!['/', '/login', '/create-acc', '/user-page', '/user-page/user-data', '/user-page/records', '/user-page/create-training', '/user-page/create-training/diet-customize', '/user-page/trainings', '/user-page/diets', '/user-page/diet/details', '/user-page/training/details', '/user-page/create-training/train-customize', '/user-page/calendar/details'].includes(location.pathname)) {
+                    navigate('/login')
 
-        return { access_token: token, username: authority };
-    } else {
-        // Use the passed `navigate` function to redirect
-        navigate('/login');
-        // Optionally, you can return null or some indicator here
-        return null;
-    }
+                }
+
+            }
+            if (userRole === "PREMIUMUSER") {
+                if (!['/', '/login', '/create-acc', '/premium-user-page', '/premium-user-page/premium-user-data', '/premium-user-page/premium-indicators', '/user-page/create-training', '/user-page/create-training/diet-customize', '/user-page/trainings', '/user-page/diets', '/user-page/diet/details', '/user-page/training/details', '/user-page/calendar', '/user-page/create-training/train-customize', '/user-page/calendar/details'].includes(location.pathname)) {
+                    navigate('/login')
+
+                }
+            }
+            if (userRole === "ADMIN") {
+                if (!['/', '/login', '/create-acc', '/admin-page', '/admin-page/edit-exercise', '/admin-page/edit-meal',].includes(location.pathname)) {
+                    navigate('/login')
+
+                }
+            }
+        }
+    }, [location.pathname])
+
+
+
 }
 
 
@@ -193,4 +218,4 @@ const LoginToUserPage = (login) => {
 
 
 
-export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, Authenticate, getPremiumUserData, updatePremiumUsersData, checkUserRole }
+export { addUserMaxes, getUserData, updateUsersData, getUserMaxes, GetAllUsers, DeleteUserById, RegisterUser, LoginToUserPage, useAuthenticate, getPremiumUserData, updatePremiumUsersData, checkUserRole }

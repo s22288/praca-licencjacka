@@ -4,12 +4,20 @@ import FunctionalityNavbar from "../../../components/Medium/navbar/functionality
 import './records.css'
 import { checkUserRole } from "../../../services/usersServices/UserService"
 import FunctionalityPremiumNavbar from "../../../components/Medium/navbar/functionalityPremiumNavbar"
+import { useLocation } from "react-router-dom"
 const Records = () => {
     const [role, setRole] = useState('USER')
-    useEffect(() => {
+    const location = useLocation();
 
-        setRole(checkUserRole());
-    }, [])
+    useEffect(() => {
+        checkUserRole().then((fulfilledValue) => {
+            const stringValue = String(fulfilledValue);
+            console.log('role ' + stringValue)
+            setRole(stringValue);
+        }, []);
+
+
+    }, [location.pathname])
 
     return (
         <div className="user-records">
