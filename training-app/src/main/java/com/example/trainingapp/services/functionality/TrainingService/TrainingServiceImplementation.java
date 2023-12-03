@@ -151,6 +151,60 @@ public class TrainingServiceImplementation implements TrainingService {
     }
 
     @Override
+    public Map<String, List<ExerciseWithAlternatives>> createPushPull() {
+
+        Map<String, List<ExerciseWithAlternatives>> mapOfDaysAndExericses = new HashMap<>();
+
+//
+
+        List<ExerciseEntity> chestExerciseses = exerciseRepository.findTop3ExercisesForChest();
+        List<ExerciseWithAlternatives> alternativesForChest = findAlternativesForlistofExercises(chestExerciseses);
+
+        List<ExerciseEntity> tricepsExerciseses = exerciseRepository.findTop3ExercisesForTriceps();
+        List<ExerciseWithAlternatives> alternativesForTriceps = findAlternativesForlistofExercises(tricepsExerciseses);
+
+        // biceps plecy
+        List<ExerciseEntity> backExerciseses = exerciseRepository.findTop3ExercisesForBack();
+        List<ExerciseWithAlternatives> alternativesForBack = findAlternativesForlistofExercises(backExerciseses);
+
+        List<ExerciseEntity> armsExerciseses = exerciseRepository.findTop3ExercisesForArms();
+        List<ExerciseWithAlternatives> alternativesForArms = findAlternativesForlistofExercises(armsExerciseses);
+
+        // nogi i barki
+        List<ExerciseEntity> legsExerciseses = exerciseRepository.findTop3ExercisesForLegs();
+        List<ExerciseWithAlternatives> alternativesForLegs = findAlternativesForlistofExercises(legsExerciseses);
+
+        List<ExerciseEntity> shouldersExerciseses = exerciseRepository.findTop3ExercisesForShoulders();
+        List<ExerciseWithAlternatives> alternativesForShoulders = findAlternativesForlistofExercises(shouldersExerciseses);
+
+        List<ExerciseEntity> absExerciseses = exerciseRepository.findTop3ExercisesForAbs();
+
+        List<ExerciseWithAlternatives> alternativesForAbs = findAlternativesForlistofExercises(absExerciseses);
+        mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForChest);
+
+        mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForShoulders);
+
+        mapOfDaysAndExericses.computeIfAbsent("one", k -> new ArrayList<>()).addAll(alternativesForTriceps);
+
+        mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForBack);
+
+        mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForArms);
+
+        mapOfDaysAndExericses.computeIfAbsent("two", k -> new ArrayList<>()).addAll(alternativesForAbs);
+
+        mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForLegs);
+
+        mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForLegs);
+
+        mapOfDaysAndExericses.computeIfAbsent("three", k -> new ArrayList<>()).addAll(alternativesForAbs);
+
+//
+
+
+        return mapOfDaysAndExericses;
+    }
+
+    @Override
     public List<ExerciseEntity> getAllExercies() {
         return exerciseRepository.findAll();
     }

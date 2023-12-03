@@ -99,7 +99,7 @@ const CalendarOfTraining = () => {
             week: week,
         };
 
-
+        console.log(eventTraining, training)
 
 
 
@@ -153,7 +153,7 @@ const CalendarOfTraining = () => {
                     <div>
                         <Splide aria-label="My Favorite Images">
                             {wendsdayTrainings && wendsdayTrainings.map((item, index) => (
-                                <SplideSlide>
+                                <SplideSlide key={index}>
 
                                     <SmallTraining className="calendar-emptytrain" key={item.trainingEntity.id} val={item} />
                                 </SplideSlide>

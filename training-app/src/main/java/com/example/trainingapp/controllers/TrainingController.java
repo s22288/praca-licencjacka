@@ -29,7 +29,7 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 public class TrainingController {
     private static final Logger logger = LoggerFactory.getLogger(TrainingController.class);
-private PremiumUserSerivice premiumUserSerivice;
+    private PremiumUserSerivice premiumUserSerivice;
 
 
     private TrainingService trainingService;
@@ -59,11 +59,10 @@ private PremiumUserSerivice premiumUserSerivice;
     public ResponseEntity<String> saveDiet(@Valid @RequestBody TrainingEntity trainingEntity) {
         logger.info("treniing zapisany" + trainingEntity);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal =     authentication.getPrincipal();
+        Object principal = authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity userFromDb = userService.findByEmail(email);
         trainingEntity.setNormalUserId(userFromDb.getId());
-
 
 
         trainingService.saveTraining(trainingEntity);
@@ -75,18 +74,18 @@ private PremiumUserSerivice premiumUserSerivice;
     @RequestMapping("/assign-todate")
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
 
-    public  ResponseEntity <String> asignTrainingToDay( @Valid @RequestBody TrainingeventEntity ev){
+    public ResponseEntity<String> asignTrainingToDay(@Valid @RequestBody TrainingeventEntity ev) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         String email = ((PremiumuserEntity) principal).getEmail();
 
 
         PremiumuserEntity premiumuserEntity = premiumUserSerivice.findByEmail(email);
-       Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
-       premiumuserEntitySet.add(premiumuserEntity);
+        Set<PremiumuserEntity> premiumuserEntitySet = new HashSet<>();
+        premiumuserEntitySet.add(premiumuserEntity);
 
         ev.setPremiumuserEntitySet(premiumuserEntitySet);
-trainingService.saveTrainingEvent(ev);
+        trainingService.saveTrainingEvent(ev);
 
         return ResponseEntity.ok("treninig");
     }
@@ -96,23 +95,31 @@ trainingService.saveTrainingEvent(ev);
     @RequestMapping("/findMachine/{id}")
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
-    public  ResponseEntity<TrainingmachineEntity> findMachineByid(@PathVariable long id){
+    public ResponseEntity<TrainingmachineEntity> findMachineByid(@PathVariable long id) {
         TrainingmachineEntity machineById = trainingService.findMachineById(id);
-        return  ResponseEntity.ok(machineById);
+        return ResponseEntity.ok(machineById);
 
     }
 
     @GetMapping
-      @RequestMapping("/split-training")
+    @RequestMapping("/split-training")
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
-    public  ResponseEntity<Map<String,List<ExerciseWithAlternatives>>> creteSplitTraining(){
-        Map<String,List<ExerciseWithAlternatives>> splitTraining = trainingService.createSplitTraining();
-        return  ResponseEntity.ok(splitTraining);
+    public ResponseEntity<Map<String, List<ExerciseWithAlternatives>>> creteSplitTraining() {
+        Map<String, List<ExerciseWithAlternatives>> splitTraining = trainingService.createSplitTraining();
+        return ResponseEntity.ok(splitTraining);
 
     }
 
+    @GetMapping
+    @RequestMapping("/push-pull-training")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 
+    public ResponseEntity<Map<String, List<ExerciseWithAlternatives>>> cretePushPullTraining() {
+        Map<String, List<ExerciseWithAlternatives>> splitTraining = trainingService.createPushPull();
+        return ResponseEntity.ok(splitTraining);
+
+    }
 
 
 }

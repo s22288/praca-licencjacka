@@ -4,7 +4,9 @@ package com.example.trainingapp.controllers.auth;
 import com.example.trainingapp.config.JwtService;
 import com.example.trainingapp.controllers.NormalUserController;
 import com.example.trainingapp.entities.NormaluserEntity;
+import com.example.trainingapp.entities.PremiumuserEntity;
 import com.example.trainingapp.entities.enums.Role;
+import com.example.trainingapp.services.functionality.UserService.PremiumUserSerivice;
 import com.example.trainingapp.services.functionality.UserService.UserService;
 import com.example.trainingapp.services.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +29,8 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
-private final UserService userService;
-
+    private final UserService userService;
+    private final PremiumUserSerivice premiumUserSerivice;
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
 
     public AuthenticationResponse register(RegisterRequest request) {
@@ -38,14 +40,14 @@ private final UserService userService;
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-    public AuthenticationResponse updateToPremium( ){
+    public AuthenticationResponse updateToPremium() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal =     authentication.getPrincipal();
+        Object principal = authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity user = userService.findByEmail(email);
-        logger.info("user " + user);
+        PremiumuserEntity premiumuserEntity =(PremiumuserEntity)user;
         user.setRole(Role.PREMIUMUSER);
-        userService.saveUser(user);
+        premiumUserSerivice.save(premiumuserEntity);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
@@ -53,7 +55,7 @@ private final UserService userService;
     public AuthenticationResponse authenticate(AuthenticatedRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),request.getPassword()
+                        request.getEmail(), request.getPassword()
                 )
         );
         var user = repository.findByEmail(request.getEmail()).orElseThrow();

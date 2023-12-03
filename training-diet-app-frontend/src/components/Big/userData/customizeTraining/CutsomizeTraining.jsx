@@ -26,6 +26,7 @@ const TrainingCustomization = () => {
   const [excercise, setExcercise] = useState('SPLIT');
   const [userData, setUserData] = useState();
   const [userDataSplit, setUserDataSplit] = useState();
+  const [userDataPushPUll, setUserDataPushPUll] = useState();
 
   const navigate = useNavigate();
   const [description, setDescription] = useState('trainin desc');
@@ -43,6 +44,10 @@ const TrainingCustomization = () => {
 
 
     }
+    if (excercise === "PUSHPULL") {
+      toSave = Object.values(userDataPushPUll).flat().map(value => value.exerciseEntity)
+
+    }
     const trainingToSave = {
       description: description,
       maxAge: 99,
@@ -55,7 +60,7 @@ const TrainingCustomization = () => {
     if (role === 'USER') {
       navigate("/user-page");
     } else {
-      navigate("/premium-user-page/");
+      navigate("/premium-user-page");
     }
   };
   const handleInput = (event) => {
@@ -99,6 +104,29 @@ const TrainingCustomization = () => {
         })
         .then((data) => {
           setUserData(data);
+
+
+
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user data", error);
+        });
+    }
+
+
+    if (excercise === 'PUSHPULL') {
+
+
+      GetExerciseseByBodyPartPushPull()
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to fetch user data");
+          }
+        })
+        .then((data) => {
+          setUserDataPushPUll(data);
 
 
 
@@ -164,6 +192,16 @@ const TrainingCustomization = () => {
             />
             FBW
           </label>
+          <label htmlFor="pushpull">
+            <input
+              type="radio"
+              id="pushpull"
+              value="PUSHPULL"
+              name="anserw"
+              onChange={handleChange}
+            />
+            Push-Pull
+          </label>
 
 
           <label>Training description</label>
@@ -198,12 +236,21 @@ const TrainingCustomization = () => {
           ) : (
             <p className="context-customize-warning"></p>
           )}
+
+
+
+          {excercise == 'PUSHPULL' && userDataPushPUll ? (
+
+            <SplitTraining data={userDataPushPUll} />
+          ) : (
+            <p className="context-customize-warning"></p>
+          )}
         </div>
 
 
 
         <div >
-          {userData || userDataSplit ? (
+          {userData || userDataSplit || userDataPushPUll ? (
             <div >
               <Button variant="contained" onClick={saveTrainig}>
                 Save

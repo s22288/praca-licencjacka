@@ -34,7 +34,8 @@ const PremiumUserAccount = () => {
                 setUserData(data);
                 setBirthDate(data.birthDate)
                 setWeight(data.weight)
-
+                setHipsCircumference(data.hipsCircumference)
+                setWaistCircumference(data.waistCircumference)
                 setHeight(data.height)
                 setPal(data.palfactor)
                 console.log(userData)

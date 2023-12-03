@@ -84,6 +84,20 @@ const GetExerciseseByBodyPartFbw = () => {
         credentials: 'include'
     });
 }
+const GetExerciseseByBodyPartPushPull = () => {
+    const token = localStorage.getItem('jwtToken');
+
+    return fetch("http://localhost:9800/create-training/push-pull-training", {
+        method: 'GET',
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include'
+    });
+}
 const GetExerciseseByBodyPartSplit = () => {
     const token = localStorage.getItem('jwtToken');
 
@@ -98,19 +112,9 @@ const GetExerciseseByBodyPartSplit = () => {
         credentials: 'include'
     });
 }
-const GetExerciseseByBodyPartPushPull = () => {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGlib3VAbWFpbC5jb20iLCJpYXQiOjE3MDA4NjE2MTksImV4cCI6MTcwMDg2MzA1OX0.8nmoUJY44exg1KkpPT5gP-Poh9_L64n4LaLg0iN2Gtc'
 
-    return fetch("http://localhost:9800/create-training/exercise-for-bodyparts", {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-        credentials: 'include'
-    });
-}
+
+
 
 
 const DelteteTrainigById = (id) => {

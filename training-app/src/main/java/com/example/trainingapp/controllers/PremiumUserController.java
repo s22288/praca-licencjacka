@@ -75,13 +75,14 @@ private TrainingService trainingService;
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
 
     public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal =     authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
-        NormaluserEntity userFromDb = userService.findByEmail(email);
-        logger.info("user trainings" + userFromDb);
+        NormaluserEntity userFromDb = premiumUserSerivice.findByEmail(email);
+        logger.info("user from db " + userFromDb);
         List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
-
+        logger.info("trainings" + trainigsWithDays);
 
         return ResponseEntity.ok().body(trainigsWithDays);
     }

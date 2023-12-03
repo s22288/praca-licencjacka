@@ -33,7 +33,7 @@ public interface TrainingService {
 //     Map<String,List<ExerciseWithAlternatives>> createSplitTraining();
 
      Map<String,List<ExerciseWithAlternatives>> createSplitTraining();
-
+      Map<String, List<ExerciseWithAlternatives>> createPushPull();
 
      List<ExerciseEntity> getAllExercies();
      List<ExerciseEntity> getAllExerciesPageable(Pageable pageable);

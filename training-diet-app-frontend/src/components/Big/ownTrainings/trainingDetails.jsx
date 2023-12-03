@@ -46,9 +46,7 @@ const TrainingDetails = (props) => {
                     <Typography variant="body1" color="text.secondary">
                         Type: {treiningType}
                     </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        Max age:   {maxAge}
-                    </Typography>
+
                 </CardContent>
                 <CardActions>
                     <button onClick={handleDelelte} className="delte-perfect">

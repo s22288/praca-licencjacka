@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public interface PremiumUserSerivice {
     PremiumuserEntity findById(long id);
     PremiumuserEntity findByEmail(String email);
-
+    void save(PremiumuserEntity premiumuser);
 
 }

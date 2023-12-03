@@ -22,4 +22,9 @@ public class PremiumUserServiceImplementation implements  PremiumUserSerivice{
     public PremiumuserEntity findByEmail(String email) {
         return premiumUserRepository.findByEmail(email).get();
     }
+
+    @Override
+    public void save(PremiumuserEntity premiumuser) {
+        premiumUserRepository.save(premiumuser);
+    }
 }
