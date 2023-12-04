@@ -2,7 +2,6 @@ package com.example.trainingapp.services.functionality.TrainingService;
 
 import com.example.trainingapp.entities.*;
 import com.example.trainingapp.entities.dto.helperclasses.ExerciseWithAlternatives;
-import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

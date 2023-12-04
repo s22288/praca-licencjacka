@@ -23,6 +23,7 @@ public class TrainingServiceImplementation implements TrainingService {
     private BodyPartRepository bodyPartRepository;
     private TrainingEventRepository trainingEventRepository;
 
+
     private MaxInExerciseRepository maxInExerciseRepository;
     private static final Logger logger = LoggerFactory.getLogger(TrainingServiceImplementation.class);
 
@@ -74,10 +75,11 @@ public class TrainingServiceImplementation implements TrainingService {
         return null;
     }
 
-    @Override
+        @Override
     public List<TrainingWithDay> getTrainigsWithDays(long id) {
         return trainingRepository.getTrainingsWithDays(id);
     }
+
 
     @Override
     public void saveTrainingEvent(TrainingeventEntity trainingeventEntity) {
@@ -94,7 +96,6 @@ public class TrainingServiceImplementation implements TrainingService {
 
         return machineRepository.findById(id).get();
     }
-
 
 
     @Override
@@ -228,7 +229,7 @@ public class TrainingServiceImplementation implements TrainingService {
         List<ExerciseWithAlternatives> eachBodyPartExercise = new ArrayList<>();
 
         exerciseEntities.forEach(b -> {
-           String bodyPart = exerciseRepository.findBodyPart(b.getId());
+            String bodyPart = exerciseRepository.findBodyPart(b.getId());
 
 
             List<ExerciseEntity> alternatives3 = exerciseRepository.findTwoAlternativesWithoutUsed(exerciseRepository.findBodyPart(b.getId()));

@@ -1,9 +1,9 @@
 package com.example.trainingapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.ToString;
 
-import java.time.DayOfWeek;
 import java.util.HashSet;
 import java.util.Set;
 @ToString
@@ -22,8 +22,8 @@ public class TrainingeventEntity {
     private String localozation;
 
     @Basic
-    @Column(name = "week", nullable = false, length = 300)
-    private String week;
+    @Column(name = "day", nullable = false, length = 300)
+    private String day;
 
 
     @ManyToMany
@@ -42,13 +42,17 @@ public class TrainingeventEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+@JsonIgnore
+    public Set<PremiumuserEntity> getPremiumuserEntitySet() {
+        return premiumuserEntitySet;
+    }
 
     public void setLocalozation(String localozation) {
         this.localozation = localozation;
     }
 
-    public void setWeek(String week) {
-        this.week = week;
+    public void setDay(String week) {
+        this.day = week;
     }
 
     public int getId() {
@@ -63,8 +67,8 @@ public class TrainingeventEntity {
         return localozation;
     }
 
-    public String getWeek() {
-        return week;
+    public String getDay() {
+        return day;
     }
 
     @Override
@@ -86,5 +90,15 @@ public class TrainingeventEntity {
         int result = id;
         result = 31 * result + (localozation != null ? localozation.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TrainingeventEntity{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", localozation='" + localozation + '\'' +
+                ", day='" + day + '\'' +
+                '}';
     }
 }

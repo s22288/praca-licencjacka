@@ -16,7 +16,7 @@ const GetAllTrainings = () => {
 const GetAllTrainingsWithDays = () => {
     const token = localStorage.getItem('jwtToken');
 
-    return fetch("http://localhost:9800/premium-user/trainings-days", {
+    return fetch("http://localhost:9800/normal-user/trainings-days", {
         method: 'GET',
 
         headers: {

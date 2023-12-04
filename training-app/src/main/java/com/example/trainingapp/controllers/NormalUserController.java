@@ -2,32 +2,22 @@ package com.example.trainingapp.controllers;
 
 import com.example.trainingapp.controllers.auth.AuthenticationResponse;
 import com.example.trainingapp.controllers.auth.AuthenticationService;
-import com.example.trainingapp.entities.DietEntity;
 import com.example.trainingapp.entities.MaxinexerciseEntity;
 import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.TrainingEntity;
 import com.example.trainingapp.entities.dto.helperclasses.DietWithMeals;
-import com.example.trainingapp.entities.dto.helperclasses.MealWithAlternatives;
 import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.functionality.DietService.DietService;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.UserService;
-import com.example.trainingapp.services.repositories.DietRepository;
-import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
-import com.example.trainingapp.services.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -130,7 +120,24 @@ public class NormalUserController  {
         return ResponseEntity.ok(usersMaxes);
 
     }
+    @CrossOrigin
+    @GetMapping
 
+    @RequestMapping("/trainings-days")
+//    @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
+
+    public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        logger.info("user from db " + userFromDb.getId());
+        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
+
+
+        return ResponseEntity.ok().body(trainigsWithDays);
+    }
     @PostMapping
 
     @RequestMapping("/add-maxes")

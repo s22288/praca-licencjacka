@@ -17,10 +17,11 @@ import java.util.List;
                 targetClass = TrainingWithDay.class,
                 columns = {
                         @ColumnResult(name = "training_id", type = Long.class),
-                        @ColumnResult(name = "training_name", type = String.class),
-                        @ColumnResult(name = "event_id", type = Long.class),
-                        @ColumnResult(name = "event_day", type = String.class),
-                        @ColumnResult(name = "event_description", type = String.class)
+                        @ColumnResult(name = "training_description", type = String.class),
+                        @ColumnResult(name = "trainingevent_id", type = Long.class),
+                        @ColumnResult(name = "trainingevent_day", type = String.class),
+                        @ColumnResult(name = "trainingevent_description", type = String.class),
+                        @ColumnResult(name = "trainingevent_localozation", type = String.class)
 
                 }
         )
@@ -32,7 +33,10 @@ public interface TrainingRepository extends JpaRepository <TrainingEntity,Long> 
     @Query(value =  "select distinct t.treining_type from training t ",nativeQuery = true)
     List<String> getTrainingTypes();
 
-    ;
+
+
+    @Query(value = "select  * from training t inner join  ",nativeQuery = true)
+    List<TrainingEntity> getTrainingsByEvent(long eventId);
 
     @Query(value = "SELECT new com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay(t, te) FROM TrainingEntity t " +
             "INNER JOIN NormaluserEntity n ON t.id = n.id " +
