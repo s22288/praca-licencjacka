@@ -158,7 +158,7 @@ public class NormalUserController  {
         return ResponseEntity.ok("Updated ok 200");
 
     }
-    @CrossOrigin
+//    @CrossOrigin
     @RequestMapping("/diets")
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER', 'USER')")
 

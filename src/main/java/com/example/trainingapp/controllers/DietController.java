@@ -47,6 +47,13 @@ public class DietController {
         return ResponseEntity.ok(dietService.findAllTypeOfMeal());
     }
 
+    @GetMapping
+    @RequestMapping("/hello")
+
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("hello");
+    }
+
 
     @GetMapping
     @RequestMapping("/getMeals-byType")
