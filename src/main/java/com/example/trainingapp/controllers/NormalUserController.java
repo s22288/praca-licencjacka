@@ -120,24 +120,7 @@ public class NormalUserController  {
         return ResponseEntity.ok(usersMaxes);
 
     }
-    @CrossOrigin
-    @GetMapping
 
-    @RequestMapping("/trainings-days")
-//    @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
-
-    public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal =     authentication.getPrincipal();
-        String email = ((NormaluserEntity) principal).getEmail();
-        NormaluserEntity userFromDb = userService.findByEmail(email);
-        logger.info("user from db " + userFromDb.getId());
-        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
-
-
-        return ResponseEntity.ok().body(trainigsWithDays);
-    }
     @PostMapping
 
     @RequestMapping("/add-maxes")

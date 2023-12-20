@@ -7,16 +7,13 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class TrainingWithDay {
-  private   TrainingEntity trainingEntity;
-   private TrainingeventEntity day;
+    private TrainingEntity trainingEntity;
+    private TrainingeventEntity day;
 
-    public TrainingWithDay(TrainingEntity trainingEntity, TrainingeventEntity day) {
-        this.trainingEntity = trainingEntity;
-        this.day = day;
-    }
 
     public TrainingEntity getTrainingEntity() {
         return trainingEntity;
@@ -34,6 +31,5 @@ public class TrainingWithDay {
         this.day = day;
     }
 
-    public TrainingWithDay() {
-    }
+
 }

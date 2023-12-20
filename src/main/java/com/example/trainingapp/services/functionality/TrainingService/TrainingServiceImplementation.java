@@ -80,6 +80,11 @@ public class TrainingServiceImplementation implements TrainingService {
         return trainingRepository.getTrainingsWithDays(id);
     }
 
+    @Override
+    public void deletTrainigWithEvent(long id) {
+        trainingEventRepository.DeleteEventByUserId(id);
+    }
+
 
     @Override
     public void saveTrainingEvent(TrainingeventEntity trainingeventEntity) {

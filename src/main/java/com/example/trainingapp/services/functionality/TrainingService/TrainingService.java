@@ -22,7 +22,7 @@ public interface TrainingService {
      TrainingeventEntity getTrainingById(long id);
 
      List<TrainingWithDay> getTrainigsWithDays(long id);
-
+   void   deletTrainigWithEvent(long id);
      void saveTrainingEvent(TrainingeventEntity trainingeventEntity);
    //  List<String> getAllTrainingtypes();
 

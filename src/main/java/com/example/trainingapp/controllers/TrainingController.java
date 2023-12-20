@@ -75,6 +75,7 @@ public class TrainingController {
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
 
     public ResponseEntity<String> asignTrainingToDay(@Valid @RequestBody TrainingeventEntity ev) {
+        logger.info("event" + ev);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         String email = ((PremiumuserEntity) principal).getEmail();
@@ -118,6 +119,19 @@ public class TrainingController {
     public ResponseEntity<Map<String, List<ExerciseWithAlternatives>>> cretePushPullTraining() {
         Map<String, List<ExerciseWithAlternatives>> splitTraining = trainingService.createPushPull();
         return ResponseEntity.ok(splitTraining);
+
+    }
+
+    @GetMapping
+    @RequestMapping("/delete-train-event")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
+    public ResponseEntity<String> deleteTrainingWithEvents() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        String email = ((PremiumuserEntity) principal).getEmail();
+        PremiumuserEntity premiumuserEntity = premiumUserSerivice.findByEmail(email);
+        trainingService.deleteTrainingById(premiumuserEntity.getId());
+        return ResponseEntity.ok("ok");
 
     }
 

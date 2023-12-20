@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface DietRepository extends JpaRepository<DietEntity,Long> {
-    @Query(nativeQuery = true,value = "select * from diet where normal_user_id = ?1")
+    @Query(nativeQuery = true,value = "select * from diet where normal_user_id = ?1 limit 20")
     List<DietEntity> findDietsByUserId(int userId);
 
 

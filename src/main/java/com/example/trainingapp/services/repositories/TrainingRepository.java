@@ -18,28 +18,30 @@ import java.util.List;
                 columns = {
                         @ColumnResult(name = "training_id", type = Long.class),
                         @ColumnResult(name = "training_description", type = String.class),
-                        @ColumnResult(name = "trainingevent_id", type = Long.class),
-                        @ColumnResult(name = "trainingevent_day", type = String.class),
+                        @ColumnResult(name = "training_maxAge", type = String.class),
+
+
+                        @ColumnResult(name = "trainingevent_id", type = String.class),
                         @ColumnResult(name = "trainingevent_description", type = String.class),
-                        @ColumnResult(name = "trainingevent_localozation", type = String.class)
+                        @ColumnResult(name = "trainingevent_localozation", type = String.class),
+                        @ColumnResult(name = "trainingevent_day", type = String.class),
+
 
                 }
         )
 )
 @Repository
 public interface TrainingRepository extends JpaRepository <TrainingEntity,Long> {
-    @Query(value ="select  * from training    where normal_user_id = ?1" ,nativeQuery = true)
+    @Query(value ="select  * from training    where normal_user_id = ?1 limit 20" ,nativeQuery = true)
      List<TrainingEntity> getALLUsersTrainings(int userId);
     @Query(value =  "select distinct t.treining_type from training t ",nativeQuery = true)
     List<String> getTrainingTypes();
 
 
 
-    @Query(value = "select  * from training t inner join  ",nativeQuery = true)
-    List<TrainingEntity> getTrainingsByEvent(long eventId);
 
     @Query(value = "SELECT new com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay(t, te) FROM TrainingEntity t " +
-            "INNER JOIN NormaluserEntity n ON t.id = n.id " +
+            "INNER JOIN NormaluserEntity n ON t.normalUserId = n.id " +
             "INNER JOIN PremiumuserEntity p ON n.id = p.id " +
             "INNER JOIN TrainingeventEntity te ON p MEMBER OF te.premiumuserEntitySet " +
             "WHERE n.id = ?1")

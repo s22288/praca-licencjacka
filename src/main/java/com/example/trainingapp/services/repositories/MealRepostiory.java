@@ -21,7 +21,7 @@ public interface MealRepostiory extends JpaRepository<MealEntity,Long> {
     List<MealEntity> findFourMealsBaseOnType(int typeId);
 
 
-    @Query (value = "select * from meal m inner  join dietmeals d on m.id = d.meal_id and d.diet_id = ?1",nativeQuery = true)
+    @Query (value = "select * from meal m inner  join dietmeals d on m.id = d.meal_id and d.diet_id = ?1 order by  rand()",nativeQuery = true)
     List<MealEntity> findAllMealsOfDiet(int dietId);
 
     @Query(value = "select *from meal ",nativeQuery = true)

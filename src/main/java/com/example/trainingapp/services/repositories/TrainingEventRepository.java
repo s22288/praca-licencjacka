@@ -11,4 +11,8 @@ import java.util.List;
 public interface TrainingEventRepository extends JpaRepository<TrainingeventEntity,Long> {
     @Query(value = "select * from trainingevent inner join userstrainingevent u on trainingevent.id = u.training_calendar_id where u.premium_user_normal_user_id = ?1" ,nativeQuery = true)
     List<TrainingeventEntity> getEventByUserId(long id);
+
+
+    @Query(value = "delete trainingevent  from trainingevent inner join userstrainingevent u on trainingevent.id = u.training_calendar_id where u.premium_user_normal_user_id = ?1" ,nativeQuery = true)
+    List<TrainingeventEntity> DeleteEventByUserId(long id);
 }

@@ -3,6 +3,7 @@ package com.example.trainingapp.controllers;
 import com.example.trainingapp.entities.NormaluserEntity;
 import com.example.trainingapp.entities.PremiumuserEntity;
 import com.example.trainingapp.entities.dto.helperclasses.Indicator;
+import com.example.trainingapp.entities.dto.helperclasses.TrainingWithDay;
 import com.example.trainingapp.services.functionality.TrainingService.TrainingService;
 import com.example.trainingapp.services.functionality.UserService.PremiumUserSerivice;
 import com.example.trainingapp.services.functionality.UserService.UserService;
@@ -14,6 +15,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/premium-user")
@@ -30,7 +33,22 @@ private TrainingService trainingService;
         this.userService = userService;
         this.premiumUserSerivice = premiumUserSerivice;
     }
+    @GetMapping
 
+    @RequestMapping("/trainings-days")
+    @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")
+
+    public ResponseEntity<List<TrainingWithDay>> getUserTrainingsWithDays() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal =     authentication.getPrincipal();
+        String email = ((NormaluserEntity) principal).getEmail();
+        NormaluserEntity userFromDb = userService.findByEmail(email);
+        List<TrainingWithDay> trainigsWithDays = trainingService.getTrainigsWithDays(userFromDb.getId());
+
+
+        return ResponseEntity.ok().body(trainigsWithDays);
+    }
     @GetMapping
     @RequestMapping("/indicators")
     @PreAuthorize("hasAnyAuthority('PREMIUMUSER')")

@@ -82,7 +82,7 @@ public interface ExerciseRepository extends JpaRepository<ExerciseEntity,Long> {
             "INNER JOIN exercisebodypart eb ON e.id = eb.exercise_id " +
             "INNER JOIN bodypart b ON eb.body_part_id = b.id " +
             "WHERE b.description = 'Barki' " +
-            "LIMIT 3", nativeQuery = true)
+            "LIMIT 3 ", nativeQuery = true)
     List<ExerciseEntity> findTop3ExercisesForShoulders();
 
 
