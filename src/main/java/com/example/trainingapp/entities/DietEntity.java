@@ -1,6 +1,10 @@
 package com.example.trainingapp.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 import jdk.jfr.Category;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +24,12 @@ public class DietEntity {
     private int id;
     @Basic
     @Column(name = "CaloriesCount", nullable = false)
+    @Max( 15000)
     private int caloriesCount;
     @Basic
     @Column(name = "dietName", nullable = false, length = 200)
+    @Size(min = 1, message = "{validation.dietName.size.too_short}")
+    @Size(max = 200, message = "{validation.dietName.size.too_long}")
     private String dietName;
     @Basic
     @Column(name = "NormalUser_id", nullable = false)

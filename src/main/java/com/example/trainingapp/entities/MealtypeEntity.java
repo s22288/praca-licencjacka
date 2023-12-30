@@ -13,10 +13,10 @@ public class MealtypeEntity {
     @Column(name = "name", nullable = false, length = 200)
     private String name;
     @Basic
-    @Column(name = "description", nullable = false, length = 1000)
+    @Column(name = "description", length = 1000)
     private String description;
     @Basic
-    @Column(name = "photo", nullable = false, length = 2000)
+    @Column(name = "photo", length = 2000)
     private String photo;
 
     public int getId() {

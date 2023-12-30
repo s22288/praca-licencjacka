@@ -7,6 +7,7 @@ import com.example.trainingapp.entities.dto.helperclasses.Indicator;
 import com.example.trainingapp.services.repositories.MaxInExerciseRepository;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import com.example.trainingapp.services.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.apache.commons.math3.util.Precision;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +110,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }

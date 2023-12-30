@@ -1,12 +1,18 @@
 package com.example.trainingapp.entities;
 
+import com.example.trainingapp.entities.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,22 +30,36 @@ public class PremiumuserEntity extends NormaluserEntity {
 
     @Basic
     @Column(name = "hipsCircumference", nullable = false, precision = 2)
+    @Max(value = 600,message = "{validation.hipsCircumference.size.too_big}")
+    @Min(value = 40,message = "{validation.hipsCircumference.size.too_small}")
     private double hipsCircumference;
     @Basic
     @Column(name = "waistCircumference", nullable = false, precision = 2)
+    @Max(value = 600,message = "{validation.waistCircumference.size.too_big}")
+    @Min(value = 40,message = "{validation.waistCircumference.size.too_small}")
     private double waistCircumference;
     @Basic
     @Column(name = "startSubscription", nullable = false)
-    private Date startSubscription;
+    private LocalDate startSubscription;
     @Basic
     @Column(name = "endSubscription", nullable = false)
-    private Date endSubscription;
+    private LocalDate endSubscription;
     @ManyToMany
     @JoinTable(name = "userstrainingevent",joinColumns = @JoinColumn( name ="premium_user_normal_user_id" ),inverseJoinColumns = @JoinColumn(name = "training_calendar_id"))
     private Set<TrainingeventEntity> trainingeventEntitySet = new HashSet<>();
 
     public PremiumuserEntity() {
 
+    }
+
+
+    public PremiumuserEntity(int id, String firstName, String lastName, LocalDate birthDate, @DecimalMax(value = "1000.0", message = "too much heigh") @DecimalMin(value = "0.0", message = "0.0") double height, @DecimalMax(value = "600.0", message = "too much weight") @DecimalMin(value = "0.0", message = "cant weight under 0") double weight, String password, String email, String photo, @DecimalMax(value = "5.0", message = "to high pal factor") @DecimalMin(value = "-5.0", message = "to low pal factor") double palfactor, boolean sex, Role role, double hipsCircumference, double waistCircumference, LocalDate startSubscription, LocalDate endSubscription, Set<TrainingeventEntity> trainingeventEntitySet) {
+        super(id, firstName, lastName, birthDate, height, weight, password, email, photo, palfactor, sex, role);
+        this.hipsCircumference = hipsCircumference;
+        this.waistCircumference = waistCircumference;
+        this.startSubscription = startSubscription;
+        this.endSubscription = endSubscription;
+        this.trainingeventEntitySet = trainingeventEntitySet;
     }
 
     public double getHipsCircumference() {
@@ -58,19 +78,19 @@ public class PremiumuserEntity extends NormaluserEntity {
         this.waistCircumference = waistCircumference;
     }
 
-    public Date getStartSubscription() {
+    public LocalDate getStartSubscription() {
         return startSubscription;
     }
 
-    public void setStartSubscription(Date startSubscription) {
+    public void setStartSubscription(LocalDate startSubscription) {
         this.startSubscription = startSubscription;
     }
 
-    public Date getEndSubscription() {
+    public LocalDate getEndSubscription() {
         return endSubscription;
     }
 
-    public void setEndSubscription(Date endSubscription) {
+    public void setEndSubscription(LocalDate endSubscription) {
         this.endSubscription = endSubscription;
     }
 
@@ -81,6 +101,8 @@ public class PremiumuserEntity extends NormaluserEntity {
     public void setTrainingeventEntitySet(Set<TrainingeventEntity> trainingeventEntitySet) {
         this.trainingeventEntitySet = trainingeventEntitySet;
     }
+
+
 
     public  double calculateBMI(){
         return  getWeight() / Math.pow(getHeight(),2);

@@ -2,6 +2,8 @@ package com.example.trainingapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 
 
@@ -21,10 +23,13 @@ public class MealEntity {
     @Column(name = "mealName", nullable = false, length = 200)
     private String mealName;
     @Basic
-    @Column(name = "photo", nullable = false, length = 200)
+    @Column(name = "photo", nullable = false)
     private String photo;
     @Basic
     @Column(name = "calories", nullable = false)
+    @Min(value = 1, message = "{validation.calories.size.too_low}")
+    @Max(value = 15000, message = "{validation.calories.size.too_big}")
+
     private int calories;
     @Basic
     @Column(name = "MealType_id", nullable = false)

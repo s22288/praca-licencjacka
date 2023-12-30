@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import java.sql.Date;
@@ -24,16 +26,22 @@ public class MaxinexerciseEntity {
     private int id;
     @Basic
     @Column(name = "bench", nullable = false)
-
+    @Max(value = 500,message = "{validation.bench.size.too_high}")
+    @Min(value = 1,message = "{validation.bench.size.too_low}")
     private double bench;
     @Basic
     @Column(name = "pullups",nullable = false)
-
+    @Max(value = 500,message = "{validation.pullups.size.too_high}")
+    @Min(value = 1 ,message = "{validation.pullups.size.too_low}")
     private int pullups;
+    @Max(value = 500,message = "{validation.squad.size.too_high}")
+    @Min(value = 1,message = "{validation.squad.size.too_low}")
     @Basic
     @Column(name = "squad",nullable = false)
 
     private double squad;
+    @Max(value = 500,message = "{validation.deadlift.size.too_high}")
+    @Min(value = 1,message = "{validation.deadlift.size.too_low}")
     @Basic
     @Column(name = "deadlift",nullable = false)
 

@@ -129,8 +129,9 @@ public class TrainingController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         String email = ((PremiumuserEntity) principal).getEmail();
+        logger.info("email osoby  " + email );
         PremiumuserEntity premiumuserEntity = premiumUserSerivice.findByEmail(email);
-        trainingService.deleteTrainingById(premiumuserEntity.getId());
+       premiumUserSerivice.removeAllAssociations(premiumuserEntity.getId());
         return ResponseEntity.ok("ok");
 
     }

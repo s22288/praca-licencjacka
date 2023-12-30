@@ -21,6 +21,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -29,8 +32,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
-    private final UserService userService;
-    private final PremiumUserSerivice premiumUserSerivice;
+    private final UserService userService;    private final PremiumUserSerivice premiumUserSerivice;
     private static final Logger logger = LoggerFactory.getLogger(NormalUserController.class);
 
     public AuthenticationResponse register(RegisterRequest request) {
@@ -45,9 +47,27 @@ public class AuthenticationService {
         Object principal = authentication.getPrincipal();
         String email = ((NormaluserEntity) principal).getEmail();
         NormaluserEntity user = userService.findByEmail(email);
-        PremiumuserEntity premiumuserEntity =(PremiumuserEntity)user;
-        user.setRole(Role.PREMIUMUSER);
-        premiumUserSerivice.save(premiumuserEntity);
+
+       PremiumuserEntity premiumuserEntity = new PremiumuserEntity();
+       premiumuserEntity.setId(user.getId());
+       premiumuserEntity.setFirstName(user.getFirstName());
+       premiumuserEntity.setLastName(user.getLastName());
+       premiumuserEntity.setBirthDate(user.getBirthDate());
+       premiumuserEntity.setHeight(user.getHeight());
+       premiumuserEntity.setWeight(user.getWeight());
+       premiumuserEntity.setPassword(user.getPassword());
+        premiumuserEntity.setEmail(user.getEmail());
+        premiumuserEntity.setPhoto(user.getPhoto());
+        premiumuserEntity.setPalfactor(user.getPalfactor());
+        premiumuserEntity.setSex(user.isSex());
+        premiumuserEntity.setRole(Role.PREMIUMUSER);
+        premiumuserEntity.setHipsCircumference(0);
+        premiumuserEntity.setWaistCircumference(0);
+        premiumuserEntity.setStartSubscription(LocalDate.now());
+        premiumuserEntity.setEndSubscription(LocalDate.now());
+        userService.deleteUser(user.getId());
+        userService.saveUser(premiumuserEntity);
+
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }

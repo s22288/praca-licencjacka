@@ -11,4 +11,5 @@ public interface PremiumUserSerivice {
     PremiumuserEntity findByEmail(String email);
     void save(PremiumuserEntity premiumuser);
 
+    void removeAllAssociations(long id);
 }

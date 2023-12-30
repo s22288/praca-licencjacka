@@ -4,8 +4,11 @@ import com.example.trainingapp.entities.PremiumuserEntity;
 import com.example.trainingapp.services.repositories.PremiumUserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Optional;
+
 @Service
-public class PremiumUserServiceImplementation implements  PremiumUserSerivice{
+public class PremiumUserServiceImplementation implements PremiumUserSerivice {
     private PremiumUserRepository premiumUserRepository;
 
 
@@ -26,5 +29,15 @@ public class PremiumUserServiceImplementation implements  PremiumUserSerivice{
     @Override
     public void save(PremiumuserEntity premiumuser) {
         premiumUserRepository.save(premiumuser);
+    }
+
+    @Override
+    public void removeAllAssociations(long premiumUserId) {
+        Optional<PremiumuserEntity> optionalPremiumUser = premiumUserRepository.findById(premiumUserId);
+
+        optionalPremiumUser.ifPresent(premiumUser -> {
+            premiumUser.setTrainingeventEntitySet(new HashSet<>());
+            premiumUserRepository.save(premiumUser);
+        });
     }
 }

@@ -16,7 +16,7 @@ public class BodypartEntity {
     @Column(name = "description", nullable = false, length = 200)
     private String description;
     @Basic
-    @Column(name = "url", nullable = false, length = 200)
+    @Column(name = "url", nullable = false, length = 2000)
     private String url;
 
 

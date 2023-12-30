@@ -2,6 +2,7 @@ package com.example.trainingapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -19,10 +20,13 @@ public class ExerciseEntity {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "name", nullable = false, length = 200)
+    @Size(max = 200, message = "{validation.name.size.too_long}")
+    @Column(name = "name", nullable = false)
     private String name;
     @Basic
-    @Column(name = "photo", nullable = false, length = 2000)
+    @Size(max = 2000, message = "{validation.photo.size.too_long}")
+
+    @Column(name = "photo", nullable = false)
     private String photo;
     @Basic
     @Column(name = "series", nullable = false)
@@ -38,7 +42,7 @@ public class ExerciseEntity {
     @Column(name = "TrainingMachine_id", nullable = false)
     private int trainingMachineId;
     @Basic
-    @Column(name = "dayName")
+    @Column(name = "dayName", length = 200)
 
     private String dayName;
 

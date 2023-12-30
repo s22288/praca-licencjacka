@@ -5,6 +5,8 @@ import com.example.trainingapp.entities.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.apache.commons.math3.util.Precision;
 import org.hibernate.annotations.Check;
@@ -38,12 +40,15 @@ public class NormaluserEntity implements UserDetails {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
+    @Size(min = 2, message = "{validation.firstName.size.too_short}")
+    @Size(max = 200, message = "{validation.name.size.too_long}")
     @Column(name = "firstName", nullable = false, length = 200)
     private String firstName;
 
 
-
     @Basic
+    @Size(min = 2, message = "{validation.lastName.size.too_short}")
+    @Size(max = 200, message = "{validation.name.size.too_long}")
     @Column(name = "lastName", nullable = false, length = 200)
     private String lastName;
     @Basic
@@ -53,24 +58,29 @@ public class NormaluserEntity implements UserDetails {
     private LocalDate birthDate;
     @Basic
     @Column(name = "height", nullable = false, precision = 1)
-    @DecimalMax(value = "1000.0", message = "too much heigh")
-    @DecimalMin(value = "0.0", message = "0.0")
+    @DecimalMax(value = "250.0", message = "{validation.height.size.to_height}")
+    @DecimalMin(value = "100.0", message = "{validation.height.size.to_short}")
 
     private double height;
     @Basic
     @Column(name = "weight", nullable = false, precision = 2)
-    @DecimalMax(value = "600.0", message = "too much weight")
-    @DecimalMin(value = "0.0", message = "cant weight under 0")
+    @DecimalMax(value = "300.0", message = "{validation.weight.size.to_height")
+    @DecimalMin(value = "20.0", message = "{validation.weight.size.to_low}")
 
     private double weight;
 
 
     @Basic
-    @Column(name = "password", nullable = false, length = 300)
+    @Size(min = 2, message = "{validation.password.size.too_short}")
+    @Size(max = 200, message = "{validation.password.size.too_long}")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Basic
-    @Column(name = "email", nullable = false, length = 200)
+    @Size(min = 2, message = "{validation.email.size.too_short}")
+    @Size(max = 200, message = "{validation.email.size.too_long}")
+
+    @Column(name = "email", nullable = false,unique = true)
     private String email;
     @Basic
     @Column(name = "photo", length = 2000)
